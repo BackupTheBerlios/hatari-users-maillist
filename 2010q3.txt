@@ -1,0 +1,180 @@
+From pirat at ckies.de  Tue Jul  6 08:05:50 2010
+From: pirat at ckies.de (Andreas)
+Date: Tue, 06 Jul 2010 08:05:50 +0200
+Subject: [hatari-users] keyboard mapping
+Message-ID: <1278396350.2969.39.camel@soest>
+
+Hello Everybody,
+
+thanks for providing hatari. It is great fun to do things the way I did
+15 years ago. I recently spend a hole night with playing Rainer Duda's
+Fu?ball-ST.
+
+What I am missing: the key for the Backslash ('\') on my german
+keyboard.
+
+I found some documentation here:
+
+	<http://hg.berlios.de/repos/hatari/raw-file/tip/doc/manual.html>
+
+But I do not have the mentioned SDL_keysym.h on my system and the
+explanation of using shortcuts to control the emulator itself (like
+ALTGR+x to toggle normal speed/fast forward) and "normal" key mapping
+(like Scroll Lock will emulate the ST's UNDO key) is somehow mixed up.
+
+in my .hatari/hatari.cfg I found in the [Keyboard] section:
+
+nKeymapType = 0
+szMappingFileName =
+
+But no explanation how such a MappingFile might look like and no info
+what a KeymapType is.
+
+I also noticed, that I can switch between "Symbolic" "Scancode" and
+"From file" mapping in the emulators GUI.
+But switching beween Symbolic and Scancode seems to have no effect and
+the format of a mapping file is still not explaint.
+
+thanks
+Andreas
+
+
+
+From eerot at users.berlios.de  Sun Jul 11 12:08:56 2010
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sun, 11 Jul 2010 13:08:56 +0300
+Subject: [hatari-users] keyboard mapping
+In-Reply-To: <1278396350.2969.39.camel@soest>
+References: <1278396350.2969.39.camel@soest>
+Message-ID: <201007111308.57445.eerot@users.berlios.de>
+
+Hi,
+
+On Tuesday 06 July 2010, Andreas wrote:
+> What I am missing: the key for the Backslash ('\') on my german
+> keyboard.
+>
+> I found some documentation here:
+>
+> 	<http://hg.berlios.de/repos/hatari/raw-file/tip/doc/manual.html>
+>
+> But I do not have the mentioned SDL_keysym.h on my system
+
+Here's one for SDL v1.3:
+	http://www.libsdl.org/tmp/SDL-1.3-docs/SDL__keysym_8h-source.html
+
+But it seems that the numerical values have moved in v1.3 to SDL_scancode.h:
+	http://www.libsdl.org/tmp/SDL-1.3-docs/SDL__scancode_8h-source.html
+
+They're included with the SDL development files.
+
+(I'll update the manual on this + add the links.)
+
+
+> and the 
+> explanation of using shortcuts to control the emulator itself (like
+> ALTGR+x to toggle normal speed/fast forward) and "normal" key mapping
+> (like Scroll Lock will emulate the ST's UNDO key) is somehow mixed up.
+
+Sorry, I didn't understand this, could you explain more?
+
+
+> in my .hatari/hatari.cfg I found in the [Keyboard] section:
+>
+> nKeymapType = 0
+> szMappingFileName =
+>
+> But no explanation how such a MappingFile might look like
+
+Here's the example coming with the Hatari sources:
+http://hg.berlios.de/repos/hatari/raw-file/dabb65b541c9/doc/keymap-sample.txt
+
+Attached is another one.  Lines starting with '#' are comments.
+
+
+I think SDL sources include simple test programs that give pressed SDL key
+values (on host) and I could dig up a program that gives Atari keycodes
+(inside the emulation or on real Atari).  Using something like those can
+help.
+
+
+> and no info what a KeymapType is.
+
+That's easiest to change from the UI.
+
+
+> I also noticed, that I can switch between "Symbolic" "Scancode" and
+> "From file" mapping in the emulators GUI.
+> But switching beween Symbolic and Scancode seems to have no effect
+
+It's explained in the manual keyboard dialog section:
+http://hg.berlios.de/repos/hatari/raw-file/tip/doc/manual.html#The%20Keyboard%20Dialog
+
+
+	- Eero
+-------------- next part --------------
+# Key remapping file for Hatari
+#
+# format is "%d,%d" where:
+# - first number is SDL keycode (see /usr/include/SDL/SDL_keysym.h)
+# - second number is ST keycode (0-255, see Hatari src/keymap.c)
+#
+# Mappings below are needed for different games on Nokia 770 device
+#
+# map Escape to 1 (to select single player)
+27,2
+# map Escape to F1 (to select single player)
+#27,59
+# map Return to Space (needed on games which use cursor keys and space)
+13,57
+
+From oak at helsinkinet.fi  Wed Sep  8 20:52:22 2010
+From: oak at helsinkinet.fi (Eero Tamminen)
+Date: Wed, 8 Sep 2010 21:52:22 +0300
+Subject: [hatari-users] Hatari mouse
+In-Reply-To: <1031541020.20100908130404@gmail.com>
+References: <1031541020.20100908130404@gmail.com>
+Message-ID: <201009082152.22698.oak@helsinkinet.fi>
+
+Hi,
+
+(I CC'ed hatari-users list in case there are Windows users who've
+bumbed into this and could help.)
+
+On Wednesday 08 September 2010, Dima Sobolev wrote:
+> Now again appeared Atari mouse restriction.
+> Please look at attached picture
+
+Thanks.  Interesting that you're using Finnish version of EmuTOS. :-)
+
+> - I cannot move mouse upper than it 
+> is, so for example menu items are unaccessible.
+
+This means that Atari and host mouse co-ordinates are slightly out of sync
+with each other.  You can either:
+- Move the mouse to *opposite* corner of the Hatari window as
+  this will cause the co-ordinates to get better in sync,
+- Enable mouse grabbing with AltGr+M shortcut, or
+- Switch to fullscreen with F11
+
+(Mouse is grabbed while in fullscreen.)
+
+
+I'm not sure what could cause mouse to get out of sync in your case.
+In Falcon emulation resolution switching could do that, but you were using
+ST emulation.
+
+Maybe your SDL isn't fully compatible with your Windows "Mouse movement
+acceleration"?  Does something similar happen in other programs
+(e.g. games[1]) that use:
+- SDL library
+- Run in window
+- Show, but by default don't grab mouse
+
+
+	- Eero
+
+[1] I was going to suggest openttd (see openttd.org), but then noticed that
+it doesn't use SDL on Windows...
+
+

@@ -1,0 +1,1170 @@
+From christer.solskogen at gmail.com  Fri Jan  9 10:27:24 2009
+From: christer.solskogen at gmail.com (Christer Solskogen)
+Date: Fri, 9 Jan 2009 10:27:24 +0100
+Subject: [hatari-users] Error compiling hatari on Mac OS X
+Message-ID: <c1a0d1560901090127r227f91f9h51a7074d9753634f@mail.gmail.com>
+
+I've switched to the mercurial repository and downloaded a working
+copy. However, hatari does not compile anymore.
+This is the error:
+
+gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare
+-Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall -Wwrite-strings
+ -O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1 -I/usr/X11/include
+ -DHAVE_X11=1  -I.. -I./includes -Iuae-cpu -I./falcon
+-DCONFDIR=\"/etc\" -I/opt/local/include/SDL -D_GNU_SOURCE=1
+-D_THREAD_SAFE -DENABLE_DSP_EMU=1  -c -o ide.o ide.c
+ide.c: In function 'qemu_memalign':
+ide.c:387: warning: implicit declaration of function 'memalign'
+ide.c:387: warning: return makes pointer from integer without a cast
+ide.c: In function 'bdrv_read':
+ide.c:489: error: 'ENOMEDIUM' undeclared (first use in this function)
+ide.c:489: error: (Each undeclared identifier is reported only once
+ide.c:489: error: for each function it appears in.)
+ide.c: In function 'bdrv_write':
+ide.c:520: error: 'ENOMEDIUM' undeclared (first use in this function)
+ide.c: In function 'ide_atapi_io_error':
+ide.c:1341: error: 'ENOMEDIUM' undeclared (first use in this function)
+make[1]: *** [ide.o] Error 1
+make: *** [all] Error 2
+
+tenderheart:hatari chs$ gcc -v
+Using built-in specs.
+Target: i686-apple-darwin9
+Configured with: /var/tmp/gcc/gcc-5490~1/src/configure
+--disable-checking -enable-werror --prefix=/usr --mandir=/share/man
+--enable-languages=c,objc,c++,obj-c++
+--program-transform-name=/^[cg][^.-]*$/s/$/-4.0/
+--with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib
+--build=i686-apple-darwin9 --with-arch=apple --with-tune=generic
+--host=i686-apple-darwin9 --target=i686-apple-darwin9
+Thread model: posix
+gcc version 4.0.1 (Apple Inc. build 5490)
+(Latest Xcode)
+
+SDL is installed by MacPorts.
+
+-- 
+chs,
+
+
+From oak at helsinkinet.fi  Fri Jan  9 20:28:53 2009
+From: oak at helsinkinet.fi (Eero Tamminen)
+Date: Fri, 9 Jan 2009 21:28:53 +0200
+Subject: [hatari-users] Error compiling hatari on Mac OS X
+In-Reply-To: <c1a0d1560901090127r227f91f9h51a7074d9753634f@mail.gmail.com>
+References: <c1a0d1560901090127r227f91f9h51a7074d9753634f@mail.gmail.com>
+Message-ID: <200901092128.53832.oak@helsinkinet.fi>
+
+Hi,
+
+On Friday 09 January 2009, Christer Solskogen wrote:
+> I've switched to the mercurial repository and downloaded a working
+> copy. However, hatari does not compile anymore.
+> This is the error:
+>
+> gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare
+> -Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall -Wwrite-strings
+>  -O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1 -I/usr/X11/include
+>  -DHAVE_X11=1  -I.. -I./includes -Iuae-cpu -I./falcon
+> -DCONFDIR=\"/etc\" -I/opt/local/include/SDL -D_GNU_SOURCE=1
+> -D_THREAD_SAFE -DENABLE_DSP_EMU=1  -c -o ide.o ide.c
+> ide.c: In function 'qemu_memalign':
+> ide.c:387: warning: implicit declaration of function 'memalign'
+
+This should be declared in the C-library malloc.h or stdlib.h header.
+
+
+> ide.c:387: warning: return makes pointer from integer without a cast
+> ide.c: In function 'bdrv_read':
+> ide.c:489: error: 'ENOMEDIUM' undeclared (first use in this function)
+
+And this should be in errno.h.
+
+Check where they're declared on your system (at least errno.h is
+directly included by ide.c).
+
+
+> ide.c:489: error: (Each undeclared identifier is reported only once
+> ide.c:489: error: for each function it appears in.)
+> ide.c: In function 'bdrv_write':
+> ide.c:520: error: 'ENOMEDIUM' undeclared (first use in this function)
+> ide.c: In function 'ide_atapi_io_error':
+> ide.c:1341: error: 'ENOMEDIUM' undeclared (first use in this function)
+> make[1]: *** [ide.o] Error 1
+> make: *** [all] Error 2
+>
+> tenderheart:hatari chs$ gcc -v
+> Using built-in specs.
+> Target: i686-apple-darwin9
+> Configured with: /var/tmp/gcc/gcc-5490~1/src/configure
+> --disable-checking -enable-werror --prefix=/usr --mandir=/share/man
+> --enable-languages=c,objc,c++,obj-c++
+> --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/
+> --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib
+> --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic
+> --host=i686-apple-darwin9 --target=i686-apple-darwin9
+> Thread model: posix
+> gcc version 4.0.1 (Apple Inc. build 5490)
+> (Latest Xcode)
+>
+> SDL is installed by MacPorts.
+
+
+	- Eero
+
+
+From th.huth at gmx.de  Fri Jan  9 23:32:29 2009
+From: th.huth at gmx.de (Thomas Huth)
+Date: Fri, 9 Jan 2009 23:32:29 +0100
+Subject: [hatari-users] Error compiling hatari on Mac OS X
+In-Reply-To: <200901092128.53832.oak@helsinkinet.fi>
+References: <c1a0d1560901090127r227f91f9h51a7074d9753634f@mail.gmail.com>
+	<200901092128.53832.oak@helsinkinet.fi>
+Message-ID: <20090109233229.44e4e401@phineus>
+
+On Fri, 9 Jan 2009 21:28:53 +0200
+Eero Tamminen <oak at helsinkinet.fi> wrote:
+
+> On Friday 09 January 2009, Christer Solskogen wrote:
+> > I've switched to the mercurial repository and downloaded a working
+> > copy. However, hatari does not compile anymore.
+> > This is the error:
+> >
+> > gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare
+> > -Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall
+> > -Wwrite-strings -O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1
+> > -I/usr/X11/include -DHAVE_X11=1  -I.. -I./includes -Iuae-cpu
+> > -I./falcon -DCONFDIR=\"/etc\" -I/opt/local/include/SDL
+> > -D_GNU_SOURCE=1 -D_THREAD_SAFE -DENABLE_DSP_EMU=1  -c -o ide.o ide.c
+> > ide.c: In function 'qemu_memalign':
+> > ide.c:387: warning: implicit declaration of function 'memalign'
+> 
+> This should be declared in the C-library malloc.h or stdlib.h header.
+
+Actually Mac OS X does not have this function at all. posix_memalign is
+also missing. Seems like we have to use the valloc() there... 
+
+> > ide.c:387: warning: return makes pointer from integer without a cast
+> > ide.c: In function 'bdrv_read':
+> > ide.c:489: error: 'ENOMEDIUM' undeclared (first use in this
+> > function)
+> 
+> And this should be in errno.h.
+
+ENOMEDIUM is also missing on Mac OS X. The qemu source code has a
+workaround for this, too:
+
+#ifndef ENOMEDIUM         
+#define ENOMEDIUM ENODEV
+#endif
+
+I'll add a patch to the repository later.
+
+ Thomas
+
+
+From christer.solskogen at gmail.com  Sat Jan 10 00:33:30 2009
+From: christer.solskogen at gmail.com (Christer Solskogen)
+Date: Sat, 10 Jan 2009 00:33:30 +0100
+Subject: [hatari-users] Error compiling hatari on Mac OS X
+In-Reply-To: <20090109233229.44e4e401@phineus>
+References: <c1a0d1560901090127r227f91f9h51a7074d9753634f@mail.gmail.com>	<200901092128.53832.oak@helsinkinet.fi>
+	<20090109233229.44e4e401@phineus>
+Message-ID: <4967DECA.2090101@gmail.com>
+
+On 1/9/09 11:32 PM, Thomas Huth wrote:
+
+> I'll add a patch to the repository later.
+>
+
+If the patch is change set 1533:b5037cf442f0, it still does not work.
+
+gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare 
+-Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall -Wwrite-strings 
+-O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1 -I/usr/X11/include 
+-DHAVE_X11=1  -I.. -I./includes -Iuae-cpu -I./falcon -DCONFDIR=\"/etc\" 
+-I/opt/local/include/SDL -D_GNU_SOURCE=1 -D_THREAD_SAFE 
+-DENABLE_DSP_EMU=1  -c -o ide.o ide.c
+ide.c:12:20: error: malloc.h: No such file or directory
+make[1]: *** [ide.o] Error 1
+make: *** [all] Error 2
+
+-- 
+chs
+
+
+From th.huth at gmx.de  Sat Jan 10 09:28:31 2009
+From: th.huth at gmx.de (Thomas Huth)
+Date: Sat, 10 Jan 2009 09:28:31 +0100
+Subject: [hatari-users] Error compiling hatari on Mac OS X
+In-Reply-To: <4967DECA.2090101@gmail.com>
+References: <c1a0d1560901090127r227f91f9h51a7074d9753634f@mail.gmail.com>
+	<200901092128.53832.oak@helsinkinet.fi>
+	<20090109233229.44e4e401@phineus> <4967DECA.2090101@gmail.com>
+Message-ID: <20090110092831.2a6fed0a@phineus>
+
+On Sat, 10 Jan 2009 00:33:30 +0100
+Christer Solskogen <christer.solskogen at gmail.com> wrote:
+
+> On 1/9/09 11:32 PM, Thomas Huth wrote:
+> 
+> > I'll add a patch to the repository later.
+> 
+> If the patch is change set 1533:b5037cf442f0, it still does not work.
+> 
+> gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare 
+> -Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall
+> -Wwrite-strings -O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1
+> -I/usr/X11/include -DHAVE_X11=1  -I.. -I./includes -Iuae-cpu
+> -I./falcon -DCONFDIR=\"/etc\" -I/opt/local/include/SDL
+> -D_GNU_SOURCE=1 -D_THREAD_SAFE -DENABLE_DSP_EMU=1  -c -o ide.o ide.c
+> ide.c:12:20: error: malloc.h: No such file or directory
+> make[1]: *** [ide.o] Error 1
+> make: *** [all] Error 2
+
+D'oh! Does it work if you remove this include line?
+
+ Thomas
+
+
+From christer.solskogen at gmail.com  Sat Jan 10 12:00:22 2009
+From: christer.solskogen at gmail.com (Christer Solskogen)
+Date: Sat, 10 Jan 2009 12:00:22 +0100
+Subject: [hatari-users] Error compiling hatari on Mac OS X
+In-Reply-To: <20090110092831.2a6fed0a@phineus>
+References: <c1a0d1560901090127r227f91f9h51a7074d9753634f@mail.gmail.com>	<200901092128.53832.oak@helsinkinet.fi>	<20090109233229.44e4e401@phineus>
+	<4967DECA.2090101@gmail.com> <20090110092831.2a6fed0a@phineus>
+Message-ID: <49687FC6.90202@gmail.com>
+
+On 1/10/09 9:28 AM, Thomas Huth wrote:
+
+> D'oh! Does it work if you remove this include line?
+>
+
+Yes, it does. Thanks!
+
+-- 
+chs
+
+
+
+From chris at c-64.mobi  Sat Jan 24 12:47:05 2009
+From: chris at c-64.mobi (Chris Syntichakis)
+Date: Sat, 24 Jan 2009 11:47:05 +0000
+Subject: [hatari-users] interrupt key?
+Message-ID: <f25610c60901240347t1c50d48btb6dd15f08cf8cef9@mail.gmail.com>
+
+Hi.
+
+I wonder is there is a way to "simulate" the multiface reset button, (or a
+NMI reset...)..
+
+TIA
+chris
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/hatari-users/attachments/20090124/4d40d524/attachment.html>
+
+From th.huth at gmx.de  Sat Jan 24 14:39:08 2009
+From: th.huth at gmx.de (Thomas Huth)
+Date: Sat, 24 Jan 2009 14:39:08 +0100
+Subject: [hatari-users] interrupt key?
+In-Reply-To: <f25610c60901240347t1c50d48btb6dd15f08cf8cef9@mail.gmail.com>
+References: <f25610c60901240347t1c50d48btb6dd15f08cf8cef9@mail.gmail.com>
+Message-ID: <20090124143908.51868aad@phineus>
+
+On Sat, 24 Jan 2009 11:47:05 +0000
+Chris Syntichakis <chris at c-64.mobi> wrote:
+
+> I wonder is there is a way to "simulate" the multiface reset button,
+> (or a NMI reset...)..
+
+Sorry, but what's a _multiface_ reset button and what is it good for?
+
+ Thomas
+
+
+From chris at c-64.mobi  Sat Jan 24 15:39:43 2009
+From: chris at c-64.mobi (Chris Syntichakis)
+Date: Sat, 24 Jan 2009 14:39:43 +0000
+Subject: [hatari-users] interrupt key?
+In-Reply-To: <20090124143908.51868aad@phineus>
+References: <f25610c60901240347t1c50d48btb6dd15f08cf8cef9@mail.gmail.com>
+	<20090124143908.51868aad@phineus>
+Message-ID: <f25610c60901240639h3f95d240y8a0f060888bdffb4@mail.gmail.com>
+
+Hi
+
+Its the button that the multiface cart has.
+When you press it goes to the cart menu. For debugging etc
+
+Chris
+
+On 1/24/09, Thomas Huth <th.huth at gmx.de> wrote:
+> On Sat, 24 Jan 2009 11:47:05 +0000
+> Chris Syntichakis <chris at c-64.mobi> wrote:
+>
+>> I wonder is there is a way to "simulate" the multiface reset button,
+>> (or a NMI reset...)..
+>
+> Sorry, but what's a _multiface_ reset button and what is it good for?
+>
+>  Thomas
+> _______________________________________________
+> hatari-users mailing list
+> hatari-users at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/hatari-users
+>
+
+-- 
+Sent from my mobile device
+
+????????
+?????? ??
+????????
+
+
+From th.huth at gmx.de  Sat Jan 24 16:47:07 2009
+From: th.huth at gmx.de (Thomas Huth)
+Date: Sat, 24 Jan 2009 16:47:07 +0100
+Subject: [hatari-users] Hatari version 1.2.0
+Message-ID: <20090124164707.46612606@phineus>
+
+
+ Hello everybody!
+
+I just released Hatari version 1.2.0. Unfortunately the file server of
+berlios.de seems currently to be down, so I decided to put the release
+on Sourceforge.net for the last time:
+
+http://sourceforge.net/project/showfiles.php?group_id=28326&package_id=20179&release_id=655966
+
+ Enjoy,
+  Thomas
+
+
+From christer.solskogen at gmail.com  Sat Jan 24 16:58:28 2009
+From: christer.solskogen at gmail.com (Christer Solskogen)
+Date: Sat, 24 Jan 2009 16:58:28 +0100
+Subject: [hatari-users] Hatari version 1.2.0
+In-Reply-To: <20090124164707.46612606@phineus>
+References: <20090124164707.46612606@phineus>
+Message-ID: <497B3AA4.5020802@gmail.com>
+
+On 1/24/09 4:47 PM, Thomas Huth wrote:
+>   Hello everybody!
+>
+> I just released Hatari version 1.2.0. Unfortunately the file server of
+> berlios.de seems currently to be down, so I decided to put the release
+> on Sourceforge.net for the last time:
+>
+> http://sourceforge.net/project/showfiles.php?group_id=28326&package_id=20179&release_id=655966
+>
+
+using the latest sources from mercurial compiling on Mac OS X gave me 
+this error:
+
+make -C src/
+gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare 
+-Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall -Wwrite-strings 
+-O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1 -I/usr/X11/include 
+-DHAVE_X11=1  -I.. -I./includes -Iuae-cpu -I./falcon -DCONFDIR=\"/etc\" 
+-I/opt/local/include/SDL -D_GNU_SOURCE=1 -D_THREAD_SAFE 
+-DENABLE_DSP_EMU=1  -c -o control.o control.c
+control.c: In function 'Control_SetSocket':
+control.c:433: warning: passing argument 2 of 'connect' from 
+incompatible pointer type
+control.c: In function 'Control_ReparentWindow':
+control.c:476: error: 'Display' undeclared (first use in this function)
+control.c:476: error: (Each undeclared identifier is reported only once
+control.c:476: error: for each function it appears in.)
+control.c:476: error: 'display' undeclared (first use in this function)
+control.c:477: error: 'Window' undeclared (first use in this function)
+control.c:477: error: syntax error before 'parent_win'
+control.c:485: error: 'parent_win' undeclared (first use in this function)
+control.c:496: error: 'SDL_SysWMinfo' has no member named 'info'
+control.c:497: error: 'sdl_win' undeclared (first use in this function)
+control.c:497: error: 'SDL_SysWMinfo' has no member named 'info'
+control.c:498: error: 'wm_win' undeclared (first use in this function)
+control.c:498: error: 'SDL_SysWMinfo' has no member named 'info'
+control.c:499: error: 'SDL_SysWMinfo' has no member named 'info'
+control.c:502: warning: implicit declaration of function 'XMapWindow'
+control.c:507: warning: implicit declaration of function 'XUnmapWindow'
+control.c:509: warning: implicit declaration of function 'XReparentWindow'
+control.c:519: error: 'SDL_SysWMinfo' has no member named 'info'
+control.c: In function 'Control_GetUISocket':
+control.c:533: warning: implicit declaration of function 'ConnectionNumber'
+control.c:533: error: 'SDL_SysWMinfo' has no member named 'info'
+make[1]: *** [control.o] Error 1
+make: *** [all] Error 2
+
+gcc version 4.0.1
+libsdl 1.2.13
+
+
+-- 
+chs
+
+
+
+From eerot at users.berlios.de  Sat Jan 24 17:11:43 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sat, 24 Jan 2009 18:11:43 +0200
+Subject: [hatari-users] Hatari version 1.2.0
+In-Reply-To: <497B3AA4.5020802@gmail.com>
+References: <20090124164707.46612606@phineus> <497B3AA4.5020802@gmail.com>
+Message-ID: <200901241811.43824.eerot@users.berlios.de>
+
+Hi,
+
+On Saturday 24 January 2009, Christer Solskogen wrote:
+> using the latest sources from mercurial compiling on Mac OS X gave me
+> this error:
+
+Did building v1.1 work for you?
+
+
+> make -C src/
+> gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare
+> -Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall -Wwrite-strings
+> -O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1 -I/usr/X11/include
+> -DHAVE_X11=1  -I.. -I./includes -Iuae-cpu -I./falcon -DCONFDIR=\"/etc\"
+> -I/opt/local/include/SDL -D_GNU_SOURCE=1 -D_THREAD_SAFE
+> -DENABLE_DSP_EMU=1  -c -o control.o control.c
+> control.c: In function 'Control_SetSocket':
+> control.c:433: warning: passing argument 2 of 'connect' from
+> incompatible pointer type
+
+AFAIK control.c hasn't changed for Hatari 1.2
+(and building works fine for me).
+
+Try "make distclean; make" and if that doesn't help, re-run "configure"
+and then try "make distclean; make" again.
+
+
+	- Eero
+
+
+From th.huth at gmx.de  Sun Jan 25 13:43:14 2009
+From: th.huth at gmx.de (Thomas Huth)
+Date: Sun, 25 Jan 2009 13:43:14 +0100
+Subject: [hatari-users] Hatari version 1.2.0
+In-Reply-To: <200901241811.43824.eerot@users.berlios.de>
+References: <20090124164707.46612606@phineus> <497B3AA4.5020802@gmail.com>
+	<200901241811.43824.eerot@users.berlios.de>
+Message-ID: <20090125134314.491c1c4d@phineus>
+
+On Sat, 24 Jan 2009 18:11:43 +0200
+Eero Tamminen <eerot at users.berlios.de> wrote:
+
+> On Saturday 24 January 2009, Christer Solskogen wrote:
+> > using the latest sources from mercurial compiling on Mac OS X gave
+> > me this error:
+> 
+> Did building v1.1 work for you?
+> 
+> > make -C src/
+> > gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare
+> > -Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall
+> > -Wwrite-strings -O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1
+> > -I/usr/X11/include -DHAVE_X11=1  -I.. -I./includes -Iuae-cpu
+> > -I./falcon -DCONFDIR=\"/etc\" -I/opt/local/include/SDL
+> > -D_GNU_SOURCE=1 -D_THREAD_SAFE -DENABLE_DSP_EMU=1  -c -o control.o
+> > control.c control.c: In function 'Control_SetSocket':
+> > control.c:433: warning: passing argument 2 of 'connect' from
+> > incompatible pointer type
+> 
+> AFAIK control.c hasn't changed for Hatari 1.2
+> (and building works fine for me).
+> 
+> Try "make distclean; make" and if that doesn't help, re-run
+> "configure" and then try "make distclean; make" again.
+
+Looks like HAVE_X11 has been defined accidentially on your system (it
+shouldn't be defined on Mac OS X). Could you check your config.h ?
+
+ Thomas
+
+
+From LAURENT.SALLAFRANQUE at ARKEA.COM  Fri Jan 30 10:33:58 2009
+From: LAURENT.SALLAFRANQUE at ARKEA.COM (LAURENT SALLAFRANQUE)
+Date: Fri, 30 Jan 2009 10:33:58 +0100
+Subject: [hatari-users] Long point about DSP and Falcon Emulator
+In-Reply-To: <20090128225723.6f6f8858@phineus>
+References: <5B51CFB61023A444ADE08F90559348470E8FC6BA@oexch-01.gicm.platine.org>
+	<200901241925.15773.oak@helsinkinet.fi> <497B650F.5090502@free.fr>
+	<200901242239.41827.oak@helsinkinet.fi> <497C9C22.4090309@free.fr>
+	<20090125221024.366a2969@phineus> <497E220D.2020203@free.fr>
+	<20090128225723.6f6f8858@phineus>
+Message-ID: <4982C986.1080509@arkea.com>
+
+Hello Thomas,
+
+Another long mail, sorry :)
+And sorry for the way I write the sentences, it looks like a catalog 
+book sometimes, but I always ask me plenties of questions :)
+
+1st point :
+----------
+I've tested numactl, it worked fine. But I don't know this tool. Are 
+there parameters to use to "simulate" one CPU and 1 Go Ram computer ?
+
+2nd point:
+----------
+I continue to search why there are still problems in the Host Interface 
+(HI) module.
+I'm pretty sure that most of our actual bugs are there. (Transferts and 
+synchro problems).
+
+I've catched the DSP code of "Papa was a blade runner". It  contains few 
+instructions , only  standard instructions (I haven't found "strange" 
+instructions there. So I think again that the graphical problems comes 
+from the HI).
+I think it depends if there are few or many exchanges in a short time or 
+alternance of read2DSP and write2DSP, ...
+
+I'm pretty sure that the way I've recoded it is much better than before.
+But it seems not suffisant for now.
+The problem is that I try to synchronize the DSP and the CPU artificialy.
+(I've included 4 while loops before DSP_Send, DSP_Receive,  Host_Send 
+and Host_Receive).
+ It seems that the test I use to go out of the while is not correct or 
+not suffisant.
+
+If we want to emulate a "Real standard Falcon030", I think we'll have to 
+run the DSP at exactly 32 Mhz, calculate the 
+DSP_cycle_lenght_instruction and code also a "real 8MHZ Host interface".
+
+I can code the DSP_cycle_lenght_instruction for each instructions if you 
+want. (I planed to do it, but I was not sure if it would be useful or not).
+
+3rd point :
+----------
+I've read on Atari.org that you want to improve the falcon emulation 
+part. I ask me a few questions about this :
+
+- Are the Falcon blitter and the Ste blitter the same ?
+- In general, are the componant all the same (Yamaha, ...)
+- Do all the pairing instructions coded for the St emulation still run 
+for the Falcon ?
+- In the Hatari menu, the Cpus are 68000, 68010, 68020, 68020+copro and 
+68040), but no 68030. But the Falcon CPU is a 68030, no ?
+- Can we use hatari code to emulate an accurate falcon or will we have 
+to make a branch for the development (Atari and Falcon were not 
+completly compatible together).
+
+4th point:
+---------
+I propose you a DSP TODO list (from my point of view) if we want an 
+accurate Falcon emulator.
+It can be completed by a Falcon TODO list.
+
+In no order :
+
+- Run the DSP at exactly 32 Mhz
+- Calculate the real cpu time used by each instruction
+- Code a real Host interface module (DMA mode, Interrupt mode, ...)
+- Add all the interruptions into the DSP
+- Add the Port C (SSI) functions
+- Add a direct sound entrance (to be able to use programs like "Audio 
+Fun Machine")
+- Add the sound matrix and connect the DSP to it
+- Add direct 2 disk
+-
+
+5th and last point (for now :):
+-----------------------------
+The DSP known bugs:
+- Problems into the Host interface (PortB) transferts
+- A rendering bug into the mapping on the cube of "Papa was a Blade 
+Runner" demo
+- No floor and ceiling rendering in BadMood 2.14A
+- No rendering at all into BadMood 3.07A
+- problem into Des lazers et des hommes : when we move, the view jumps 
+sometime to another angle of view
+- Problem with all the programs that transfers data from/To DSP without 
+checking first
+- A bad gestion into overflow and Carry for ADD and SUB instructions
+
+I can take some parts of this into development if needed.
+I'll continue to investigate into the known bugs for now.
+
+Regards,
+
+Laurent
+
+
+--
+Ce message et  toutes les pieces jointes (ci-apres  le "message") sont
+confidentiels et etablis a l'intention exclusive de ses destinataires.
+Toute  utilisation ou  diffusion  non autorisee  est interdite.   Tout
+message  etant  susceptible  d'alteration,  l'emetteur  decline  toute
+responsabilite au titre de  ce message  s'il a  ete altere, deforme ou
+falsifie.
+                -----------------------------------
+This message and any  attachments (the "message") are confidential and
+intended  solely   for  the   addressees.  Any  unauthorised   use  or
+dissemination is prohibited. As e-mails are susceptible to alteration,
+the issuer shall  not be  liable for  the  message if altered, changed
+or falsified.
+
+
+From th.huth at gmx.de  Fri Jan 30 20:12:18 2009
+From: th.huth at gmx.de (Thomas Huth)
+Date: Fri, 30 Jan 2009 20:12:18 +0100
+Subject: [hatari-users] Long point about DSP and Falcon Emulator
+In-Reply-To: <4982C986.1080509@arkea.com>
+References: <5B51CFB61023A444ADE08F90559348470E8FC6BA@oexch-01.gicm.platine.org>
+	<200901241925.15773.oak@helsinkinet.fi> <497B650F.5090502@free.fr>
+	<200901242239.41827.oak@helsinkinet.fi> <497C9C22.4090309@free.fr>
+	<20090125221024.366a2969@phineus> <497E220D.2020203@free.fr>
+	<20090128225723.6f6f8858@phineus> <4982C986.1080509@arkea.com>
+Message-ID: <20090130201218.6193a75d@phineus>
+
+
+ Salut Laurent!
+
+On Fri, 30 Jan 2009 10:33:58 +0100
+LAURENT SALLAFRANQUE <LAURENT.SALLAFRANQUE at ARKEA.COM> wrote:
+
+> Another long mail, sorry :)
+> And sorry for the way I write the sentences, it looks like a catalog 
+> book sometimes, but I always ask me plenties of questions :)
+
+No problem, weekend just started so I got some spare time...
+
+> 1st point :
+> ----------
+> I've tested numactl, it worked fine. But I don't know this tool. Are 
+> there parameters to use to "simulate" one CPU and 1 Go Ram computer ?
+
+"numactl --cpubind 1 hatari" should do the job, I think.
+
+> 2nd point:
+> ----------
+[...]
+> If we want to emulate a "Real standard Falcon030", I think we'll have
+> to run the DSP at exactly 32 Mhz, calculate the 
+> DSP_cycle_lenght_instruction and code also a "real 8MHZ Host
+> interface".
+> 
+> I can code the DSP_cycle_lenght_instruction for each instructions if
+> you want. (I planed to do it, but I was not sure if it would be
+> useful or not).
+
+That would certainly be worth a try... for quick-n-dirty tests you
+could also hook up your code into m68k_run_1 or m68k_run_2 in newcpu.c
+to execute two DSP instructions after each 68k instruction... (I
+already tried that once but it did not work at all, but I likely did
+some mistakes with the host interface, too)
+
+> 3rd point :
+> ----------
+> I've read on Atari.org that you want to improve the falcon emulation 
+> part. I ask me a few questions about this :
+> 
+> - Are the Falcon blitter and the Ste blitter the same ?
+
+Apart from some timing differences (Falcon blitter runs at 16MHz, STE
+blitter runs at 8 MHz), they are the same as far as I know.
+
+> - In general, are the componant all the same (Yamaha, ...)
+
+Most parts behave pretty much the same way, just the DMA sound is
+slightly different (slightly different frequencies, interrupt timing is
+different).
+
+> - Do all the pairing instructions coded for the St emulation still
+> run for the Falcon ?
+
+I don't think so, because the Falcon has a real cache. (But you can
+already disable the "slow but more compatible mode" to disable the
+pairing emulation)
+
+> - In the Hatari menu, the Cpus are 68000, 68010, 68020, 68020+copro
+> and 68040), but no 68030. But the Falcon CPU is a 68030, no ?
+
+Right, but the main difference between 020 and 030 is just the MMU. The
+old UAE core does not feature MMU emulation yet, so there is no real
+030 emulation yet. TOS 4.x does not really care, apart from few MMU
+opcodes at startup that Hatari simply ignores.
+
+My plan is to upgrade to the latest version of the WinUAE CPU core one
+day. It's much more advanced, and might solve most of the current CPU
+emulation problems.
+
+> - Can we use hatari code to emulate an accurate falcon or will we
+> have to make a branch for the development (Atari and Falcon were not 
+> completly compatible together).
+
+I'd try to avoid branching for cycle-accurate Falcon emulation. Most of
+the code can be shared between ST and Falcon emulation, I think, so
+it's easier to keep everything close together to avoid doing things
+twice.
+
+> 4th point:
+> ---------
+> I propose you a DSP TODO list (from my point of view) if we want an 
+> accurate Falcon emulator.
+> It can be completed by a Falcon TODO list.
+> 
+> In no order :
+> 
+> - Run the DSP at exactly 32 Mhz
+> - Calculate the real cpu time used by each instruction
+> - Code a real Host interface module (DMA mode, Interrupt mode, ...)
+> - Add all the interruptions into the DSP
+> - Add the Port C (SSI) functions
+> - Add a direct sound entrance (to be able to use programs like "Audio 
+> Fun Machine")
+> - Add the sound matrix and connect the DSP to it
+> - Add direct 2 disk
+
+Ok, thanks, I'll add that to the main TODO list!
+
+ Thomas
+
+
+From oak at helsinkinet.fi  Sat Jan 31 00:08:43 2009
+From: oak at helsinkinet.fi (Eero Tamminen)
+Date: Sat, 31 Jan 2009 01:08:43 +0200
+Subject: [hatari-users] Long point about DSP and Falcon Emulator
+In-Reply-To: <4982C986.1080509@arkea.com>
+References: <5B51CFB61023A444ADE08F90559348470E8FC6BA@oexch-01.gicm.platine.org>
+	<20090128225723.6f6f8858@phineus> <4982C986.1080509@arkea.com>
+Message-ID: <200901310108.43433.oak@helsinkinet.fi>
+
+Hi,
+
+I didn't see Thomas answering on these yet (just commiting your DSP TODO
+list to Hatari repo), so I'll try to give my (possibly inaccurate) answers.
+
+On Friday 30 January 2009, LAURENT SALLAFRANQUE wrote:
+> 3rd point :
+> ----------
+> I've read on Atari.org that you want to improve the falcon emulation
+> part. I ask me a few questions about this :
+>
+> - Are the Falcon blitter and the Ste blitter the same ?
+> - In general, are the componant all the same (Yamaha, ...)
+
+In general, yes.  See the Wikipedia article:
+	http://en.wikipedia.org/wiki/Atari_ST
+
+
+> - Do all the pairing instructions coded for the St emulation still run
+> for the Falcon ?
+
+Could differ...
+
+
+> - In the Hatari menu, the Cpus are 68000, 68010, 68020, 68020+copro and
+> 68040), but no 68030. But the Falcon CPU is a 68030, no ?
+
+Here's more info on the these:
+http://www.freescale.com/files/archives/doc/ref_manual/M68000PRM.pdf
+
+From Wikipedia:
+"Motorola mainly used even numbers for major revisions to the CPU core such 
+as 68000, 68020, 68040 and 68060. The 68010 was a revised version of the 
+68000 with minor modifications to the core, and likewise the 68030 was a 
+revised 68020 with some more powerful features, none of them significant 
+enough to classify as a major upgrade to the core."
+
+AFAIK the main (only?) real difference between 020 and 030 is that 030 has
+MMU.  Unless you try to run something like normal Linux (not uCLinux) or
+MiNT with memory protection / virtual memory support, this shouldn't be an
+issue.
+
+Does anybody know a normal Falcon program/demo that would require an MMU?
+
+
+> - Can we use hatari code to emulate an accurate falcon or will we have
+> to make a branch for the development (Atari and Falcon were not
+> completly compatible together).
+
+Hatari already emulates Falcon and can switch between ST/STE/TT/Falcon
+emulation at run-time (will of course reset the emulated system).
+
+This is achieved by the hardware IO handlers tables in ioMemTab*.c files
+(ioMemTabFalcon.c is naturally for Falcon) and other code checking the
+nMachineType configuration option in following files:
+dmaSnd.c
+ioMem.c
+options.c
+psg.c
+reset.c
+screen.c
+statusbar.c
+stMemory.c
+tos.c
+video.c
+
+The TT & Falcon screen handling uses code from Aranym (which always does
+fullscreen updates and supports also higher bitdepths than 4-bits), ST and
+STE screen handling is based on greatly refactored code originally from
+WinSTon (which usually updates only changed part of screen and has well
+optimized support for the ST/E 1-4 bits planar modes).
+
+Nicolas has had some thoughts of separating the video.c (which handles
+the register stuff, overscan, fine scrolling etc) code for different
+machines into completely different functions that are selected when machine
+type is selected (instead of having machine type ifs in generic functions).
+
+Falcon has of course also the DSP emulation. :-)
+
+
+	- Eero
+
+
+From mandin.patrice at orange.fr  Wed Feb 11 21:35:49 2009
+From: mandin.patrice at orange.fr (Patrice Mandin)
+Date: Wed, 11 Feb 2009 21:35:49 +0100
+Subject: [hatari-users] Aranym video emulation (was Re: Long point about DSP
+ and Falcon Emulator)
+In-Reply-To: <200901310108.43433.oak@helsinkinet.fi>
+References: <5B51CFB61023A444ADE08F90559348470E8FC6BA@oexch-01.gicm.platine.org>
+	<20090128225723.6f6f8858@phineus> <4982C986.1080509@arkea.com>
+	<200901310108.43433.oak@helsinkinet.fi>
+Message-ID: <20090211213549.bbd60d2b.mandin.patrice@orange.fr>
+
+Le Sat, 31 Jan 2009 01:08:43 +0200
+Eero Tamminen <oak at helsinkinet.fi> a _crit:
+
+> The TT & Falcon screen handling uses code from Aranym (which always does
+> fullscreen updates and supports also higher bitdepths than 4-bits), ST and
+> STE screen handling is based on greatly refactored code originally from
+> WinSTon (which usually updates only changed part of screen and has well
+> optimized support for the ST/E 1-4 bits planar modes).
+
+The video code from Aranym has been heavily rewritten a while ago (by
+me), so we can have Videl, boot logo, Fvdi screen separately rendered,
+and choose one of these 'screens' at runtime. It is also easier when
+OpenGL is enabled, as each of these screens is then rendered from a
+texture, to be displayed, and we can blend from one to the other when
+switching.
+
+For the Videl emulation (that interests you inside Hatari), I use a
+simple checksum (adler32) to know which 16x16 blocks of Videl screen I
+need to update. The software renderer also has zoom code (whereas
+OpenGL do it for free you know :)).
+
+It leads to must faster screen updates; as in Aranym we don't care much
+about video synchronisation, rasters and all that weird stuff :).
+
+-- 
+Patrice Mandin
+WWW: http://pmandin.atari.org/
+Programmeur Linux, Atari
+Sp?cialit?: D?veloppement, jeux
+
+
+
+
+From tony.smolar at verizon.net  Tue Feb 17 03:35:05 2009
+From: tony.smolar at verizon.net (Tony Smolar)
+Date: Mon, 16 Feb 2009 21:35:05 -0500
+Subject: [hatari-users] hatari on Asus EEE
+Message-ID: <499A2259.7090709@verizon.net>
+
+Greetings,
+
+I've been trying to put hatari on an Asus EEE netbook (running the 
+default version of Xandros Linux).
+
+Since I don't have a dev environment for it, I've copied the binaries 
+I've used on my desktop.   The latest version of hatari that works using 
+this method is 0.80,   anything newer instantly gives a "floating point 
+exception (or error)" when I run it,  no other info is provided.
+
+FWIW, My EEE has a Celeron, not an Atom processor.
+
+I checked the configure options, and I don't see anything obvious that 
+might help.   I was wondering if anyone had encountered a similar error 
+with the newest hataris and has any ideas.
+
+Version 0.80 works ok, but the sound seems slow and sometimes out of 
+sync.  I was hoping it might be improved in a newer version.
+
+Thanks,
+Tony Smolar
+
+
+From npomarede at corp.free.fr  Tue Feb 17 10:08:38 2009
+From: npomarede at corp.free.fr (npomarede at corp.free.fr)
+Date: Tue, 17 Feb 2009 10:08:38 +0100 (CET)
+Subject: [hatari-users] hatari on Asus EEE
+In-Reply-To: <499A2259.7090709@verizon.net>
+References: <499A2259.7090709@verizon.net>
+Message-ID: <Pine.LNX.4.64.0902171006530.12118@localhost>
+
+On Mon, 16 Feb 2009, Tony Smolar wrote:
+
+> Greetings,
+>
+> I've been trying to put hatari on an Asus EEE netbook (running the
+> default version of Xandros Linux).
+>
+> Since I don't have a dev environment for it, I've copied the binaries
+> I've used on my desktop.   The latest version of hatari that works using
+> this method is 0.80,   anything newer instantly gives a "floating point
+> exception (or error)" when I run it,  no other info is provided.
+>
+> FWIW, My EEE has a Celeron, not an Atom processor.
+>
+> I checked the configure options, and I don't see anything obvious that
+> might help.   I was wondering if anyone had encountered a similar error
+> with the newest hataris and has any ideas.
+>
+> Version 0.80 works ok, but the sound seems slow and sometimes out of
+> sync.  I was hoping it might be improved in a newer version.
+>
+> Thanks,
+> Tony Smolar
+
+Hello
+
+maybe the binary Thomas provided are built with 686 in mind or similar 
+cpu optimisation that don't exist in your celeron ?
+
+I would recommend to get the source and try to compile it yourself (the 
+process is not that hard), this should fixe the issue.
+
+
+Nicolas
+
+
+
+From tony.smolar at verizon.net  Wed Feb 18 04:13:03 2009
+From: tony.smolar at verizon.net (Tony Smolar)
+Date: Tue, 17 Feb 2009 22:13:03 -0500
+Subject: [hatari-users] hatari on Asus EEE
+In-Reply-To: <Pine.LNX.4.64.0902171006530.12118@localhost>
+References: <499A2259.7090709@verizon.net>
+	<Pine.LNX.4.64.0902171006530.12118@localhost>
+Message-ID: <499B7CBF.5070901@verizon.net>
+
+npomarede at corp.free.fr wrote:
+> On Mon, 16 Feb 2009, Tony Smolar wrote:
+>
+>   
+>> Greetings,
+>>
+>> I've been trying to put hatari on an Asus EEE netbook (running the
+>> default version of Xandros Linux).
+>>
+>> Since I don't have a dev environment for it, I've copied the binaries
+>> I've used on my desktop.   The latest version of hatari that works using
+>> this method is 0.80,   anything newer instantly gives a "floating point
+>> exception (or error)" when I run it,  no other info is provided.
+>>
+>> FWIW, My EEE has a Celeron, not an Atom processor.
+>>
+>> I checked the configure options, and I don't see anything obvious that
+>> might help.   I was wondering if anyone had encountered a similar error
+>> with the newest hataris and has any ideas.
+>>
+>> Version 0.80 works ok, but the sound seems slow and sometimes out of
+>> sync.  I was hoping it might be improved in a newer version.
+>>
+>> Thanks,
+>> Tony Smolar
+>>     
+>
+> Hello
+>
+> maybe the binary Thomas provided are built with 686 in mind or similar 
+> cpu optimisation that don't exist in your celeron ?
+>
+> I would recommend to get the source and try to compile it yourself (the 
+> process is not that hard), this should fixe the issue.
+>
+>   
+Hello,
+
+The floating point exception occurs in a binary I built myself.   
+Compiled on an Athlon X2,  so I was thinking that maybe compiler 
+optimizations could be the issue.
+
+I don't have a build environment specifically for the EEE currently,  
+I've been copying binaries from my desktop
+ and copying them over.   These work in most cases.
+
+Thanks,
+
+Tony Smolar
+
+
+From th.huth at gmx.de  Sat Feb 21 01:06:24 2009
+From: th.huth at gmx.de (Thomas Huth)
+Date: Sat, 21 Feb 2009 01:06:24 +0100
+Subject: [hatari-users] hatari on Asus EEE
+In-Reply-To: <499B7CBF.5070901@verizon.net>
+References: <499A2259.7090709@verizon.net>
+	<Pine.LNX.4.64.0902171006530.12118@localhost>
+	<499B7CBF.5070901@verizon.net>
+Message-ID: <20090221010624.3484146f@phineus>
+
+On Tue, 17 Feb 2009 22:13:03 -0500
+Tony Smolar <tony.smolar at verizon.net> wrote:
+
+> npomarede at corp.free.fr wrote:
+> > On Mon, 16 Feb 2009, Tony Smolar wrote:
+> >
+> >> I've been trying to put hatari on an Asus EEE netbook (running the
+> >> default version of Xandros Linux).
+[...]
+> >> Version 0.80 works ok, but the sound seems slow and sometimes out
+> >> of sync.  I was hoping it might be improved in a newer version.
+
+Well, I guess after version 0.95 Hatari only got slower since it
+emulates much more details than before. So if you got speed problems,
+version 0.95 might be worth a try.
+
+> > maybe the binary Thomas provided are built with 686 in mind or
+> > similar cpu optimisation that don't exist in your celeron ?
+
+The pre-built binaries that I made did not include any CPU specific
+compiler options, as far as I remember. Most of them even were
+statically linked, so they should run on any Linux with x86 processor.
+
+Maybe try this RPM:
+
+http://sourceforge.net/project/downloading.php?group_id=28326&filename=hatari-0.95-1.i386.rpm
+
+ Thomas
+
+
+From tony.smolar at verizon.net  Fri Feb 27 04:35:02 2009
+From: tony.smolar at verizon.net (Tony Smolar)
+Date: Thu, 26 Feb 2009 22:35:02 -0500
+Subject: [hatari-users] hatari on Asus EEE
+In-Reply-To: <20090221010624.3484146f@phineus>
+References: <499A2259.7090709@verizon.net>
+	<Pine.LNX.4.64.0902171006530.12118@localhost>	<499B7CBF.5070901@verizon.net>
+	<20090221010624.3484146f@phineus>
+Message-ID: <49A75F66.7020805@verizon.net>
+
+Thomas Huth wrote:
+>
+> [...]
+>   
+>>>> Version 0.80 works ok, but the sound seems slow and sometimes out
+>>>> of sync.  I was hoping it might be improved in a newer version.
+>>>>         
+>
+> Well, I guess after version 0.95 Hatari only got slower since it
+> emulates much more details than before. So if you got speed problems,
+> version 0.95 might be worth a try.
+>
+>   
+I got it working by using gcc 3.46, rather than the default gcc 4.1.2 on 
+my system.
+
+You might be amazed to know that hatari 1.20 works close to perfect on 
+the Asus EEE.   No speed issues in anything I tried so far, and the 
+sound sounds right.
+
+Hatari 0.80 had slow, choppy sound, though  the emulator itself ran 
+fast.   0.95 was an improvement in that the choppiness was gone, but the 
+sound was still a bit slow.
+>>> maybe the binary Thomas provided are built with 686 in mind or
+>>> similar cpu optimisation that don't exist in your celeron ?
+>>>       
+>
+> The pre-built binaries that I made did not include any CPU specific
+> compiler options, as far as I remember. Most of them even were
+> statically linked, so they should run on any Linux with x86 processor.
+>
+> Maybe try this RPM:
+>
+> http://sourceforge.net/project/downloading.php?group_id=28326&filename=hatari-0.95-1.i386.rpm
+>
+>  Thomas
+> _______________________________________________
+> hatari-users mailing list
+> hatari-users at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/hatari-users
+>
+>   
+
+
+
+From eerot at users.berlios.de  Fri Feb 27 20:36:38 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Fri, 27 Feb 2009 21:36:38 +0200
+Subject: [hatari-users] hatari on Asus EEE
+In-Reply-To: <49A75F66.7020805@verizon.net>
+References: <499A2259.7090709@verizon.net> <20090221010624.3484146f@phineus>
+	<49A75F66.7020805@verizon.net>
+Message-ID: <200902272136.38438.eerot@users.berlios.de>
+
+Hi,
+
+On Friday 27 February 2009, Tony Smolar wrote:
+> >>>> Version 0.80 works ok, but the sound seems slow and sometimes out
+> >>>> of sync.  I was hoping it might be improved in a newer version.
+> >
+> > Well, I guess after version 0.95 Hatari only got slower since it
+> > emulates much more details than before. So if you got speed problems,
+> > version 0.95 might be worth a try.
+>
+> I got it working by using gcc 3.46, rather than the default gcc 4.1.2 on
+> my system.
+>
+> You might be amazed to know that hatari 1.20 works close to perfect on
+> the Asus EEE.   No speed issues in anything I tried so far, and the
+> sound sounds right.
+
+Well, I've used old Hatari versions (for ST emulation with frameskip) fairly
+satisfactorily on P133, P166 (both with good 2D acceleration) and P333
+laptop, but those were around version 0.50.
+
+I've also used Hatari v0.80-1.0 on 400Mhz N810 with TI Omap2 and there it's
+actually noticeably slower than on P333.  I assume this is because N810 has
+no graphics acceleration, slowish memory bus and Omap2 has small CPU caches.
+On 500Mhz TI Omap3 Hatari v1.1 performs pretty OK for ST/E emulation and
+even for some Falcon emulation without DSP.
+
+(OK = needs auto-frameskip, spec512 & borders are disabled and using lower
+sound frequency. For N8x0 one needs also to disable "Compatible CPU"
+setting for Hatari to bearable.)
+
+Currently I'm using 1.4Ghz Athlon XP and it has never any problems with full
+settings for everything as long as DSP emulation is disabled.
+
+
+> Hatari 0.80 had slow, choppy sound, though  the emulator itself ran
+> fast.   0.95 was an improvement in that the choppiness was gone, but the
+> sound was still a bit slow.
+
+Nicolas rewrote the YM sound handling for Hatari v1.1 and it was changed
+from 8-bit mono into 16-bit stereo sound.  When profiling Hatari, I've
+noticed ALSA etc. may take even third of Hatari CPU usage, maybe
+because they're resampling/antialiasing the Hatari sound output to some
+other frequency that the HW supports.
+
+From Wikipedia:
+"The earliest Eee PC models used a 900 MHz Intel Celeron M processor 
+underclocked to 630 MHz. Later models shipped with this processor at normal 
+speed. Newer models use a 1.6GHz Intel Atom processor. The Atom is a simple, 
+scalar, in-order execution microprocessor that is significantly slower 
+per-clock than the Celeron M due to its microarchitecture. Still, 1.6 GHz 
+Atom-equipped Eee PCs tend to perform similarly to their Celeron-equipped 
+counterparts, due to the higher clock speeds and Hyperthreading."
+
+Which EEE PC model you have? SDL_mixer/ALSA handles the sound in another
+thread so hyperthreading might have helped here.  Have you updated your EEE
+kernel or system libraries in the meanwhile?  (they migh have improved
+issues related to sound / threading)
+
+
+Another explanation could be that Hatari v1.1 has automatic frameskip and
+it's enabled by default (you can see your current frameskip setting from
+the statusbar).
+
+
+	- Eero
+
+

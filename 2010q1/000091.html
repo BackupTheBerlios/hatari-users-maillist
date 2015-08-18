@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Hatari windows binary (test needed)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2010q1/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Hatari%20windows%20binary%20%28test%20needed%29&In-Reply-To=%3Calpine.LMD.2.00.1002281308140.9325%40pulsar.staff.proxad.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000090.html">
+   <LINK REL="Next"  HREF="000092.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Hatari windows binary (test needed)</H1>
+    <B>npomarede at corp.free.fr</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Hatari%20windows%20binary%20%28test%20needed%29&In-Reply-To=%3Calpine.LMD.2.00.1002281308140.9325%40pulsar.staff.proxad.net%3E"
+       TITLE="[hatari-users] Hatari windows binary (test needed)">npomarede at corp.free.fr
+       </A><BR>
+    <I>Sun Feb 28 13:26:10 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000090.html">[hatari-users] User selectable threshold for window zooming
+</A></li>
+        <LI>Next message: <A HREF="000092.html">[hatari-users] New Monitor/Window options dialog feedback?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#91">[ date ]</a>
+              <a href="thread.html#91">[ thread ]</a>
+              <a href="subject.html#91">[ subject ]</a>
+              <a href="author.html#91">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hello,
+
+I configured the necessary tools (mingw, ...) under my linux box to be 
+able to build the windows binary without having to boot under windows.
+
+I tested this .exe under wine, and for me it seems to run like the 
+previous 1.3.1 build made by thomas.
+
+Could some people running windows try this directly and report problems 
+here ? (try the keyboard shortcuts, using a local windows directory as a 
+hardrive, ...)
+
+This was built with SDL 1.2.14, but will run with previous dll.
+
+This build is based on the current devel version, so if you want to see 
+what Hatari 1.4 will run, it could be a good way to test it.
+
+
+Thomas, for the built you made :
+  - did you enable --trace option ?
+  - pressing alt+pause doesn't enter the debug mode but just pause hatari.
+    do we need a console or something else to enable it ?
+  - the release dir hatari-1.3.1_windows contained sdl.dll, but shouldn't
+    we include zlib1.dll ? (it prevents running from wine for example and
+    I don't know if it's always available under windows too)
+
+
+Nicolas
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: hatari_devel.zip
+Type: application/zip
+Size: 425427 bytes
+Desc: 
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/hatari-users/attachments/20100228/09855ac8/attachment.zip">https://lists.berlios.de/pipermail/hatari-users/attachments/20100228/09855ac8/attachment.zip</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000090.html">[hatari-users] User selectable threshold for window zooming
+</A></li>
+	<LI>Next message: <A HREF="000092.html">[hatari-users] New Monitor/Window options dialog feedback?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#91">[ date ]</a>
+              <a href="thread.html#91">[ thread ]</a>
+              <a href="subject.html#91">[ subject ]</a>
+              <a href="author.html#91">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

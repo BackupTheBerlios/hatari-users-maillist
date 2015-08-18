@@ -1,0 +1,277 @@
+From npomarede at corp.free.fr  Tue Jul 19 01:56:31 2011
+From: npomarede at corp.free.fr (=?ISO-8859-1?Q?Nicolas_Pomar=E8de?=)
+Date: Tue, 19 Jul 2011 01:56:31 +0200
+Subject: [hatari-users] Hatari 1.5.0 is released
+Message-ID: <4E24C82F.1020904@corp.free.fr>
+
+Hello
+
+after quite some time, a new version is now available.
+
+As usual, you can get the sources or some Windows binaries from 
+http://hatari.berlios.de/ or 
+https://developer.berlios.de/project/showfiles.php?group_id=10436
+
+(I will add some OS X binaries too if someone build them)
+
+Here's a small changelog, there're too many changes to report, see the 
+full release-notes.txt for more details :
+
+- On STE, correctly shift display 8 pixels to the left when using 224 
+bytes overscan (e.g. recent demos by DHS)
+- Add support for spec512 mode in med res (fixes 'Best Part Of The 
+Creation' in 'Punish Your Machine', 'HighRes Mode' demo by Paradox)
+- Precisely emulate the number of frames per sec (eg 50.053 fps in PAL 
+instead of the usual 50 Hz), required for correct video/audio sync under 
+STE (e.g. More Or Less Zero by DHS)
+- Sound improvements for STE, major rewrite of the DMA audio, precision 
+should be really close to a real STE (e.g. HexTracker by Paulo Simoes)
+- Improved precision in sound emulation, with nearly no rounding errors 
+over successive VBL during many hours.
+- By default mix 3 YM voices using a lookup table of values measured on 
+real STF to improve digisound (e.g. Flashback demo by TCB)
+- Alternative CPU core based on WinUAE for more accurate Falcon 
+emulation, including 68030 timings, MMU, ...
+- Improvements in DSP emulation.
+- Various changes in the SDL GUI
+- Many more functions in the built in debugger
+- Atari program given as argument to Hatari will be automatically
+   started after TOS boots
+- Many more small fixes related to video, audio, ikbd, ...
+
+
+Thanks to everyone for submitting code, ideas, reporting problems, 
+providing help to test on real hardware !
+
+Don't hesitate to try this new version and to report your results.
+
+Have a happy summer with Hatari 1.5 :)
+
+
+Nicolas
+
+
+From subscript at free.fr  Tue Jul 19 09:51:36 2011
+From: subscript at free.fr (wwp)
+Date: Tue, 19 Jul 2011 09:51:36 +0200
+Subject: [hatari-users] Hatari 1.5.0 is released
+In-Reply-To: <4E24C82F.1020904@corp.free.fr>
+References: <4E24C82F.1020904@corp.free.fr>
+Message-ID: <20110719095136.7a60072b@monolith>
+
+Hello Nicolas,
+
+
+On Tue, 19 Jul 2011 01:56:31 +0200 Nicolas Pomar?de <npomarede at corp.free.fr> wrote:
+
+> Hello
+> 
+> after quite some time, a new version is now available.
+> 
+> As usual, you can get the sources or some Windows binaries from http://hatari.berlios.de/ or https://developer.berlios.de/project/showfiles.php?group_id=10436
+> 
+> (I will add some OS X binaries too if someone build them)
+> 
+> Here's a small changelog, there're too many changes to report, see the full release-notes.txt for more details :
+[snip]
+> Thanks to everyone for submitting code, ideas, reporting problems, providing help to test on real hardware !
+> 
+> Don't hesitate to try this new version and to report your results.
+> 
+> Have a happy summer with Hatari 1.5 :)
+
+Wow, that's a release! Thanks a bunch!
+
+
+Regards,
+
+-- 
+wwp
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/hatari-users/attachments/20110719/382542a1/attachment.pgp>
+
+From cyprian.konador at hp.com  Tue Jul 19 12:16:52 2011
+From: cyprian.konador at hp.com (Konador, Cyprian)
+Date: Tue, 19 Jul 2011 11:16:52 +0100
+Subject: [hatari-users] Hatari 1.5.0 is released - Issue with
+ hatari_falcon.exe
+In-Reply-To: <4E24C82F.1020904@corp.free.fr>
+References: <4E24C82F.1020904@corp.free.fr>
+Message-ID: <89BA532D8C956043994C773C71153C92BAC586D372@GVW1088EXB.americas.hpqcorp.net>
+
+Great news!
+
+Unfortunately I've faced some issues with hatari_falcon.exe under Win XP. Attached you can find my configuration files.
+STF mode works fine (hatari_STF.cfg), STE (hatari_STE.cfg) and STF with harddisk (hatari_STF_HDD.cfg) freeze Hatari, I see black window (Hatari v1.5.0 Not Responding).
+
+HighRes Mode shows black screen under hatari.exe (I assume due to old cpu core)
+
+Thanks
+
+Regards
+Cyprian
+
+-----Original Message-----
+From: hatari-users-bounces at lists.berlios.de [mailto:hatari-users-bounces at lists.berlios.de] On Behalf Of Nicolas Pomarede
+Sent: Tuesday, July 19, 2011 1:57 AM
+To: Mailing list for Hatari developers; hatari-users at lists.berlios.de
+Subject: [hatari-users] Hatari 1.5.0 is released
+
+Hello
+
+after quite some time, a new version is now available.
+
+As usual, you can get the sources or some Windows binaries from 
+http://hatari.berlios.de/ or 
+https://developer.berlios.de/project/showfiles.php?group_id=10436
+
+(I will add some OS X binaries too if someone build them)
+
+Here's a small changelog, there're too many changes to report, see the 
+full release-notes.txt for more details :
+
+- On STE, correctly shift display 8 pixels to the left when using 224 
+bytes overscan (e.g. recent demos by DHS)
+- Add support for spec512 mode in med res (fixes 'Best Part Of The 
+Creation' in 'Punish Your Machine', 'HighRes Mode' demo by Paradox)
+- Precisely emulate the number of frames per sec (eg 50.053 fps in PAL 
+instead of the usual 50 Hz), required for correct video/audio sync under 
+STE (e.g. More Or Less Zero by DHS)
+- Sound improvements for STE, major rewrite of the DMA audio, precision 
+should be really close to a real STE (e.g. HexTracker by Paulo Simoes)
+- Improved precision in sound emulation, with nearly no rounding errors 
+over successive VBL during many hours.
+- By default mix 3 YM voices using a lookup table of values measured on 
+real STF to improve digisound (e.g. Flashback demo by TCB)
+- Alternative CPU core based on WinUAE for more accurate Falcon 
+emulation, including 68030 timings, MMU, ...
+- Improvements in DSP emulation.
+- Various changes in the SDL GUI
+- Many more functions in the built in debugger
+- Atari program given as argument to Hatari will be automatically
+   started after TOS boots
+- Many more small fixes related to video, audio, ikbd, ...
+
+
+Thanks to everyone for submitting code, ideas, reporting problems, 
+providing help to test on real hardware !
+
+Don't hesitate to try this new version and to report your results.
+
+Have a happy summer with Hatari 1.5 :)
+
+
+Nicolas
+_______________________________________________
+hatari-users mailing list
+hatari-users at lists.berlios.de
+https://lists.berlios.de/mailman/listinfo/hatari-users
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: hatari.zip
+Type: application/x-zip-compressed
+Size: 4208 bytes
+Desc: hatari.zip
+URL: <https://lists.berlios.de/pipermail/hatari-users/attachments/20110719/7a570d64/attachment.bin>
+
+From npomarede at corp.free.fr  Tue Jul 19 12:39:16 2011
+From: npomarede at corp.free.fr (=?ISO-8859-1?Q?Nicolas_Pomar=E8de?=)
+Date: Tue, 19 Jul 2011 12:39:16 +0200
+Subject: [hatari-users] Hatari 1.5.0 is released - Issue with
+	hatari_falcon.exe
+In-Reply-To: <89BA532D8C956043994C773C71153C92BAC586D372@GVW1088EXB.americas.hpqcorp.net>
+References: <4E24C82F.1020904@corp.free.fr>
+	<89BA532D8C956043994C773C71153C92BAC586D372@GVW1088EXB.americas.hpqcorp.net>
+Message-ID: <4E255ED4.1050405@corp.free.fr>
+
+Le 19/07/2011 12:16, Konador, Cyprian a ?crit :
+> Great news!
+>
+> Unfortunately I've faced some issues with hatari_falcon.exe under Win XP. Attached you can find my configuration files.
+> STF mode works fine (hatari_STF.cfg), STE (hatari_STE.cfg) and STF with harddisk (hatari_STF_HDD.cfg) freeze Hatari, I see black window (Hatari v1.5.0 Not Responding).
+>
+> HighRes Mode shows black screen under hatari.exe (I assume due to old cpu core)
+
+I would need to test this, but on the contrary HighRes mode by Paradox 
+should only work with the old cpu core, not with the new/falcon one.
+
+Nicolas
+
+> Thanks
+>
+> Regards
+> Cyprian
+>
+
+
+From cyprian.konador at hp.com  Sat Jul 30 17:02:02 2011
+From: cyprian.konador at hp.com (Konador, Cyprian)
+Date: Sat, 30 Jul 2011 16:02:02 +0100
+Subject: [hatari-users] Hatari on Android
+In-Reply-To: <4E255ED4.1050405@corp.free.fr>
+References: <4E24C82F.1020904@corp.free.fr>
+	<89BA532D8C956043994C773C71153C92BAC586D372@GVW1088EXB.americas.hpqcorp.net>
+	<4E255ED4.1050405@corp.free.fr>
+Message-ID: <89BA532D8C956043994C773C71153C92BAC680F6F5@GVW1088EXB.americas.hpqcorp.net>
+
+Hi All, 
+
+someone from AtariArea forum has ported Hatari to Android. Project is one early stage but can boot TOS 4.0x
+http://ahatari.blogspot.com/2011/07/first-tos-run-on-android-kind-of-device.html
+
+Regards
+Cyprian
+
+
+From laurent.sallafranque at arkea.com  Thu Sep  8 09:59:24 2011
+From: laurent.sallafranque at arkea.com (LAURENT SALLAFRANQUE)
+Date: Thu, 8 Sep 2011 09:59:24 +0200 (CEST)
+Subject: [hatari-users] Microwire emulation + Xmas 2004 problem ?
+Message-ID: <40682817.7153977.1315468764680.JavaMail.root@mail-zstore-1-a.gicm.net>
+
+Hi Nicolas,
+
+The problem is that PendingInterruptCount can be much higher than 8 
+cycles : if the timer occurs during a movem or a div, pendingCyclesOver 
+will be much above 8 cycles, so "8 - microwire.pendingCyclesOver" 
+becomes < 0 and I don't think CycInt_AddRelativeInterrupt will like it 
+that much.
+
+
+I think there's no problem, as I've taken this into account in the do/loop just before to take into account the BIG CYCLE EATERS instructions.
+
+This do loop does as many shifts as needed in the cycle time + pending time used 
+by the processor instruction.
+
+At the end of this loop, 2 case :
+- all shifts are done and there's no need to start a new interrupt
+- there are still some shifts to do and the pending time is ALWAYS between 0 and 7
+  So 8 cycles for the new shift minus the pending time of the latest 68000 instruction
+
+
+Hope I've not misunderstood your remark.
+
+Regards
+
+Laurent
+
+--
+Ce message et  toutes les pieces jointes (ci-apres  le "message") sont
+confidentiels et etablis a l'intention exclusive de ses destinataires.
+Toute  utilisation ou  diffusion  non autorisee  est interdite.   Tout
+message  etant  susceptible  d'alteration,  l'emetteur  decline  toute
+responsabilite au titre de  ce message  s'il a  ete altere, deforme ou
+falsifie.
+                -----------------------------------
+This message and any  attachments (the "message") are confidential and
+intended  solely   for  the   addressees.  Any  unauthorised   use  or
+dissemination is prohibited. As e-mails are susceptible to alteration,
+the issuer shall  not be  liable for  the  message if altered, changed
+or falsified.
+
+

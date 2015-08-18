@@ -1,0 +1,1596 @@
+From eerot at users.berlios.de  Sat Oct 24 12:34:32 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sat, 24 Oct 2009 13:34:32 +0300
+Subject: [hatari-users] Hatari BeOS/Sun (and Windows) users?
+Message-ID: <200910241334.32901.eerot@users.berlios.de>
+
+Hi,
+
+I noticed that the Hatari scandir() function emulation for BeOS and Sun
+operating systems leaks memory and directories on errors.  I fixed that to
+the version control, but cannot test it myself.
+
+If somebody's still using Hatari on those operating systems, please check
+that I didn't break anything (at least it seemed to compile fine).
+
+
+I also took a look at the Windows scandir() function emulation and besides
+potentially leaking, it seemed to be lacking some error handling (checking
+return values etc).  If somebody's using Hatari on Windows, you could take
+a look at the code and provide a patch.  (I would expect allocs to succeed
+on normal Windows machine, but on embedded versions they might not.)
+
+
+	- Eero
+
+
+From ggn at hol.gr  Sat Oct 24 14:21:00 2009
+From: ggn at hol.gr (ggn (HOL))
+Date: Sat, 24 Oct 2009 15:21:00 +0300
+Subject: [hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)
+	users?
+In-Reply-To: <200910241334.32901.eerot@users.berlios.de>
+References: <200910241334.32901.eerot@users.berlios.de>
+Message-ID: <1602865744.20091024152100@hol.gr>
+
+Hello Eero,
+
+iirc  scandir  is  used in the file selector too, right? Just did a distclean-ed
+build of hatari on my mingw32 enviroment and noticed no side effects.
+
+Saturday, October 24, 2009, 1:34:32 PM, you wrote:
+
+> Hi,
+
+> I noticed that the Hatari scandir() function emulation for BeOS and Sun
+> operating systems leaks memory and directories on errors.  I fixed that to
+> the version control, but cannot test it myself.
+
+> If somebody's still using Hatari on those operating systems, please check
+> that I didn't break anything (at least it seemed to compile fine).
+
+
+> I also took a look at the Windows scandir() function emulation and besides
+> potentially leaking, it seemed to be lacking some error handling (checking
+> return values etc).  If somebody's using Hatari on Windows, you could take
+> a look at the code and provide a patch.  (I would expect allocs to succeed
+> on normal Windows machine, but on embedded versions they might not.)
+
+
+>         - Eero
+> _______________________________________________
+> hatari-devel mailing list
+> hatari-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/hatari-devel
+
+
+
+
+-- 
+Best regards,
+ ggn                            mailto:ggn at hol.gr
+
+
+
+From eerot at users.berlios.de  Sat Oct 24 18:04:35 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sat, 24 Oct 2009 19:04:35 +0300
+Subject: [hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)
+	users?
+In-Reply-To: <1602865744.20091024152100@hol.gr>
+References: <200910241334.32901.eerot@users.berlios.de>
+	<1602865744.20091024152100@hol.gr>
+Message-ID: <200910241904.35618.eerot@users.berlios.de>
+
+Hi,
+
+On Saturday 24 October 2009, ggn (HOL) wrote:
+> iirc  scandir  is  used in the file selector too, right? Just did a
+> distclean-ed build of hatari on my mingw32 enviroment and noticed no side
+> effects.
+
+I touched only the BeOS / Sun scandir() emulation, not the Windows one.
+
+(the Windows scandir() will work wrong only in 2 cases when malloc/calloc
+fail and it fails to free allocs in one case.  BeOS/Sun scandir() emulation
+had proper error hadling, but leaked when error happened.)
+
+	- Eero
+
+> Saturday, October 24, 2009, 1:34:32 PM, you wrote:
+> > Hi,
+> >
+> > I noticed that the Hatari scandir() function emulation for BeOS and Sun
+> > operating systems leaks memory and directories on errors.  I fixed that
+> > to the version control, but cannot test it myself.
+> >
+> > If somebody's still using Hatari on those operating systems, please
+> > check that I didn't break anything (at least it seemed to compile
+> > fine).
+> >
+> >
+> > I also took a look at the Windows scandir() function emulation and
+> > besides potentially leaking, it seemed to be lacking some error
+> > handling (checking return values etc).  If somebody's using Hatari on
+> > Windows, you could take a look at the code and provide a patch.  (I
+> > would expect allocs to succeed on normal Windows machine, but on
+> > embedded versions they might not.)
+> >
+> >
+> >         - Eero
+> > _______________________________________________
+> > hatari-devel mailing list
+> > hatari-devel at lists.berlios.de
+> > https://lists.berlios.de/mailman/listinfo/hatari-devel
+
+
+
+
+From ggn at hol.gr  Sat Oct 24 18:44:52 2009
+From: ggn at hol.gr (ggn (HOL))
+Date: Sat, 24 Oct 2009 19:44:52 +0300
+Subject: [hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)
+	users?
+In-Reply-To: <200910241904.35618.eerot@users.berlios.de>
+References: <200910241334.32901.eerot@users.berlios.de>
+	<1602865744.20091024152100@hol.gr>
+	<200910241904.35618.eerot@users.berlios.de>
+Message-ID: <682307717.20091024194452@hol.gr>
+
+Hello Eero,
+
+Saturday, October 24, 2009, 7:04:35 PM, you wrote:
+
+> I touched only the BeOS / Sun scandir() emulation, not the Windows one.
+
+> (the Windows scandir() will work wrong only in 2 cases when malloc/calloc
+> fail and it fails to free allocs in one case.  BeOS/Sun scandir() emulation
+> had proper error hadling, but leaked when error happened.)
+
+Sorry, I misread your original mail.
+
+-- 
+Best regards,
+ ggn                            mailto:ggn at hol.gr
+
+
+
+From Uwe.Seimet at seimet.de  Sat Nov  7 19:20:17 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Sat, 7 Nov 2009 19:20:17 +0100
+Subject: [hatari-users] Doubleclick not recognized with TOS 3.06
+Message-ID: <20091107182017.GA15146@quattro.seimet.de>
+
+Hi,
+
+today I used hatari for the first time and it looks an interesting piece
+of software to me, in particular as it runs more stable on my Linux box
+than aranym.
+When trying to run hatari with an original German TOS 3.06 I noticed
+that doubleclicks do not work as they should. Two single clicks seem to be
+registered instead. With EmuTOS it works, but for various reasons TOS 3.06
+is the better choice for me. Any idea what might be wrong?
+
+Are there any plans to support resolutions of more than 1024x768?
+
+Best regards
+
+Uwe
+
+
+From th.huth at gmx.de  Sun Nov  8 16:04:48 2009
+From: th.huth at gmx.de (Thomas H.)
+Date: Sun, 08 Nov 2009 16:04:48 +0100
+Subject: [hatari-users] Doubleclick not recognized with TOS 3.06
+In-Reply-To: <20091107182017.GA15146@quattro.seimet.de>
+References: <20091107182017.GA15146@quattro.seimet.de>
+Message-ID: <20091108150448.24660@gmx.net>
+
+> Datum: Sat, 7 Nov 2009 19:20:17 +0100
+> Von: Uwe Seimet <Uwe.Seimet at seimet.de>
+> 
+> When trying to run hatari with an original German TOS 3.06 I noticed
+> that doubleclicks do not work as they should. Two single clicks seem to be
+> registered instead. With EmuTOS it works, but for various reasons TOS 3.06
+> is the better choice for me. Any idea what might be wrong?
+
+That bug is new to me, I don't have a clue yet what could be wrong.
+I've opened a bug ticket to track this issue:
+
+https://developer.berlios.de/bugs/?func=detailbug&bug_id=16427&group_id=10436
+
+> Are there any plans to support resolutions of more than 1024x768?
+
+We don't have plans yet to increase the max. resolution - since nobody complained yet. But it should be quite easy to change this. What resolution do you need?
+
+ Regards,
+  Thomas
+
+-- 
+DSL-Preisknaller: DSL Komplettpakete von GMX schon f?r 
+16,99 Euro mtl.!* Hier klicken: http://portal.gmx.net/de/go/dsl02
+
+
+From Uwe.Seimet at seimet.de  Sun Nov  8 16:22:57 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Sun, 8 Nov 2009 16:22:57 +0100
+Subject: [hatari-users] Doubleclick not recognized with TOS 3.06
+In-Reply-To: <20091108150448.24660@gmx.net>
+References: <20091107182017.GA15146@quattro.seimet.de>
+	<20091108150448.24660@gmx.net>
+Message-ID: <20091108152257.GA5786@quattro.seimet.de>
+
+Hi,
+
+> That bug is new to me, I don't have a clue yet what could be wrong.
+> I've opened a bug ticket to track this issue:
+
+Thank you. By the way, when I single click with the middle (third) mouse key
+this is treated like a double click, but double clicking with the left
+mouse key has no effect. Please keep in mind that I only observe this bug
+with TOS 3.06, not with EmuTOS.
+
+> We don't have plans yet to increase the max. resolution - since nobody complained yet. But it should be quite easy to change this. What resolution do you need?
+
+In the meantime I have patched vdi.h and set MAX_VDI_WIDTH to 1600 and
+MAX_VDI_HEIGHT to 1200. This way I get a resolution of 1536x1200. But using
+the full width of my screen, which would be great for working in full screen
+mode, fails. hatari reports:
+
+VDI screen: request = 1600x1200 at 1, aligned result = 1536x1200 at 1
+
+Since 1600 can be devided by 16 I would have expected 1600x1200 to be a
+legal resolution for hatari. Is there a technical reason why a screen
+width of 1600 pixels is not supported?
+
+Because the maximum resolution supported by the TT is 1280x960 I think
+hatari should support this resolution out of the box, at least when emulating
+a TT.
+
+Best regards
+
+Uwe
+
+
+From eerot at users.berlios.de  Sun Nov  8 19:30:32 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sun, 8 Nov 2009 20:30:32 +0200
+Subject: [hatari-users] Doubleclick not recognized with TOS 3.06
+In-Reply-To: <20091108152257.GA5786@quattro.seimet.de>
+References: <20091107182017.GA15146@quattro.seimet.de>
+	<20091108150448.24660@gmx.net>
+	<20091108152257.GA5786@quattro.seimet.de>
+Message-ID: <200911082030.32915.eerot@users.berlios.de>
+
+Hi,
+
+On Sunday 08 November 2009, Uwe Seimet wrote:
+> > That bug is new to me, I don't have a clue yet what could be wrong.
+> > I've opened a bug ticket to track this issue:
+>
+> Thank you. By the way, when I single click with the middle (third) mouse
+> key this is treated like a double click,
+
+That's the documented (and very useful) behavior.
+
+
+> but double clicking with the left mouse key has no effect. Please keep
+> in mind that I only observe this bug with TOS 3.06, not with EmuTOS.
+
+But this seems like a bug.
+
+
+> > We don't have plans yet to increase the max. resolution - since nobody
+> > complained yet. But it should be quite easy to change this. What
+> > resolution do you need?
+>
+> In the meantime I have patched vdi.h and set MAX_VDI_WIDTH to 1600 and
+> MAX_VDI_HEIGHT to 1200.
+
+This increases Hatari memory usage somewhat (Hatari allocs 2*2 buffers
+of size width*height/8 in Screen_Init()), but that's not a problem on
+desktop computers.
+
+
+> This way I get a resolution of 1536x1200. But 
+> using the full width of my screen, which would be great for working in
+> full screen mode, fails. hatari reports:
+>
+> VDI screen: request = 1600x1200 at 1, aligned result = 1536x1200 at 1
+>
+> Since 1600 can be devided by 16 I would have expected 1600x1200 to be a
+> legal resolution for hatari. Is there a technical reason why a screen
+> width of 1600 pixels is not supported?
+
+According to the comment in code:
+  "TOS can only handle resolutions correctly when width is dividable by 128"
+
+And the height needs to be multiple of VDI character height, otherwise
+TOS screen output will be messed up.
+
+(That might not concern all TOS versions, but as VDI resolutions are
+supported for all TOS versions, it's bound to least common denominator.)
+
+
+See VDI_SetResolution() for more details.
+
+
+> Because the maximum resolution supported by the TT is 1280x960 I think
+> hatari should support this resolution out of the box, at least when
+> emulating a TT.
+
+That size aligns fine to TOS requirements.  I changed the VDI max resolution
+to that in the repository (with doc changes, needed touching 6 files...).
+
+
+	- Eero
+
+
+From Uwe.Seimet at seimet.de  Mon Nov  9 07:29:42 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Mon, 9 Nov 2009 07:29:42 +0100
+Subject: [hatari-users] Doubleclick not recognized with TOS 3.06
+In-Reply-To: <200911082030.32915.eerot@users.berlios.de>
+References: <20091107182017.GA15146@quattro.seimet.de>
+	<20091108150448.24660@gmx.net>
+	<20091108152257.GA5786@quattro.seimet.de>
+	<200911082030.32915.eerot@users.berlios.de>
+Message-ID: <20091109062942.GA5695@quattro.seimet.de>
+
+Hi,
+
+> That's the documented (and very useful) behavior.
+
+Fortunaly it is, otherwise I could not double-cklick at all :-).
+
+> > Since 1600 can be devided by 16 I would have expected 1600x1200 to be a
+> > legal resolution for hatari. Is there a technical reason why a screen
+> > width of 1600 pixels is not supported?
+> 
+> According to the comment in code:
+>   "TOS can only handle resolutions correctly when width is dividable by 128"
+
+Hmm. I have no problems with patching the code so that I get a width of
+1600 pixels. I found this comment in the code I patched:
+
+      /* width needs to be aligned to 16 bytes */
+      VDIWidth = VDI_Limit(WidthRequest, 128/VDIPlanes, MIN_VDI_WIDTH,
+      MAX_VDI_WIDTH);
+
+To me this sounds as if the alignment should be 16 bytes, which is not
+what the code line below the patch actually does. 1600 pixels is a width
+dividable by 16, and according to the comment a legal resolution for
+the VDI. My patch enforces this alignment and works fine, at least for
+TOS 3.06 (and most likely newer):
+
+      /* width needs to be aligned to 16 bytes */
+      VDIWidth = VDI_Limit(WidthRequest, 16, MIN_VDI_WIDTH, MAX_VDI_WIDTH);
+
+> (That might not concern all TOS versions, but as VDI resolutions are
+> supported for all TOS versions, it's bound to least common denominator.)
+
+> That size aligns fine to TOS requirements.  I changed the VDI max resolution
+> to that in the repository (with doc changes, needed touching 6 files...).
+
+Thank you!
+
+Best regards
+
+Uwe
+
+
+From Uwe.Seimet at seimet.de  Mon Nov  9 07:40:21 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Mon, 9 Nov 2009 07:40:21 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+Message-ID: <20091109064021.GA5837@quattro.seimet.de>
+
+Hi,
+
+there is probably an easier way to create a a bootable hard disk image than
+mentioned in the hatari manual, namely without using a floppy disk image.
+
+At least with HDDRIVER I had no problems using several GEMDOS drives and
+*additionally* an IDE hard disk image. I simply booted in TT mode,
+specified an IDE hard disk image (file created with DD), and put
+HDDRIVER.PRG in the AUTO folder. If HDDRIVER is configured to preserve
+existing drive IDs the GEMDOS disk drives will be accessible in addition
+to the drives of the hard disk image. In my case C-I are GEMDOS drives,
+J-P are the drives on the IDE disk image.
+
+One should now be able to prepare a bootable IDE disk image by simply
+partitioning the IDE drive and installing the hard disk driver on a
+partition on this drive, using hard disk software located on the
+GEMDOS drives instead of using hard disk software located on a floppy
+disk image.
+This way one can also easily transfer files between a GEMDOS drive and
+drives located in hard disk images, without having to use mtools or a
+loopback device.
+
+Best regards
+
+Uwe
+
+
+From eerot at users.berlios.de  Mon Nov  9 19:26:24 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Mon, 9 Nov 2009 20:26:24 +0200
+Subject: [hatari-users] Doubleclick not recognized with TOS 3.06
+In-Reply-To: <20091109062942.GA5695@quattro.seimet.de>
+References: <20091107182017.GA15146@quattro.seimet.de>
+	<200911082030.32915.eerot@users.berlios.de>
+	<20091109062942.GA5695@quattro.seimet.de>
+Message-ID: <200911092026.24232.eerot@users.berlios.de>
+
+Hi,
+
+On Monday 09 November 2009, Uwe Seimet wrote:
+> Hmm. I have no problems with patching the code so that I get a width of
+> 1600 pixels. I found this comment in the code I patched:
+>
+>       /* width needs to be aligned to 16 bytes */
+>       VDIWidth = VDI_Limit(WidthRequest, 128/VDIPlanes, MIN_VDI_WIDTH,
+>       MAX_VDI_WIDTH);
+>
+> To me this sounds as if the alignment should be 16 bytes, which is not
+> what the code line below the patch actually does. 1600 pixels is a width
+> dividable by 16,
+
+16 bytes.  Monochrome resolution has 8 bits per byte.  8*16 = 128.
+
+
+	- Eero
+
+
+
+From Uwe.Seimet at seimet.de  Mon Nov  9 19:33:47 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Mon, 9 Nov 2009 19:33:47 +0100
+Subject: [hatari-users] Doubleclick not recognized with TOS 3.06
+In-Reply-To: <200911092026.24232.eerot@users.berlios.de>
+References: <20091107182017.GA15146@quattro.seimet.de>
+	<200911082030.32915.eerot@users.berlios.de>
+	<20091109062942.GA5695@quattro.seimet.de>
+	<200911092026.24232.eerot@users.berlios.de>
+Message-ID: <20091109183347.GA14011@quattro.seimet.de>
+
+Hi,
+
+> 16 bytes.  Monochrome resolution has 8 bits per byte.  8*16 = 128.
+
+Ah, of course. Looks as if this simple calculation was too complicated
+for me ;-).
+Anyway, at least the TOS 3.06 VDI is more flexible than this, which is
+fine because in fullscreen mode I can get a one-to-one mapping of pixels.
+My system is very similar to a real TT now.
+
+Best regards
+
+Uwe
+
+
+From eerot at users.berlios.de  Fri Nov 13 22:29:21 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Fri, 13 Nov 2009 23:29:21 +0200
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <20091109064021.GA5837@quattro.seimet.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+Message-ID: <200911132329.21706.eerot@users.berlios.de>
+
+Hi,
+
+On Monday 09 November 2009, Uwe Seimet wrote:
+> there is probably an easier way to create a a bootable hard disk image
+> than mentioned in the hatari manual, namely without using a floppy disk
+> image.
+>
+> At least with HDDRIVER I had no problems using several GEMDOS drives and
+> *additionally* an IDE hard disk image. I simply booted in TT mode,
+> specified an IDE hard disk image (file created with DD), and put
+> HDDRIVER.PRG in the AUTO folder. If HDDRIVER is configured to preserve
+> existing drive IDs the GEMDOS disk drives will be accessible in addition
+> to the drives of the hard disk image. In my case C-I are GEMDOS drives,
+> J-P are the drives on the IDE disk image.
+
+Good to hear, but it seems to work only for people who have purchased
+the commercial version of HDDriver.  The demo version README says that
+it supports only drive C:.
+
+Hatari manual concentrates telling on how to accomplish things with SW
+that's freely available for one simple reason, we cannot test something
+we don't have. :-)
+
+
+> One should now be able to prepare a bootable IDE disk image by simply
+> partitioning the IDE drive and installing the hard disk driver on a
+> partition on this drive, using hard disk software located on the
+> GEMDOS drives instead of using hard disk software located on a floppy
+> disk image.
+> This way one can also easily transfer files between a GEMDOS drive and
+> drives located in hard disk images, without having to use mtools or a
+> loopback device.
+
+If you write instructions on using HDDriver with Hatari and send me an URL
+to the page, I'd be happy to add pointer to that www-page into Hatari
+manual.
+
+
+	- Eero
+
+
+From Uwe.Seimet at seimet.de  Fri Nov 13 22:50:54 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Fri, 13 Nov 2009 22:50:54 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <200911132329.21706.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911132329.21706.eerot@users.berlios.de>
+Message-ID: <20091113215054.GA9837@quattro.seimet.de>
+
+Hi,
+
+> Good to hear, but it seems to work only for people who have purchased
+> the commercial version of HDDriver.  The demo version README says that
+> it supports only drive C:.
+
+Yes, I was aware that my comment does not help those just using the demo
+version, but it's probably useful for those using the full version.
+By the way, the demo also supports other drives than C: but other drives
+are read-only.
+
+> If you write instructions on using HDDriver with Hatari and send me an URL
+> to the page, I'd be happy to add pointer to that www-page into Hatari
+> manual.
+
+I am thinking of it, but first I want to try out some other things.
+
+Maybe you are interested in why HDDRIVER can access emulated IDE drives
+under hatari, but does not work with emulated ACSI drives.
+As far as I can tell the problem is caused by the Timer C data register
+not counting down accurately. HDDRIVER relies on the value of this 
+register for the ACSI bus timing. If the timing is too fast HDDRIVER
+writes the command block bytes too fast and hatari will not retrieve the
+proper byte sequence from the emulated bus. At least this is what I think
+happens after looking at the hatari ACSI debug output. On each run of
+HDDRUTIL's ID check different command byte values are reported even
+though the same commands are sent.
+AHDI does not use a proper timing (that's one of the reasons why AHDI does
+not work with some real drives), but not relying on a timer the way
+HDDRIVER does is most likely an advantage for AHDI when running with
+hatari.
+
+Have you already thought of not only supporting an IDE master drive but
+a slave drive as well? My impression was that the IDE emulation is
+basically capable of also supporting an IDE slave. Maybe all that's
+missing is a way to configure the additional drive image with hatari?
+
+Best regards
+
+Uwe
+
+
+From eerot at users.berlios.de  Fri Nov 13 23:07:20 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sat, 14 Nov 2009 00:07:20 +0200
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <20091113215054.GA9837@quattro.seimet.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911132329.21706.eerot@users.berlios.de>
+	<20091113215054.GA9837@quattro.seimet.de>
+Message-ID: <200911140007.20460.eerot@users.berlios.de>
+
+Hi,
+
+On Friday 13 November 2009, Uwe Seimet wrote:
+> > Good to hear, but it seems to work only for people who have purchased
+> > the commercial version of HDDriver.  The demo version README says that
+> > it supports only drive C:.
+>
+> Yes, I was aware that my comment does not help those just using the demo
+> version, but it's probably useful for those using the full version.
+> By the way, the demo also supports other drives than C: but other drives
+> are read-only.
+
+Hm.  So in practice one should be able to copy data from an IDE HD image
+to an GEMDOS partition/directory?
+
+Could you give a bit more detailed instructions on how to do that?
+That may be something I could add to the manual.
+
+
+> > If you write instructions on using HDDriver with Hatari and send me an
+> > URL to the page, I'd be happy to add pointer to that www-page into
+> > Hatari manual.
+>
+> I am thinking of it, but first I want to try out some other things.
+>
+> Maybe you are interested in why HDDRIVER can access emulated IDE drives
+> under hatari, but does not work with emulated ACSI drives.
+
+Sure.
+
+
+> As far as I can tell the problem is caused by the Timer C data register
+> not counting down accurately. HDDRIVER relies on the value of this
+> register for the ACSI bus timing. If the timing is too fast HDDRIVER
+> writes the command block bytes too fast and hatari will not retrieve the
+> proper byte sequence from the emulated bus. At least this is what I think
+> happens after looking at the hatari ACSI debug output. On each run of
+> HDDRUTIL's ID check different command byte values are reported even
+> though the same commands are sent.
+
+Nicolas, any comments on the timings?
+
+
+> AHDI does not use a proper timing (that's one of the reasons why AHDI
+> does not work with some real drives), but not relying on a timer the way
+> HDDRIVER does is most likely an advantage for AHDI when running with
+> hatari.
+>
+> Have you already thought of not only supporting an IDE master drive but
+> a slave drive as well? My impression was that the IDE emulation is
+> basically capable of also supporting an IDE slave. Maybe all that's
+> missing is a way to configure the additional drive image with hatari?
+
+Thomas has added the HDD support but he's been lately busy with other
+things than Hatari.  Maybe he'll have time to look at this at some point...
+
+Or at least give enough pointers in case you're yourself interested in
+looking into this and providing a patch. :-)
+
+
+	- Eero
+
+
+From npomarede at corp.free.fr  Fri Nov 13 23:50:09 2009
+From: npomarede at corp.free.fr (npomarede at corp.free.fr)
+Date: Fri, 13 Nov 2009 23:50:09 +0100 (CET)
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <200911140007.20460.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911132329.21706.eerot@users.berlios.de>
+	<20091113215054.GA9837@quattro.seimet.de>
+	<200911140007.20460.eerot@users.berlios.de>
+Message-ID: <alpine.LMD.2.00.0911132341330.25119@pulsar.staff.proxad.net>
+
+On Sat, 14 Nov 2009, Eero Tamminen wrote:
+
+>> As far as I can tell the problem is caused by the Timer C data register
+>> not counting down accurately. HDDRIVER relies on the value of this
+>> register for the ACSI bus timing. If the timing is too fast HDDRIVER
+>> writes the command block bytes too fast and hatari will not retrieve the
+>> proper byte sequence from the emulated bus. At least this is what I think
+>> happens after looking at the hatari ACSI debug output. On each run of
+>> HDDRUTIL's ID check different command byte values are reported even
+>> though the same commands are sent.
+>
+> Nicolas, any comments on the timings?
+
+Well, an error is always possible, but regarding the mfp timer precision 
+I'm quite sure we only have a 4 or 8 cycles difference with real hardware 
+(which is required to run very precise demo such as Overlander's 3D 
+fullscreen or Paulo Simoes Overscan Demos).
+
+And I don't see what kind of precision a disk driver could require that 
+would need very high MFP timings. Most likely you need 200 Hz or so 
+timings, I don't think the hard drive can read that much sectors per 
+second, so precision would not be a problem.
+
+Perhaps the problem lies in some badly emulated bits or combination of 
+mask/pending/... mfp status ?
+
+Just to be sure, try turning off the "patch timer D" option.
+
+I really don't know the part regarding hard drive emulation, but maybe we 
+have the same problem as with floppy, where we use FDC_DELAY_CYCLES to 
+compute the length of a command, which is wrong when compared to real 
+hardware.
+
+
+Nicolas
+
+
+
+From Uwe.Seimet at seimet.de  Sat Nov 14 07:28:17 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Sat, 14 Nov 2009 07:28:17 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <200911140007.20460.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911132329.21706.eerot@users.berlios.de>
+	<20091113215054.GA9837@quattro.seimet.de>
+	<200911140007.20460.eerot@users.berlios.de>
+Message-ID: <20091114062817.GA5731@quattro.seimet.de>
+
+Hi,
+
+> Hm.  So in practice one should be able to copy data from an IDE HD image
+> to an GEMDOS partition/directory?
+
+Yes, that's exactly what I am doing.
+
+> Could you give a bit more detailed instructions on how to do that?
+> That may be something I could add to the manual.
+
+It's quite simple. hatari has to be configured for using a GEMDOS drive folder
+and additionally an IDE HD image. HDDRIVER.PRG is located in the AUTO
+folder of the GEMDOS drive C:. It must be configured with the "Preserve
+existing partitions" option (HDDRUTIL->Devices and Partitions). This is
+all there is to do.
+
+What happens now when booting hatari is this: First the GEMDOS
+partitions are installed. Next HDDRIVER.PRG is run automatically from
+the AUTO folder of drive C:. It detects the emulated IDE drive and
+creates partitions for this drive. Because HDDRIVER was configured to
+preserve existing partitions it will not use C: as the first partition
+ID but will start with the first unused partition ID when assigning the
+partitions IDs for the IDE drive. As a result you have access to the GEMDOS
+drive partitions and the IDE partitions at the same time. Data can now
+simply be copied between them.
+
+Best regards
+
+Uwe
+
+
+From Uwe.Seimet at seimet.de  Sat Nov 14 07:43:12 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Sat, 14 Nov 2009 07:43:12 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <alpine.LMD.2.00.0911132341330.25119@pulsar.staff.proxad.net>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911132329.21706.eerot@users.berlios.de>
+	<20091113215054.GA9837@quattro.seimet.de>
+	<200911140007.20460.eerot@users.berlios.de>
+	<alpine.LMD.2.00.0911132341330.25119@pulsar.staff.proxad.net>
+Message-ID: <20091114064312.GA5892@quattro.seimet.de>
+
+Hi,
+
+> Well, an error is always possible, but regarding the mfp timer precision 
+> I'm quite sure we only have a 4 or 8 cycles difference with real hardware 
+> (which is required to run very precise demo such as Overlander's 3D 
+> fullscreen or Paulo Simoes Overscan Demos).
+
+Yes, I also assumed that other applications rely much more on correct
+timings than a hard disk driver.
+
+> Perhaps the problem lies in some badly emulated bits or combination of 
+> mask/pending/... mfp status ?
+
+This may be possible.
+
+> Just to be sure, try turning off the "patch timer D" option.
+
+Changing this (and other) emulation options did not make any difference.
+
+Let me go a bit more into detail on what I observe when debugging with
+this debug setup in hdc.c:
+
+#define HDC_VERBOSE           /* display operations */
+#define HDC_REALLY_VERBOSE    /* display command packets */
+
+I run my tests with the HDDRUTIL "Device Check". The device check sends
+an INQUIRY command to all ACSI devices from 0 to 7. Essentially I get
+this debug output:
+
+Byte 0: 0x72
+HDC opcode 0x12 : INQUIRY
+Controller: 3
+Drive: 4
+
+Byte 0: 0x32
+HDC opcode 0x12 : INQUIRY
+Controller: 1
+Drive: 2
+
+(I have extended the standard debug output by a line displaying the
+complete first command byte).
+
+The next time I run the check I get a similar output, but not exactly
+the same. Even though the low nibble of the first command byte always is
+0x12 the data in the high nibble are different each time, resulting in
+senseless data for the controller and the drive number.
+Also note that even though I should see 8 INQUIRY commands (one for each
+of the 8 possible ACSI devices) the emulation only reports 2 commands.
+Sometimes for a complete devices check only one INQUIRY command is
+reported, sometimes none at all.
+
+The command bytes somehow seem to get garbled and/or thrown away, but I
+wonder how this is possible within an emulation.
+
+Best regards
+
+Uwe
+
+
+From Uwe.Seimet at seimet.de  Sat Nov 14 09:35:54 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Sat, 14 Nov 2009 09:35:54 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <20091114062817.GA5731@quattro.seimet.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911132329.21706.eerot@users.berlios.de>
+	<20091113215054.GA9837@quattro.seimet.de>
+	<200911140007.20460.eerot@users.berlios.de>
+	<20091114062817.GA5731@quattro.seimet.de>
+Message-ID: <20091114083554.GA6552@quattro.seimet.de>
+
+Hi,
+
+> It's quite simple. hatari has to be configured for using a GEMDOS drive folder
+> and additionally an IDE HD image. HDDRIVER.PRG is located in the AUTO
+> folder of the GEMDOS drive C:. It must be configured with the "Preserve
+> existing partitions" option (HDDRUTIL->Devices and Partitions). This is
+> all there is to do.
+
+One additional note: It may be required to use a TOS that is not
+IDE-aware, i.e. not TOS 4.0. I am runing TOS 3.06 (TT), which does not
+try to boot from IDE because it does not know about the IDE port. But
+HDDRIVER knows about the IDE port even when running on a TT, so it will
+find the IDE drive when running from the AUTO folder.
+
+Best regards
+
+Uwe
+
+
+From eerot at users.berlios.de  Sat Nov 14 15:42:13 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sat, 14 Nov 2009 16:42:13 +0200
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <20091114083554.GA6552@quattro.seimet.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<20091114062817.GA5731@quattro.seimet.de>
+	<20091114083554.GA6552@quattro.seimet.de>
+Message-ID: <200911141642.13352.eerot@users.berlios.de>
+
+Hi,
+
+On Saturday 14 November 2009, Uwe Seimet wrote:
+> > It's quite simple. hatari has to be configured for using a GEMDOS drive
+> > folder and additionally an IDE HD image. HDDRIVER.PRG is located in the
+> > AUTO folder of the GEMDOS drive C:. It must be configured with the
+> > "Preserve existing partitions" option (HDDRUTIL->Devices and
+> > Partitions). This is all there is to do.
+
+Doesn't work with the HDDriver demo.  It doesn't recognize the IDE in
+addition to the GEMDOS drive C: it found.
+
+This seems to work though:
+
+1. Create HDDriver demo boot floppy[1]:
+    - zip2st.sh hddriver82_demo.zip
+    - run hddriver82_demo.st in Hatari, create auto/-folder and put
+      hddriver.prg there and in hddrutil.app set the "Preserve existing
+      partitions" option for that
+2. Create GEMDOS drive directory so that GEMDOS goes to D:
+    mkdir hd
+    mkdir hd/d
+3. Have a HDD image of an Atari harddisk that will become C:
+   (formatted by some other means as demo doesn't support formatting)
+4. Start hatari with:
+   --ide <HDD image> --harddrive hd/ hdd-bootfloppy.st
+
+The "hd" directory may not have anything else besides single
+letter drive subdirs (in this case starting from "D", not "C"), otherwise
+Hatari assigns the whole directory to C: instead of doing specified
+partition(s) for the subdir(s).
+
+Boot floppy image has to be given as last argument for Hatari to boot
+from it.
+
+
+[1] Would it be OK for you if we provide such an image in Hatari www-site
+with instructions on how people can copy data between first partition on HD
+image and GEMDOS directory mounts?  (Instructions could have a link to your
+HDDriver page in case people want to get rid of the demo limitations)
+
+
+> One additional note: It may be required to use a TOS that is not
+> IDE-aware, i.e. not TOS 4.0. I am runing TOS 3.06 (TT), which does not
+> try to boot from IDE because it does not know about the IDE port. But
+> HDDRIVER knows about the IDE port even when running on a TT, so it will
+> find the IDE drive when running from the AUTO folder.
+
+Btw. HDDriver seems to panic EmuTOS.  Any idea why?
+
+
+	- Eero
+
+
+From Uwe.Seimet at seimet.de  Sat Nov 14 16:15:02 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Sat, 14 Nov 2009 16:15:02 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <200911141642.13352.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<20091114062817.GA5731@quattro.seimet.de>
+	<20091114083554.GA6552@quattro.seimet.de>
+	<200911141642.13352.eerot@users.berlios.de>
+Message-ID: <20091114151502.GA7975@quattro.seimet.de>
+
+Hi,
+
+> Doesn't work with the HDDriver demo.  It doesn't recognize the IDE in
+> addition to the GEMDOS drive C: it found.
+
+I checked it with the demo and it works fine for me. And it should, since
+except for not being able to write to all partitions and being slower
+than the full version when reading data the demo is identical to the full
+version.
+Did you run TOS 3.0 in TT compatible mode, did you put the HDDRIVER.PRG
+into the AUTO folder of C: and did you configure the HDDRIVER.PRG you put
+into the AUTO folder with the "Preserve existing partitions" option?
+(You might have configured a different HDDRIVER.PRG.)
+
+> [1] Would it be OK for you if we provide such an image in Hatari www-site
+> with instructions on how people can copy data between first partition on HD
+> image and GEMDOS directory mounts?  (Instructions could have a link to your
+> HDDriver page in case people want to get rid of the demo limitations)
+
+This is OK for me. But you should try to get it running with the demo as
+I mentioned above, because this is really easy to use.
+
+> Btw. HDDriver seems to panic EmuTOS.  Any idea why?
+
+No, I can only confirm that EmuTOS panics with HDDRIVER and hatari.
+Looks as if EmuTOS is missing something that is required from HDDRIVER's
+perspective in order to behave like a real Atari, but I have no clue
+what it might be. In general HDDRIVER is quite generic and as far as
+possible tries not to rely on particular features of the underlying operating
+system. This is, for instance, why the IDE port works with TOS 3.06, even
+though a real TT does not have this port. In general HDDRIVER checks for
+the existence/non-existence of several hardware addresses in order to
+find out which bus is available. Non-existing hardware causes a bus
+error, which is caught by HDDRIVER without crashing the system, but for
+some reason this might not work with EmuTOS.
+
+Best regards
+
+Uwe
+
+
+From eerot at users.berlios.de  Sat Nov 14 17:23:53 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sat, 14 Nov 2009 18:23:53 +0200
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <20091114151502.GA7975@quattro.seimet.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911141642.13352.eerot@users.berlios.de>
+	<20091114151502.GA7975@quattro.seimet.de>
+Message-ID: <200911141823.54000.eerot@users.berlios.de>
+
+Hi,
+
+On Saturday 14 November 2009, Uwe Seimet wrote:
+> I checked it with the demo and it works fine for me. And it should, since
+> except for not being able to write to all partitions and being slower
+> than the full version when reading data the demo is identical to the full
+> version.
+>
+> Did you run TOS 3.0 in TT compatible mode, did you put the HDDRIVER.PRG
+> into the AUTO folder of C: and did you configure the HDDRIVER.PRG you put
+> into the AUTO folder with the "Preserve existing partitions" option?
+> (You might have configured a different HDDRIVER.PRG.)
+
+Aha!  The files in the HDDriver ZIP package have invalid permissions
+(000 instead of e.g. 644) and I had out of habit[1] set the files as
+read-only (444).
+
+After setting hddriver.prg as writable and re-configuring it with
+hddrutil.app, having GEMDOS drives and (one) IDE drive works fine with
+the demo.
+
+-> There seems to be a bug in hddrutil.app that it doesn't warn if
+    the hddriver file is read only and modifying it fails.  You may want to
+    fix that (along  with fixing the demo zip file contents file
+   permissions).
+
+
+Next issue is that only copying from the IDE drive works.  Not copying data
+to the IDE drive.  TOS says "The disk in drive E: is physically write 
+protected".  However, when I checked the HDDriver (demo) options from
+hddrutil.app, none of the disks are marked as write-protected.
+
+The demo README tells about this limitation:
+	Data can't be written to other partitions than C:
+
+But it would be nicer if it would show up like that in the hddrutil.app too.
+(And it would say something like "This cannot be changed in the demo".)
+
+
+So, the demo allows easily (but slowly) copying data from HDD image to
+GEMDOS directories, but to do things in the other direction, one needs to
+use the boot floppy method from my previous mail.  (I might use that when
+testing how to get newer MiNT and toolchains working under Hatari.)
+
+
+
+	- Eero
+
+[1] As a rule, I don't want anything, neither Hatari nor programs running in
+    it, messing with any other files except ones I explicitly set as
+    writable.  99% of the SW works just fine with read-only files.
+
+
+From eerot at users.berlios.de  Sat Nov 14 18:43:57 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sat, 14 Nov 2009 19:43:57 +0200
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <200911141823.54000.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<20091114151502.GA7975@quattro.seimet.de>
+	<200911141823.54000.eerot@users.berlios.de>
+Message-ID: <200911141943.57397.eerot@users.berlios.de>
+
+Hi,
+
+On Saturday 14 November 2009, Eero Tamminen wrote:
+> So, the demo allows easily (but slowly) copying data from HDD image to
+> GEMDOS directories, but to do things in the other direction, one needs to
+> use the boot floppy method from my previous mail.
+
+These are now documented in the Hatari manual:
+http://hg.berlios.de/repos/hatari/raw-file/tip/doc/manual.html#Moving files 
+to/from hard disk images
+
+
+	- Eero
+
+
+From Uwe.Seimet at seimet.de  Sun Nov 15 10:39:56 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Sun, 15 Nov 2009 10:39:56 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <200911141823.54000.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911141642.13352.eerot@users.berlios.de>
+	<20091114151502.GA7975@quattro.seimet.de>
+	<200911141823.54000.eerot@users.berlios.de>
+Message-ID: <20091115093956.GA8091@quattro.seimet.de>
+
+Hi,
+
+> Aha!  The files in the HDDriver ZIP package have invalid permissions
+> (000 instead of e.g. 644) and I had out of habit[1] set the files as
+> read-only (444).
+
+This is because the archive was created with STZIP on a FAT filesystem
+with no permission support.
+I have updated the demo archive by re-packaging it under Linux with
+the correct permissions.
+ 
+> -> There seems to be a bug in hddrutil.app that it doesn't warn if
+>     the hddriver file is read only and modifying it fails.  You may want to
+>     fix that (along  with fixing the demo zip file contents file
+>    permissions).
+
+I don't think there is anything wrong with HDDRUTIL. HDDRUTIL preserves
+the permissions of the driver file that is configured. This works under
+TOS, but with hatari the Fattrib() call does not seem to provide the
+correct file permissions and when writing to the write-protected driver
+file hatari does not seem to return a GEMDOS error code. This is
+probably something you should check.
+I think there is also something wrong with the way hatari handles file
+timestamps. My Pure C compiler always compiles any file in a project,
+not just the modified files as it does with real Atari hardware. And
+when copying files under hatari with KOBOLD the copies do not have the
+timestamps of the original files but have the current date as their
+timestamp. This is also something where the behavior of hatari differs
+from a real Atari. Maybe the GEMDOS drive code of hatari can be improved
+with this respect.
+
+> Next issue is that only copying from the IDE drive works.  Not copying data
+> to the IDE drive.  TOS says "The disk in drive E: is physically write 
+> protected".  However, when I checked the HDDriver (demo) options from
+> hddrutil.app, none of the disks are marked as write-protected.
+> 
+> The demo README tells about this limitation:
+> 	Data can't be written to other partitions than C:
+> 
+> But it would be nicer if it would show up like that in the hddrutil.app too.
+> (And it would say something like "This cannot be changed in the demo".)
+
+Where do you think this should show up? The driver you are configuring
+can reside on any drive, i.e. also on A:, B: or a drive not managed at
+all by HDDRIVER. HDDRUTIL can only report general problems when writing
+or modifying a file, but it cannot be specific and say that modifying
+was impossible because the file was located on a drive that was write
+protected because a demo version of HDDRIVER was used.
+
+Best regards
+
+Uwe
+
+
+From eerot at users.berlios.de  Sun Nov 15 12:10:01 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sun, 15 Nov 2009 13:10:01 +0200
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <20091115093956.GA8091@quattro.seimet.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911141823.54000.eerot@users.berlios.de>
+	<20091115093956.GA8091@quattro.seimet.de>
+Message-ID: <200911151310.02029.eerot@users.berlios.de>
+
+Hi,
+
+On Sunday 15 November 2009, Uwe Seimet wrote:
+> This is because the archive was created with STZIP on a FAT filesystem
+> with no permission support.
+>
+> I have updated the demo archive by re-packaging it under Linux with
+> the correct permissions.
+
+Thanks!
+
+
+> > -> There seems to be a bug in hddrutil.app that it doesn't warn if
+> >     the hddriver file is read only and modifying it fails.  You may
+> > want to fix that (along  with fixing the demo zip file contents file
+> > permissions).
+>
+> I don't think there is anything wrong with HDDRUTIL. HDDRUTIL preserves
+> the permissions of the driver file that is configured. This works under
+> TOS, but with hatari the Fattrib() call does not seem to provide the
+> correct file permissions
+
+I looked at the Hatari code.  It should give the right permissions when
+requesting them with Fattrib().  However, it doesn't:
+- Support setting files as writable, only setting them as read-only (444)
+  i.e. files need to set as writable outside Hatari
+- give an error if file was read-only and it was requested to be set as
+  writable
+
+I'll fix latter to report both to user and to calling program.
+
+However, with Hatari GEMDOS emulation it's possible to have just *specific*
+files read-only so that the emulated programs cannot write them.  What would
+be the correct error to return for those when program tries to set them as
+writable?  File access denied (GEMDOS_EACCDN) or device being write
+protected (GEMDOS_EWRPRO)?
+
+(I'm trying to avoid confusing the Atari programs too much...)
+
+
+> and when writing to the write-protected driver file hatari does not seem
+> to return a GEMDOS error code.
+
+This should work.  I think the issue is with Fattrib.
+
+
+> I think there is also something wrong with the way hatari handles file
+> timestamps. My Pure C compiler always compiles any file in a project,
+> not just the modified files as it does with real Atari hardware. And
+> when copying files under hatari with KOBOLD the copies do not have the
+> timestamps of the original files but have the current date as their
+> timestamp. This is also something where the behavior of hatari differs
+> from a real Atari. Maybe the GEMDOS drive code of hatari can be improved
+> with this respect.
+
+In current GEMDOS emulation setting of file timestamp is explicitly
+disabled.    I assume this is to avoid lots of files with "broken" 
+timestamps from programs that cannot handle timestamps from
+this millenium.
+
+Thomas, any comments on this?
+
+
+> > But it would be nicer if it would show up like that in the hddrutil.app
+> > too. (And it would say something like "This cannot be changed in the
+> > demo".)
+>
+> Where do you think this should show up? The driver you are configuring
+> can reside on any drive, i.e. also on A:, B: or a drive not managed at
+> all by HDDRIVER. HDDRUTIL can only report general problems when writing
+> or modifying a file, but it cannot be specific and say that modifying
+> was impossible because the file was located on a drive that was write
+> protected because a demo version of HDDRIVER was used.
+
+I meant that demo HDDRUTIL could show all drives except for A:, B: and C: as
+being write protected in the "Write protection" dialog.  Probably not worth
+the effort though...
+
+
+	- Eero
+
+
+From Uwe.Seimet at seimet.de  Sun Nov 15 12:38:14 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Sun, 15 Nov 2009 12:38:14 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <200911151310.02029.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911141823.54000.eerot@users.berlios.de>
+	<20091115093956.GA8091@quattro.seimet.de>
+	<200911151310.02029.eerot@users.berlios.de>
+Message-ID: <20091115113814.GA9502@quattro.seimet.de>
+
+Hi,
+
+> However, with Hatari GEMDOS emulation it's possible to have just *specific*
+> files read-only so that the emulated programs cannot write them.  What would
+> be the correct error to return for those when program tries to set them as
+> writable?  File access denied (GEMDOS_EACCDN) or device being write
+> protected (GEMDOS_EWRPRO)?
+
+GEMDOS_EACCDN looks right for me because we are on the file level, whereas
+GEMDOS_EWRPRO works on the device level.
+
+> This should work.  I think the issue is with Fattrib.
+
+I found that when trying to write an error code is returned, but HDDRUTIL
+doesn't yet display an error message. I have fixed that.
+
+> In current GEMDOS emulation setting of file timestamp is explicitly
+> disabled.    I assume this is to avoid lots of files with "broken" 
+> timestamps from programs that cannot handle timestamps from
+> this millenium.
+
+An option to enable the timestamp handling would be useful.
+
+Best regards
+
+Uwe
+
+
+From eerot at users.berlios.de  Sun Nov 15 14:05:35 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sun, 15 Nov 2009 15:05:35 +0200
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <200911151310.02029.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<20091115093956.GA8091@quattro.seimet.de>
+	<200911151310.02029.eerot@users.berlios.de>
+Message-ID: <200911151505.35848.eerot@users.berlios.de>
+
+Hi,
+
+On Sunday 15 November 2009, Eero Tamminen wrote:
+> > I don't think there is anything wrong with HDDRUTIL. HDDRUTIL preserves
+> > the permissions of the driver file that is configured. This works under
+> > TOS, but with hatari the Fattrib() call does not seem to provide the
+> > correct file permissions
+>
+> I looked at the Hatari code.  It should give the right permissions when
+> requesting them with Fattrib().  However, it doesn't:
+> - Support setting files as writable, only setting them as read-only (444)
+>   i.e. files need to set as writable outside Hatari
+> - give an error if file was read-only and it was requested to be set as
+>   writable
+
+Sorry I read the code too hastily, Hatari actually gives GEMDOS_EACCDN error
+on these files.
+
+
+> I'll fix latter to report both to user and to calling program.
+>
+> However, with Hatari GEMDOS emulation it's possible to have just
+> *specific* files read-only so that the emulated programs cannot write
+> them.  What would be the correct error to return for those when program
+> tries to set them as writable?  File access denied (GEMDOS_EACCDN) or
+> device being write protected (GEMDOS_EWRPRO)?
+
+But maybe returning GEMDOS_EWRPRO would be better?
+
+
+> (I'm trying to avoid confusing the Atari programs too much...)
+>
+> > and when writing to the write-protected driver file hatari does not
+> > seem to return a GEMDOS error code.
+
+If you:
+- start HDDRUTIL and locate HDDRIVER.PRG
+- invoke Hatari console debugger with AltGr+Pause
+- type on console: "trace gemdos"
+  (TAB completion is nice here :-))
+- continue emulation with: "c"
+- toggle the "Preserve Existing Partitions" option in
+  "Devices and Partitions" dialog
+
+When that file is writable, HDDRUTIL does following:
+GEMDOS Fattrib("C:\AUTO\HDDRIVER.PRG", 0, 0x0)
+GEMDOS Fopen("C:\AUTO\HDDRIVER.PRG", 0x1)
+GEMDOS Fwrite(0, 388, 0x70290)
+GEMDOS Fclose(0)
+
+When the file is read-only, you'll see that only thing HDDRUTIL does is:
+GEMDOS Fattrib("C:\AUTO\HDDRIVER.PRG", 0, 0x0)
+GEMDOS Fattrib("C:\AUTO\HDDRIVER.PRG", 1, 0x0)
+-> refused with GEMDOS_EACCDN
+GEMDOS Fopen("C:\AUTO\HDDRIVER.PRG", 0x1)  [1]
+-> Fails
+
+And it doesn't try to write anything after opening HDDRIVER.PRG.
+
+So, I think the issue is really in HDDRUTIL.  It should tell user that
+writing the file failed.
+
+
+I think I need to add some "Allow modifying files on GEMDOS mounts"
+setting to Hatari and some more verbose logging...  Then e.g. timestamp
+changing could be enabled more safely (when this option is enabled).
+
+
+	- Eero
+
+[1] due to fopen() limitations, write-only is internally in Hatari
+     actually read-write.  And open() isn't portable to Windows
+     (I'm tempted to ignore Windows though...)
+
+
+From huth at users.berlios.de  Sun Nov 15 19:59:22 2009
+From: huth at users.berlios.de (Thomas Huth)
+Date: Sun, 15 Nov 2009 19:59:22 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <200911140007.20460.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911132329.21706.eerot@users.berlios.de>
+	<20091113215054.GA9837@quattro.seimet.de>
+	<200911140007.20460.eerot@users.berlios.de>
+Message-ID: <20091115195922.09ea8359@phineus>
+
+On Sat, 14 Nov 2009 00:07:20 +0200
+Eero Tamminen <eerot at users.berlios.de> wrote:
+
+> > AHDI does not use a proper timing (that's one of the reasons why
+> > AHDI does not work with some real drives), but not relying on a
+> > timer the way HDDRIVER does is most likely an advantage for AHDI
+> > when running with hatari.
+> >
+> > Have you already thought of not only supporting an IDE master drive
+> > but a slave drive as well? My impression was that the IDE emulation
+> > is basically capable of also supporting an IDE slave. Maybe all
+> > that's missing is a way to configure the additional drive image
+> > with hatari?
+> 
+> Thomas has added the HDD support but he's been lately busy with other
+> things than Hatari.  Maybe he'll have time to look at this at some
+> point...
+
+The IDE code has been taken from QEMU, so it basically should be able
+to handle IDE slaves as well. I guess it's really just the GUI and
+configuration settings that are missing.
+I'll add an item for this to the TODO list since I'm currently lacking
+time and motivation for hacking bigger things on Hatari (sorry!)...
+
+ Thomas
+
+
+From eerot at users.berlios.de  Sun Nov 15 22:46:34 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sun, 15 Nov 2009 23:46:34 +0200
+Subject: [hatari-users] [hatari-devel] Option for dis/allowing updates
+	to GEMDOS partitions
+In-Reply-To: <200911152133.32679.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911151513.13146.eerot@users.berlios.de>
+	<200911152133.32679.eerot@users.berlios.de>
+Message-ID: <200911152346.34534.eerot@users.berlios.de>
+
+Hi,
+
+On Sunday 15 November 2009, Eero Tamminen wrote:
+> > Currently Hatari has some ifdefs on whether saving onto GEMDOS
+> > partition is enabled.  I think I'll change that to be a run-time option
+> > first. Then allow Atari programs to set files writable and lastly look
+> > into whether allowing timestamps makes sense.
+>
+> As this is user-visible change, I thought to mail here first...
+>
+> I've though that the option would be:
+>   --do-changes <bool> Do changes to mounted GEMDOS <dir> contents
+>
+> And it would by default allow writing the to GEMDOS partitions.  The
+> change to current behaviour is that programs can now change files to be
+> writable (if they were not).
+>
+> When the option is disabled, programs cannot create new files or
+> directories, or write to existing ones (unlike earlier).  I'll add
+> logging for these failed attempts, at the WARN level which is by default
+> visible on console.
+>
+> (I will also do some minor gemdos code refactoring at the same time.)
+
+This is now done, but the refactoring was a bit larger than I thought, so
+I would appreciate if anybody using/needing GEMDOS mounts a bit more would
+take the new Hatari code for a spin and tell me if there's something
+funny...
+
+Thanks!
+
+
+	- Eero
+
+PS. I noticed that at least my Mercurial 1.0.1 "ignore white space changes"
+option doesn't do anything.  If you want to check the code changes, I would
+suggest using just "diff -ub" between the old and new versions of gemdos.c. 
+That gives much more readable results than (my v1.0.1) Mercurial diff.
+
+PPS.  I also addded Nicolas' AVI recording options to man page & manual.
+
+
+From huth at users.berlios.de  Sun Nov 15 23:09:12 2009
+From: huth at users.berlios.de (Thomas Huth)
+Date: Sun, 15 Nov 2009 23:09:12 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <alpine.LMD.2.00.0911132341330.25119@pulsar.staff.proxad.net>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911132329.21706.eerot@users.berlios.de>
+	<20091113215054.GA9837@quattro.seimet.de>
+	<200911140007.20460.eerot@users.berlios.de>
+	<alpine.LMD.2.00.0911132341330.25119@pulsar.staff.proxad.net>
+Message-ID: <20091115230912.0d66136e@phineus>
+
+On Fri, 13 Nov 2009 23:50:09 +0100 (CET)
+npomarede at corp.free.fr wrote:
+
+> I really don't know the part regarding hard drive emulation, but
+> maybe we have the same problem as with floppy, where we use
+> FDC_DELAY_CYCLES to compute the length of a command, which is wrong
+> when compared to real hardware.
+
+IIRC, the ACSI emulation does not emulate any timings at all, so all
+commands are executed immediately without any delay.
+
+ Thomas
+
+
+From npomarede at corp.free.fr  Sun Nov 15 23:17:14 2009
+From: npomarede at corp.free.fr (npomarede at corp.free.fr)
+Date: Sun, 15 Nov 2009 23:17:14 +0100 (CET)
+Subject: [hatari-users] [hatari-devel] Option for dis/allowing updates
+ to GEMDOS partitions
+In-Reply-To: <200911152346.34534.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911151513.13146.eerot@users.berlios.de>
+	<200911152133.32679.eerot@users.berlios.de>
+	<200911152346.34534.eerot@users.berlios.de>
+Message-ID: <alpine.LMD.2.00.0911152312190.20661@pulsar.staff.proxad.net>
+
+On Sun, 15 Nov 2009, Eero Tamminen wrote:
+
+> Hi,
+>
+> On Sunday 15 November 2009, Eero Tamminen wrote:
+>>> Currently Hatari has some ifdefs on whether saving onto GEMDOS
+>>> partition is enabled.  I think I'll change that to be a run-time option
+>>> first. Then allow Atari programs to set files writable and lastly look
+>>> into whether allowing timestamps makes sense.
+>>
+>> As this is user-visible change, I thought to mail here first...
+>>
+>> I've though that the option would be:
+>>   --do-changes <bool> Do changes to mounted GEMDOS <dir> contents
+
+About the options's naming, shouldn't we use --mount-do-changes or 
+sthg like that ? I find "do-changes" to be too generic at first sight ; 
+maybe it would be better if the option's name contains a part that 
+directly show it's related to gemdos mounted disk ?
+
+>
+> PPS.  I also addded Nicolas' AVI recording options to man page & manual.
+
+Thanks, I'm still planing to add some more docs with some usage examples, 
+in all cases, I will do it before next release.
+
+
+
+From eerot at users.berlios.de  Mon Nov 16 10:06:25 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Mon, 16 Nov 2009 11:06:25 +0200
+Subject: [hatari-users] [hatari-devel] Option for dis/allowing updates
+	to GEMDOS partitions
+In-Reply-To: <alpine.LMD.2.00.0911152312190.20661@pulsar.staff.proxad.net>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911152346.34534.eerot@users.berlios.de>
+	<alpine.LMD.2.00.0911152312190.20661@pulsar.staff.proxad.net>
+Message-ID: <200911161106.26305.eerot@users.berlios.de>
+
+Hi,
+
+On Monday 16 November 2009, npomarede at corp.free.fr wrote:
+> >> I've though that the option would be:
+> >>   --do-changes <bool> Do changes to mounted GEMDOS <dir> contents
+>
+> About the options's naming, shouldn't we use --mount-do-changes or
+> sthg like that ? I find "do-changes" to be too generic at first sight ;
+> maybe it would be better if the option's name contains a part that
+> directly show it's related to gemdos mounted disk ?
+
+I had initially more verbose option name, but it was too long.
+
+Mount is a good name though, I changed the option to:
+  ??mount-changes <bool>
+    Allow changes to mounted harddrive <dir> contents
+
+
+	- Eero
+
+
+From Uwe.Seimet at seimet.de  Sat Nov 21 15:02:20 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Sat, 21 Nov 2009 15:02:20 +0100
+Subject: [hatari-users] Note on hard disk images and GEMDOS drives
+In-Reply-To: <20091115230912.0d66136e@phineus>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911132329.21706.eerot@users.berlios.de>
+	<20091113215054.GA9837@quattro.seimet.de>
+	<200911140007.20460.eerot@users.berlios.de>
+	<alpine.LMD.2.00.0911132341330.25119@pulsar.staff.proxad.net>
+	<20091115230912.0d66136e@phineus>
+Message-ID: <20091121140220.GA11048@quattro.seimet.de>
+
+Hi,
+
+> > I really don't know the part regarding hard drive emulation, but
+> > maybe we have the same problem as with floppy, where we use
+> > FDC_DELAY_CYCLES to compute the length of a command, which is wrong
+> > when compared to real hardware.
+> 
+> IIRC, the ACSI emulation does not emulate any timings at all, so all
+> commands are executed immediately without any delay.
+
+But the handshake using MFP port I5 ($FFFA01, bit 5) required to tell the
+Atari that the ACSI target has received a command byte is implemented by
+the emulation? If this bit is reset before the emulated target has
+actually read the command byte the hard disk driver might write the
+command bytes too fast.
+
+Best regards
+
+Uwe
+
+
+From Uwe.Seimet at seimet.de  Sat Nov 21 15:03:39 2009
+From: Uwe.Seimet at seimet.de (Uwe Seimet)
+Date: Sat, 21 Nov 2009 15:03:39 +0100
+Subject: [hatari-users] [hatari-devel] Option for dis/allowing updates
+ to GEMDOS partitions
+In-Reply-To: <200911152346.34534.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<200911151513.13146.eerot@users.berlios.de>
+	<200911152133.32679.eerot@users.berlios.de>
+	<200911152346.34534.eerot@users.berlios.de>
+Message-ID: <20091121140339.GB11048@quattro.seimet.de>
+
+Hi,
+
+> This is now done, but the refactoring was a bit larger than I thought, so
+> I would appreciate if anybody using/needing GEMDOS mounts a bit more would
+> take the new Hatari code for a spin and tell me if there's something
+> funny...
+
+I have run some tests and the changes look fine for me so far. Changing write
+permissions works now.
+
+Best regards
+
+Uwe
+
+
+From eerot at users.berlios.de  Sat Dec  5 21:31:46 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sat, 5 Dec 2009 22:31:46 +0200
+Subject: [hatari-users] [hatari-devel] Option for dis/allowing updates
+	to GEMDOS partitions
+In-Reply-To: <200911161106.26305.eerot@users.berlios.de>
+References: <20091109064021.GA5837@quattro.seimet.de>
+	<alpine.LMD.2.00.0911152312190.20661@pulsar.staff.proxad.net>
+	<200911161106.26305.eerot@users.berlios.de>
+Message-ID: <200912052231.46311.eerot@users.berlios.de>
+
+Hi,
+
+On Monday 16 November 2009, Eero Tamminen wrote:
+> Mount is a good name though, I changed the option to:
+>   ??mount-changes <bool>
+>     Allow changes to mounted harddrive <dir> contents
+
+FYI: This can be now changed from the SDL GUI too.
+
+
+	- Eero
+
+

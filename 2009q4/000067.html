@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Note on hard disk images and GEMDOS drives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C200911151505.35848.eerot%40users.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000066.html">
+   <LINK REL="Next"  HREF="000068.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Note on hard disk images and GEMDOS drives</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C200911151505.35848.eerot%40users.berlios.de%3E"
+       TITLE="[hatari-users] Note on hard disk images and GEMDOS drives">eerot at users.berlios.de
+       </A><BR>
+    <I>Sun Nov 15 14:05:35 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000066.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+        <LI>Next message: <A HREF="000068.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Sunday 15 November 2009, Eero Tamminen wrote:
+&gt;<i> &gt; I don't think there is anything wrong with HDDRUTIL. HDDRUTIL preserves
+</I>&gt;<i> &gt; the permissions of the driver file that is configured. This works under
+</I>&gt;<i> &gt; TOS, but with hatari the Fattrib() call does not seem to provide the
+</I>&gt;<i> &gt; correct file permissions
+</I>&gt;<i>
+</I>&gt;<i> I looked at the Hatari code.  It should give the right permissions when
+</I>&gt;<i> requesting them with Fattrib().  However, it doesn't:
+</I>&gt;<i> - Support setting files as writable, only setting them as read-only (444)
+</I>&gt;<i>   i.e. files need to set as writable outside Hatari
+</I>&gt;<i> - give an error if file was read-only and it was requested to be set as
+</I>&gt;<i>   writable
+</I>
+Sorry I read the code too hastily, Hatari actually gives GEMDOS_EACCDN error
+on these files.
+
+
+&gt;<i> I'll fix latter to report both to user and to calling program.
+</I>&gt;<i>
+</I>&gt;<i> However, with Hatari GEMDOS emulation it's possible to have just
+</I>&gt;<i> *specific* files read-only so that the emulated programs cannot write
+</I>&gt;<i> them.  What would be the correct error to return for those when program
+</I>&gt;<i> tries to set them as writable?  File access denied (GEMDOS_EACCDN) or
+</I>&gt;<i> device being write protected (GEMDOS_EWRPRO)?
+</I>
+But maybe returning GEMDOS_EWRPRO would be better?
+
+
+&gt;<i> (I'm trying to avoid confusing the Atari programs too much...)
+</I>&gt;<i>
+</I>&gt;<i> &gt; and when writing to the write-protected driver file hatari does not
+</I>&gt;<i> &gt; seem to return a GEMDOS error code.
+</I>
+If you:
+- start HDDRUTIL and locate HDDRIVER.PRG
+- invoke Hatari console debugger with AltGr+Pause
+- type on console: &quot;trace gemdos&quot;
+  (TAB completion is nice here :-))
+- continue emulation with: &quot;c&quot;
+- toggle the &quot;Preserve Existing Partitions&quot; option in
+  &quot;Devices and Partitions&quot; dialog
+
+When that file is writable, HDDRUTIL does following:
+GEMDOS Fattrib(&quot;C:\AUTO\HDDRIVER.PRG&quot;, 0, 0x0)
+GEMDOS Fopen(&quot;C:\AUTO\HDDRIVER.PRG&quot;, 0x1)
+GEMDOS Fwrite(0, 388, 0x70290)
+GEMDOS Fclose(0)
+
+When the file is read-only, you'll see that only thing HDDRUTIL does is:
+GEMDOS Fattrib(&quot;C:\AUTO\HDDRIVER.PRG&quot;, 0, 0x0)
+GEMDOS Fattrib(&quot;C:\AUTO\HDDRIVER.PRG&quot;, 1, 0x0)
+-&gt; refused with GEMDOS_EACCDN
+GEMDOS Fopen(&quot;C:\AUTO\HDDRIVER.PRG&quot;, 0x1)  [1]
+-&gt; Fails
+
+And it doesn't try to write anything after opening HDDRIVER.PRG.
+
+So, I think the issue is really in HDDRUTIL.  It should tell user that
+writing the file failed.
+
+
+I think I need to add some &quot;Allow modifying files on GEMDOS mounts&quot;
+setting to Hatari and some more verbose logging...  Then e.g. timestamp
+changing could be enabled more safely (when this option is enabled).
+
+
+	- Eero
+
+[1] due to fopen() limitations, write-only is internally in Hatari
+     actually read-write.  And open() isn't portable to Windows
+     (I'm tempted to ignore Windows though...)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000066.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+	<LI>Next message: <A HREF="000068.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

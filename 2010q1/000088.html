@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] User selectable threshold for window zooming
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2010q1/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20User%20selectable%20threshold%20for%20window%20zooming&In-Reply-To=%3C201002042130.02418.eerot%40users.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000086.html">
+   <LINK REL="Next"  HREF="000089.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] User selectable threshold for window zooming</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20User%20selectable%20threshold%20for%20window%20zooming&In-Reply-To=%3C201002042130.02418.eerot%40users.berlios.de%3E"
+       TITLE="[hatari-users] User selectable threshold for window zooming">eerot at users.berlios.de
+       </A><BR>
+    <I>Thu Feb  4 20:30:02 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000086.html">[hatari-users] User selectable threshold for window zooming
+</A></li>
+        <LI>Next message: <A HREF="000089.html">[hatari-users] User selectable threshold for window zooming
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#88">[ date ]</a>
+              <a href="thread.html#88">[ thread ]</a>
+              <a href="subject.html#88">[ subject ]</a>
+              <a href="author.html#88">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Thursday 04 February 2010, Thomas Huth wrote:
+&gt;<i> &gt; If there are no &quot;nay&quot;s in about week, I'll apply this change
+</I>&gt;<i> &gt; which removes the zoom low res option and replaces it with
+</I>&gt;<i> &gt; user definable resolution doubling limit.
+</I>&gt;<i>
+</I>&gt;<i> Why did you change the word &quot;zoom&quot; into &quot;doubling&quot;?
+</I>&gt;<i> &quot;to double&quot; means scaling by factor two, so this seems inapproriate for
+</I>&gt;<i> a variable zooming function to me.
+</I>
+While the Falcon code supports arbitrary integer scaling factors, as far as
+I can see, it's never asked to use any other scaling factors than 1 &amp; 2:
+-               /* Ugly: 400x300 threshold is currently hard-coded. */
+-               /* Should rather be selectable by the user! */
+-               if (width &amp;&amp; width &lt;= 400)
+-               {
+-                       nScreenZoomX = (800/width);
+-                       width *= nScreenZoomX;
+-               }
+-               if (height &amp;&amp; height &lt;= 300)
+-               {
+-                       nScreenZoomY = (550/height);
+-                       height *= nScreenZoomY;
+-               }
+
+For screen to get more than doubled, the original width would need to
+be &lt; 267 pixels and height &lt; 184 pixels which at least I've never seen...
+And ST/STE resolutions are never zoomed more than double.
+
+My current code explicitly doubles the size when needed.
+
+I think it also makes the result of that option clearer, as it implies
+an integer zooming factor (user doesn't wonder why the window wasn't
+zoomed to the specified size).
+
+
+	- Eero
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000086.html">[hatari-users] User selectable threshold for window zooming
+</A></li>
+	<LI>Next message: <A HREF="000089.html">[hatari-users] User selectable threshold for window zooming
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#88">[ date ]</a>
+              <a href="thread.html#88">[ thread ]</a>
+              <a href="subject.html#88">[ subject ]</a>
+              <a href="author.html#88">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

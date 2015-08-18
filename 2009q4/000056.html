@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Note on hard disk images and GEMDOS drives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3Calpine.LMD.2.00.0911132341330.25119%40pulsar.staff.proxad.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000055.html">
+   <LINK REL="Next"  HREF="000058.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Note on hard disk images and GEMDOS drives</H1>
+    <B>npomarede at corp.free.fr</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3Calpine.LMD.2.00.0911132341330.25119%40pulsar.staff.proxad.net%3E"
+       TITLE="[hatari-users] Note on hard disk images and GEMDOS drives">npomarede at corp.free.fr
+       </A><BR>
+    <I>Fri Nov 13 23:50:09 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000055.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+        <LI>Next message: <A HREF="000058.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#56">[ date ]</a>
+              <a href="thread.html#56">[ thread ]</a>
+              <a href="subject.html#56">[ subject ]</a>
+              <a href="author.html#56">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 14 Nov 2009, Eero Tamminen wrote:
+
+&gt;&gt;<i> As far as I can tell the problem is caused by the Timer C data register
+</I>&gt;&gt;<i> not counting down accurately. HDDRIVER relies on the value of this
+</I>&gt;&gt;<i> register for the ACSI bus timing. If the timing is too fast HDDRIVER
+</I>&gt;&gt;<i> writes the command block bytes too fast and hatari will not retrieve the
+</I>&gt;&gt;<i> proper byte sequence from the emulated bus. At least this is what I think
+</I>&gt;&gt;<i> happens after looking at the hatari ACSI debug output. On each run of
+</I>&gt;&gt;<i> HDDRUTIL's ID check different command byte values are reported even
+</I>&gt;&gt;<i> though the same commands are sent.
+</I>&gt;<i>
+</I>&gt;<i> Nicolas, any comments on the timings?
+</I>
+Well, an error is always possible, but regarding the mfp timer precision 
+I'm quite sure we only have a 4 or 8 cycles difference with real hardware 
+(which is required to run very precise demo such as Overlander's 3D 
+fullscreen or Paulo Simoes Overscan Demos).
+
+And I don't see what kind of precision a disk driver could require that 
+would need very high MFP timings. Most likely you need 200 Hz or so 
+timings, I don't think the hard drive can read that much sectors per 
+second, so precision would not be a problem.
+
+Perhaps the problem lies in some badly emulated bits or combination of 
+mask/pending/... mfp status ?
+
+Just to be sure, try turning off the &quot;patch timer D&quot; option.
+
+I really don't know the part regarding hard drive emulation, but maybe we 
+have the same problem as with floppy, where we use FDC_DELAY_CYCLES to 
+compute the length of a command, which is wrong when compared to real 
+hardware.
+
+
+Nicolas
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000055.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+	<LI>Next message: <A HREF="000058.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#56">[ date ]</a>
+              <a href="thread.html#56">[ thread ]</a>
+              <a href="subject.html#56">[ subject ]</a>
+              <a href="author.html#56">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] [hatari-devel] Option for dis/allowing updates	to GEMDOS partitions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20%5Bhatari-devel%5D%20Option%20for%20dis/allowing%20updates%0A%09to%20GEMDOS%20partitions&In-Reply-To=%3C200911152346.34534.eerot%40users.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000068.html">
+   <LINK REL="Next"  HREF="000071.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] [hatari-devel] Option for dis/allowing updates	to GEMDOS partitions</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20%5Bhatari-devel%5D%20Option%20for%20dis/allowing%20updates%0A%09to%20GEMDOS%20partitions&In-Reply-To=%3C200911152346.34534.eerot%40users.berlios.de%3E"
+       TITLE="[hatari-users] [hatari-devel] Option for dis/allowing updates	to GEMDOS partitions">eerot at users.berlios.de
+       </A><BR>
+    <I>Sun Nov 15 22:46:34 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000068.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+        <LI>Next message: <A HREF="000071.html">[hatari-users] [hatari-devel] Option for dis/allowing updates to GEMDOS partitions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#69">[ date ]</a>
+              <a href="thread.html#69">[ thread ]</a>
+              <a href="subject.html#69">[ subject ]</a>
+              <a href="author.html#69">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Sunday 15 November 2009, Eero Tamminen wrote:
+&gt;<i> &gt; Currently Hatari has some ifdefs on whether saving onto GEMDOS
+</I>&gt;<i> &gt; partition is enabled.  I think I'll change that to be a run-time option
+</I>&gt;<i> &gt; first. Then allow Atari programs to set files writable and lastly look
+</I>&gt;<i> &gt; into whether allowing timestamps makes sense.
+</I>&gt;<i>
+</I>&gt;<i> As this is user-visible change, I thought to mail here first...
+</I>&gt;<i>
+</I>&gt;<i> I've though that the option would be:
+</I>&gt;<i>   --do-changes &lt;bool&gt; Do changes to mounted GEMDOS &lt;dir&gt; contents
+</I>&gt;<i>
+</I>&gt;<i> And it would by default allow writing the to GEMDOS partitions.  The
+</I>&gt;<i> change to current behaviour is that programs can now change files to be
+</I>&gt;<i> writable (if they were not).
+</I>&gt;<i>
+</I>&gt;<i> When the option is disabled, programs cannot create new files or
+</I>&gt;<i> directories, or write to existing ones (unlike earlier).  I'll add
+</I>&gt;<i> logging for these failed attempts, at the WARN level which is by default
+</I>&gt;<i> visible on console.
+</I>&gt;<i>
+</I>&gt;<i> (I will also do some minor gemdos code refactoring at the same time.)
+</I>
+This is now done, but the refactoring was a bit larger than I thought, so
+I would appreciate if anybody using/needing GEMDOS mounts a bit more would
+take the new Hatari code for a spin and tell me if there's something
+funny...
+
+Thanks!
+
+
+	- Eero
+
+PS. I noticed that at least my Mercurial 1.0.1 &quot;ignore white space changes&quot;
+option doesn't do anything.  If you want to check the code changes, I would
+suggest using just &quot;diff -ub&quot; between the old and new versions of gemdos.c. 
+That gives much more readable results than (my v1.0.1) Mercurial diff.
+
+PPS.  I also addded Nicolas' AVI recording options to man page &amp; manual.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000068.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+	<LI>Next message: <A HREF="000071.html">[hatari-users] [hatari-devel] Option for dis/allowing updates to GEMDOS partitions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#69">[ date ]</a>
+              <a href="thread.html#69">[ thread ]</a>
+              <a href="subject.html#69">[ subject ]</a>
+              <a href="author.html#69">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

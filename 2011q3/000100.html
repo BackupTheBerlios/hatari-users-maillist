@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Hatari 1.5.0 is released - Issue with hatari_falcon.exe
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2011q3/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Hatari%201.5.0%20is%20released%20-%20Issue%20with%0A%20hatari_falcon.exe&In-Reply-To=%3C89BA532D8C956043994C773C71153C92BAC586D372%40GVW1088EXB.americas.hpqcorp.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000099.html">
+   <LINK REL="Next"  HREF="000101.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Hatari 1.5.0 is released - Issue with hatari_falcon.exe</H1>
+    <B>Konador, Cyprian</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Hatari%201.5.0%20is%20released%20-%20Issue%20with%0A%20hatari_falcon.exe&In-Reply-To=%3C89BA532D8C956043994C773C71153C92BAC586D372%40GVW1088EXB.americas.hpqcorp.net%3E"
+       TITLE="[hatari-users] Hatari 1.5.0 is released - Issue with hatari_falcon.exe">cyprian.konador at hp.com
+       </A><BR>
+    <I>Tue Jul 19 12:16:52 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000099.html">[hatari-users] Hatari 1.5.0 is released
+</A></li>
+        <LI>Next message: <A HREF="000101.html">[hatari-users] Hatari 1.5.0 is released - Issue with	hatari_falcon.exe
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#100">[ date ]</a>
+              <a href="thread.html#100">[ thread ]</a>
+              <a href="subject.html#100">[ subject ]</a>
+              <a href="author.html#100">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Great news!
+
+Unfortunately I've faced some issues with hatari_falcon.exe under Win XP. Attached you can find my configuration files.
+STF mode works fine (hatari_STF.cfg), STE (hatari_STE.cfg) and STF with harddisk (hatari_STF_HDD.cfg) freeze Hatari, I see black window (Hatari v1.5.0 Not Responding).
+
+HighRes Mode shows black screen under hatari.exe (I assume due to old cpu core)
+
+Thanks
+
+Regards
+Cyprian
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/hatari-users">hatari-users-bounces at lists.berlios.de</A> [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/hatari-users">hatari-users-bounces at lists.berlios.de</A>] On Behalf Of Nicolas Pomarede
+Sent: Tuesday, July 19, 2011 1:57 AM
+To: Mailing list for Hatari developers; <A HREF="https://lists.berlios.de/mailman/listinfo/hatari-users">hatari-users at lists.berlios.de</A>
+Subject: [hatari-users] Hatari 1.5.0 is released
+
+Hello
+
+after quite some time, a new version is now available.
+
+As usual, you can get the sources or some Windows binaries from 
+<A HREF="http://hatari.berlios.de/">http://hatari.berlios.de/</A> or 
+<A HREF="https://developer.berlios.de/project/showfiles.php?group_id=10436">https://developer.berlios.de/project/showfiles.php?group_id=10436</A>
+
+(I will add some OS X binaries too if someone build them)
+
+Here's a small changelog, there're too many changes to report, see the 
+full release-notes.txt for more details :
+
+- On STE, correctly shift display 8 pixels to the left when using 224 
+bytes overscan (e.g. recent demos by DHS)
+- Add support for spec512 mode in med res (fixes 'Best Part Of The 
+Creation' in 'Punish Your Machine', 'HighRes Mode' demo by Paradox)
+- Precisely emulate the number of frames per sec (eg 50.053 fps in PAL 
+instead of the usual 50 Hz), required for correct video/audio sync under 
+STE (e.g. More Or Less Zero by DHS)
+- Sound improvements for STE, major rewrite of the DMA audio, precision 
+should be really close to a real STE (e.g. HexTracker by Paulo Simoes)
+- Improved precision in sound emulation, with nearly no rounding errors 
+over successive VBL during many hours.
+- By default mix 3 YM voices using a lookup table of values measured on 
+real STF to improve digisound (e.g. Flashback demo by TCB)
+- Alternative CPU core based on WinUAE for more accurate Falcon 
+emulation, including 68030 timings, MMU, ...
+- Improvements in DSP emulation.
+- Various changes in the SDL GUI
+- Many more functions in the built in debugger
+- Atari program given as argument to Hatari will be automatically
+   started after TOS boots
+- Many more small fixes related to video, audio, ikbd, ...
+
+
+Thanks to everyone for submitting code, ideas, reporting problems, 
+providing help to test on real hardware !
+
+Don't hesitate to try this new version and to report your results.
+
+Have a happy summer with Hatari 1.5 :)
+
+
+Nicolas
+_______________________________________________
+hatari-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/hatari-users">hatari-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/hatari-users">https://lists.berlios.de/mailman/listinfo/hatari-users</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: hatari.zip
+Type: application/x-zip-compressed
+Size: 4208 bytes
+Desc: hatari.zip
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/hatari-users/attachments/20110719/7a570d64/attachment.bin">https://lists.berlios.de/pipermail/hatari-users/attachments/20110719/7a570d64/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000099.html">[hatari-users] Hatari 1.5.0 is released
+</A></li>
+	<LI>Next message: <A HREF="000101.html">[hatari-users] Hatari 1.5.0 is released - Issue with	hatari_falcon.exe
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#100">[ date ]</a>
+              <a href="thread.html#100">[ thread ]</a>
+              <a href="subject.html#100">[ subject ]</a>
+              <a href="author.html#100">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Note on hard disk images and GEMDOS drives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C200911151310.02029.eerot%40users.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000064.html">
+   <LINK REL="Next"  HREF="000066.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Note on hard disk images and GEMDOS drives</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C200911151310.02029.eerot%40users.berlios.de%3E"
+       TITLE="[hatari-users] Note on hard disk images and GEMDOS drives">eerot at users.berlios.de
+       </A><BR>
+    <I>Sun Nov 15 12:10:01 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000064.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+        <LI>Next message: <A HREF="000066.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#65">[ date ]</a>
+              <a href="thread.html#65">[ thread ]</a>
+              <a href="subject.html#65">[ subject ]</a>
+              <a href="author.html#65">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Sunday 15 November 2009, Uwe Seimet wrote:
+&gt;<i> This is because the archive was created with STZIP on a FAT filesystem
+</I>&gt;<i> with no permission support.
+</I>&gt;<i>
+</I>&gt;<i> I have updated the demo archive by re-packaging it under Linux with
+</I>&gt;<i> the correct permissions.
+</I>
+Thanks!
+
+
+&gt;<i> &gt; -&gt; There seems to be a bug in hddrutil.app that it doesn't warn if
+</I>&gt;<i> &gt;     the hddriver file is read only and modifying it fails.  You may
+</I>&gt;<i> &gt; want to fix that (along  with fixing the demo zip file contents file
+</I>&gt;<i> &gt; permissions).
+</I>&gt;<i>
+</I>&gt;<i> I don't think there is anything wrong with HDDRUTIL. HDDRUTIL preserves
+</I>&gt;<i> the permissions of the driver file that is configured. This works under
+</I>&gt;<i> TOS, but with hatari the Fattrib() call does not seem to provide the
+</I>&gt;<i> correct file permissions
+</I>
+I looked at the Hatari code.  It should give the right permissions when
+requesting them with Fattrib().  However, it doesn't:
+- Support setting files as writable, only setting them as read-only (444)
+  i.e. files need to set as writable outside Hatari
+- give an error if file was read-only and it was requested to be set as
+  writable
+
+I'll fix latter to report both to user and to calling program.
+
+However, with Hatari GEMDOS emulation it's possible to have just *specific*
+files read-only so that the emulated programs cannot write them.  What would
+be the correct error to return for those when program tries to set them as
+writable?  File access denied (GEMDOS_EACCDN) or device being write
+protected (GEMDOS_EWRPRO)?
+
+(I'm trying to avoid confusing the Atari programs too much...)
+
+
+&gt;<i> and when writing to the write-protected driver file hatari does not seem
+</I>&gt;<i> to return a GEMDOS error code.
+</I>
+This should work.  I think the issue is with Fattrib.
+
+
+&gt;<i> I think there is also something wrong with the way hatari handles file
+</I>&gt;<i> timestamps. My Pure C compiler always compiles any file in a project,
+</I>&gt;<i> not just the modified files as it does with real Atari hardware. And
+</I>&gt;<i> when copying files under hatari with KOBOLD the copies do not have the
+</I>&gt;<i> timestamps of the original files but have the current date as their
+</I>&gt;<i> timestamp. This is also something where the behavior of hatari differs
+</I>&gt;<i> from a real Atari. Maybe the GEMDOS drive code of hatari can be improved
+</I>&gt;<i> with this respect.
+</I>
+In current GEMDOS emulation setting of file timestamp is explicitly
+disabled.    I assume this is to avoid lots of files with &quot;broken&quot; 
+timestamps from programs that cannot handle timestamps from
+this millenium.
+
+Thomas, any comments on this?
+
+
+&gt;<i> &gt; But it would be nicer if it would show up like that in the hddrutil.app
+</I>&gt;<i> &gt; too. (And it would say something like &quot;This cannot be changed in the
+</I>&gt;<i> &gt; demo&quot;.)
+</I>&gt;<i>
+</I>&gt;<i> Where do you think this should show up? The driver you are configuring
+</I>&gt;<i> can reside on any drive, i.e. also on A:, B: or a drive not managed at
+</I>&gt;<i> all by HDDRIVER. HDDRUTIL can only report general problems when writing
+</I>&gt;<i> or modifying a file, but it cannot be specific and say that modifying
+</I>&gt;<i> was impossible because the file was located on a drive that was write
+</I>&gt;<i> protected because a demo version of HDDRIVER was used.
+</I>
+I meant that demo HDDRUTIL could show all drives except for A:, B: and C: as
+being write protected in the &quot;Write protection&quot; dialog.  Probably not worth
+the effort though...
+
+
+	- Eero
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000064.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+	<LI>Next message: <A HREF="000066.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#65">[ date ]</a>
+              <a href="thread.html#65">[ thread ]</a>
+              <a href="subject.html#65">[ subject ]</a>
+              <a href="author.html#65">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

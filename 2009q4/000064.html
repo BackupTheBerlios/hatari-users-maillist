@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Note on hard disk images and GEMDOS drives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C20091115093956.GA8091%40quattro.seimet.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000063.html">
+   <LINK REL="Next"  HREF="000065.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Note on hard disk images and GEMDOS drives</H1>
+    <B>Uwe Seimet</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C20091115093956.GA8091%40quattro.seimet.de%3E"
+       TITLE="[hatari-users] Note on hard disk images and GEMDOS drives">Uwe.Seimet at seimet.de
+       </A><BR>
+    <I>Sun Nov 15 10:39:56 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000063.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+        <LI>Next message: <A HREF="000065.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#64">[ date ]</a>
+              <a href="thread.html#64">[ thread ]</a>
+              <a href="subject.html#64">[ subject ]</a>
+              <a href="author.html#64">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Aha!  The files in the HDDriver ZIP package have invalid permissions
+</I>&gt;<i> (000 instead of e.g. 644) and I had out of habit[1] set the files as
+</I>&gt;<i> read-only (444).
+</I>
+This is because the archive was created with STZIP on a FAT filesystem
+with no permission support.
+I have updated the demo archive by re-packaging it under Linux with
+the correct permissions.
+ 
+&gt;<i> -&gt; There seems to be a bug in hddrutil.app that it doesn't warn if
+</I>&gt;<i>     the hddriver file is read only and modifying it fails.  You may want to
+</I>&gt;<i>     fix that (along  with fixing the demo zip file contents file
+</I>&gt;<i>    permissions).
+</I>
+I don't think there is anything wrong with HDDRUTIL. HDDRUTIL preserves
+the permissions of the driver file that is configured. This works under
+TOS, but with hatari the Fattrib() call does not seem to provide the
+correct file permissions and when writing to the write-protected driver
+file hatari does not seem to return a GEMDOS error code. This is
+probably something you should check.
+I think there is also something wrong with the way hatari handles file
+timestamps. My Pure C compiler always compiles any file in a project,
+not just the modified files as it does with real Atari hardware. And
+when copying files under hatari with KOBOLD the copies do not have the
+timestamps of the original files but have the current date as their
+timestamp. This is also something where the behavior of hatari differs
+from a real Atari. Maybe the GEMDOS drive code of hatari can be improved
+with this respect.
+
+&gt;<i> Next issue is that only copying from the IDE drive works.  Not copying data
+</I>&gt;<i> to the IDE drive.  TOS says &quot;The disk in drive E: is physically write 
+</I>&gt;<i> protected&quot;.  However, when I checked the HDDriver (demo) options from
+</I>&gt;<i> hddrutil.app, none of the disks are marked as write-protected.
+</I>&gt;<i> 
+</I>&gt;<i> The demo README tells about this limitation:
+</I>&gt;<i> 	Data can't be written to other partitions than C:
+</I>&gt;<i> 
+</I>&gt;<i> But it would be nicer if it would show up like that in the hddrutil.app too.
+</I>&gt;<i> (And it would say something like &quot;This cannot be changed in the demo&quot;.)
+</I>
+Where do you think this should show up? The driver you are configuring
+can reside on any drive, i.e. also on A:, B: or a drive not managed at
+all by HDDRIVER. HDDRUTIL can only report general problems when writing
+or modifying a file, but it cannot be specific and say that modifying
+was impossible because the file was located on a drive that was write
+protected because a demo version of HDDRIVER was used.
+
+Best regards
+
+Uwe
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000063.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+	<LI>Next message: <A HREF="000065.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#64">[ date ]</a>
+              <a href="thread.html#64">[ thread ]</a>
+              <a href="subject.html#64">[ subject ]</a>
+              <a href="author.html#64">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

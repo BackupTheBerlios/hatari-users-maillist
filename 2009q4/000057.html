@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Note on hard disk images and GEMDOS drives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C20091114062817.GA5731%40quattro.seimet.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000073.html">
+   <LINK REL="Next"  HREF="000059.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Note on hard disk images and GEMDOS drives</H1>
+    <B>Uwe Seimet</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C20091114062817.GA5731%40quattro.seimet.de%3E"
+       TITLE="[hatari-users] Note on hard disk images and GEMDOS drives">Uwe.Seimet at seimet.de
+       </A><BR>
+    <I>Sat Nov 14 07:28:17 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000073.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+        <LI>Next message: <A HREF="000059.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#57">[ date ]</a>
+              <a href="thread.html#57">[ thread ]</a>
+              <a href="subject.html#57">[ subject ]</a>
+              <a href="author.html#57">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Hm.  So in practice one should be able to copy data from an IDE HD image
+</I>&gt;<i> to an GEMDOS partition/directory?
+</I>
+Yes, that's exactly what I am doing.
+
+&gt;<i> Could you give a bit more detailed instructions on how to do that?
+</I>&gt;<i> That may be something I could add to the manual.
+</I>
+It's quite simple. hatari has to be configured for using a GEMDOS drive folder
+and additionally an IDE HD image. HDDRIVER.PRG is located in the AUTO
+folder of the GEMDOS drive C:. It must be configured with the &quot;Preserve
+existing partitions&quot; option (HDDRUTIL-&gt;Devices and Partitions). This is
+all there is to do.
+
+What happens now when booting hatari is this: First the GEMDOS
+partitions are installed. Next HDDRIVER.PRG is run automatically from
+the AUTO folder of drive C:. It detects the emulated IDE drive and
+creates partitions for this drive. Because HDDRIVER was configured to
+preserve existing partitions it will not use C: as the first partition
+ID but will start with the first unused partition ID when assigning the
+partitions IDs for the IDE drive. As a result you have access to the GEMDOS
+drive partitions and the IDE partitions at the same time. Data can now
+simply be copied between them.
+
+Best regards
+
+Uwe
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000073.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+	<LI>Next message: <A HREF="000059.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#57">[ date ]</a>
+              <a href="thread.html#57">[ thread ]</a>
+              <a href="subject.html#57">[ subject ]</a>
+              <a href="author.html#57">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Error compiling hatari on Mac OS X
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q1/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Error%20compiling%20hatari%20on%20Mac%20OS%20X&In-Reply-To=%3Cc1a0d1560901090127r227f91f9h51a7074d9753634f%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000001.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Error compiling hatari on Mac OS X</H1>
+    <B>Christer Solskogen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Error%20compiling%20hatari%20on%20Mac%20OS%20X&In-Reply-To=%3Cc1a0d1560901090127r227f91f9h51a7074d9753634f%40mail.gmail.com%3E"
+       TITLE="[hatari-users] Error compiling hatari on Mac OS X">christer.solskogen at gmail.com
+       </A><BR>
+    <I>Fri Jan  9 10:27:24 CET 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000001.html">[hatari-users] Error compiling hatari on Mac OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've switched to the mercurial repository and downloaded a working
+copy. However, hatari does not compile anymore.
+This is the error:
+
+gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare
+-Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall -Wwrite-strings
+ -O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1 -I/usr/X11/include
+ -DHAVE_X11=1  -I.. -I./includes -Iuae-cpu -I./falcon
+-DCONFDIR=\&quot;/etc\&quot; -I/opt/local/include/SDL -D_GNU_SOURCE=1
+-D_THREAD_SAFE -DENABLE_DSP_EMU=1  -c -o ide.o ide.c
+ide.c: In function 'qemu_memalign':
+ide.c:387: warning: implicit declaration of function 'memalign'
+ide.c:387: warning: return makes pointer from integer without a cast
+ide.c: In function 'bdrv_read':
+ide.c:489: error: 'ENOMEDIUM' undeclared (first use in this function)
+ide.c:489: error: (Each undeclared identifier is reported only once
+ide.c:489: error: for each function it appears in.)
+ide.c: In function 'bdrv_write':
+ide.c:520: error: 'ENOMEDIUM' undeclared (first use in this function)
+ide.c: In function 'ide_atapi_io_error':
+ide.c:1341: error: 'ENOMEDIUM' undeclared (first use in this function)
+make[1]: *** [ide.o] Error 1
+make: *** [all] Error 2
+
+tenderheart:hatari chs$ gcc -v
+Using built-in specs.
+Target: i686-apple-darwin9
+Configured with: /var/tmp/gcc/gcc-5490~1/src/configure
+--disable-checking -enable-werror --prefix=/usr --mandir=/share/man
+--enable-languages=c,objc,c++,obj-c++
+--program-transform-name=/^[cg][^.-]*$/s/$/-4.0/
+--with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib
+--build=i686-apple-darwin9 --with-arch=apple --with-tune=generic
+--host=i686-apple-darwin9 --target=i686-apple-darwin9
+Thread model: posix
+gcc version 4.0.1 (Apple Inc. build 5490)
+(Latest Xcode)
+
+SDL is installed by MacPorts.
+
+-- 
+chs,
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000001.html">[hatari-users] Error compiling hatari on Mac OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

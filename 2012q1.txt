@@ -1,0 +1,30 @@
+From bogus@does.not.exist.com  Wed Mar 14 15:04:32 2012
+From: bogus@does.not.exist.com ()
+Date: Wed, 14 Mar 2012 14:04:32 -0000
+Subject: No subject
+Message-ID: <mailman.0.1331733871.3111.hatari-users@lists.berlios.de>
+
+
+From bogus@does.not.exist.com  Wed Mar 14 15:04:32 2012
+From: bogus@does.not.exist.com ()
+Date: Wed, 14 Mar 2012 14:04:32 -0000
+Subject: No subject
+Message-ID: <mailman.1.1331733871.3111.hatari-users@lists.berlios.de>
+
+
+The DMA sound begin about 40s into the tune. Apart from the obvious 
+YM-emulation errors, the DMA is mixed much too high.
+
+The song recorded is "On Behalf of th Queen" by 505. The song can be 
+downloaded here:
+http://sndh.atari.org/sndh/sndh_lf/505/DMA/On_Behalf_Of_the_Queen.sndh
+
+And it can be played with for example this player:
+http://sndplayer.atari.org/files/snd151.zip
+
+--
+Anders Eriksson
+ae at dhs.nu     http://www.dhs.nu/
+ae at atari.org  http://www.atari.org/
+
+

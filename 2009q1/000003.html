@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Error compiling hatari on Mac OS X
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q1/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Error%20compiling%20hatari%20on%20Mac%20OS%20X&In-Reply-To=%3C4967DECA.2090101%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000002.html">
+   <LINK REL="Next"  HREF="000004.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Error compiling hatari on Mac OS X</H1>
+    <B>Christer Solskogen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Error%20compiling%20hatari%20on%20Mac%20OS%20X&In-Reply-To=%3C4967DECA.2090101%40gmail.com%3E"
+       TITLE="[hatari-users] Error compiling hatari on Mac OS X">christer.solskogen at gmail.com
+       </A><BR>
+    <I>Sat Jan 10 00:33:30 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000002.html">[hatari-users] Error compiling hatari on Mac OS X
+</A></li>
+        <LI>Next message: <A HREF="000004.html">[hatari-users] Error compiling hatari on Mac OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 1/9/09 11:32 PM, Thomas Huth wrote:
+
+&gt;<i> I'll add a patch to the repository later.
+</I>&gt;<i>
+</I>
+If the patch is change set 1533:b5037cf442f0, it still does not work.
+
+gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare 
+-Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall -Wwrite-strings 
+-O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1 -I/usr/X11/include 
+-DHAVE_X11=1  -I.. -I./includes -Iuae-cpu -I./falcon -DCONFDIR=\&quot;/etc\&quot; 
+-I/opt/local/include/SDL -D_GNU_SOURCE=1 -D_THREAD_SAFE 
+-DENABLE_DSP_EMU=1  -c -o ide.o ide.c
+ide.c:12:20: error: malloc.h: No such file or directory
+make[1]: *** [ide.o] Error 1
+make: *** [all] Error 2
+
+-- 
+chs
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000002.html">[hatari-users] Error compiling hatari on Mac OS X
+</A></li>
+	<LI>Next message: <A HREF="000004.html">[hatari-users] Error compiling hatari on Mac OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

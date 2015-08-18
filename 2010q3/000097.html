@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Hatari mouse
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2010q3/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Hatari%20mouse&In-Reply-To=%3C201009082152.22698.oak%40helsinkinet.fi%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000096.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Hatari mouse</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Hatari%20mouse&In-Reply-To=%3C201009082152.22698.oak%40helsinkinet.fi%3E"
+       TITLE="[hatari-users] Hatari mouse">oak at helsinkinet.fi
+       </A><BR>
+    <I>Wed Sep  8 20:52:22 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000096.html">[hatari-users] keyboard mapping
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#97">[ date ]</a>
+              <a href="thread.html#97">[ thread ]</a>
+              <a href="subject.html#97">[ subject ]</a>
+              <a href="author.html#97">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+(I CC'ed hatari-users list in case there are Windows users who've
+bumbed into this and could help.)
+
+On Wednesday 08 September 2010, Dima Sobolev wrote:
+&gt;<i> Now again appeared Atari mouse restriction.
+</I>&gt;<i> Please look at attached picture
+</I>
+Thanks.  Interesting that you're using Finnish version of EmuTOS. :-)
+
+&gt;<i> - I cannot move mouse upper than it 
+</I>&gt;<i> is, so for example menu items are unaccessible.
+</I>
+This means that Atari and host mouse co-ordinates are slightly out of sync
+with each other.  You can either:
+- Move the mouse to *opposite* corner of the Hatari window as
+  this will cause the co-ordinates to get better in sync,
+- Enable mouse grabbing with AltGr+M shortcut, or
+- Switch to fullscreen with F11
+
+(Mouse is grabbed while in fullscreen.)
+
+
+I'm not sure what could cause mouse to get out of sync in your case.
+In Falcon emulation resolution switching could do that, but you were using
+ST emulation.
+
+Maybe your SDL isn't fully compatible with your Windows &quot;Mouse movement
+acceleration&quot;?  Does something similar happen in other programs
+(e.g. games[1]) that use:
+- SDL library
+- Run in window
+- Show, but by default don't grab mouse
+
+
+	- Eero
+
+[1] I was going to suggest openttd (see openttd.org), but then noticed that
+it doesn't use SDL on Windows...
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000096.html">[hatari-users] keyboard mapping
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#97">[ date ]</a>
+              <a href="thread.html#97">[ thread ]</a>
+              <a href="subject.html#97">[ subject ]</a>
+              <a href="author.html#97">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

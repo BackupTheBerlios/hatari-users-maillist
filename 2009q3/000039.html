@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] python-ui debugger
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q3/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20python-ui%20debugger&In-Reply-To=%3C200908172313.38205.eerot%40users.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000038.html">
+   <LINK REL="Next"  HREF="000040.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] python-ui debugger</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20python-ui%20debugger&In-Reply-To=%3C200908172313.38205.eerot%40users.berlios.de%3E"
+       TITLE="[hatari-users] python-ui debugger">eerot at users.berlios.de
+       </A><BR>
+    <I>Mon Aug 17 22:13:37 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000038.html">[hatari-users] Hatari version 1.3.0 has been released
+</A></li>
+        <LI>Next message: <A HREF="000040.html">[hatari-users] Hatari Macport
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#39">[ date ]</a>
+              <a href="thread.html#39">[ thread ]</a>
+              <a href="subject.html#39">[ subject ]</a>
+              <a href="author.html#39">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Monday 17 August 2009, Thomas Huth wrote:
+&gt;<i> By the way, I just played around with the python-ui a little bit
+</I>&gt;<i> (really nice work, I should use it more often...),
+</I>
+Now that I added menu entries to all the interesting doc files etc, I think
+it's especially newbie friendly.  :-)
+
+
+&gt;<i> and discovered that the debugger dialog is currently broken (memdump
+</I>&gt;<i> and disasm does not work anymore) ...
+</I>
+Argh, I forgot to update that after adding the number base support
+for Hatari.  It's fixed now.   Too late for release though, but as it's
+Python, it doesn't need to be compiled, one can just get it from here:
+  <A HREF="http://hg.berlios.de/repos/hatari/raw-file/tip/python-ui/debugui.py">http://hg.berlios.de/repos/hatari/raw-file/tip/python-ui/debugui.py</A>
+
+While testing that, I noticed that the Python UI trace settings dialog was
+also broken, that was trivial fix too:
+	<A HREF="http://hg.berlios.de/repos/hatari/rev/e8ba0d2c79c9">http://hg.berlios.de/repos/hatari/rev/e8ba0d2c79c9</A>
+:<i>-/
+</I>
+
+&gt;<i> well, I guess you will have to extend it for the new 
+</I>&gt;<i> debugger features anyway ;-)
+</I>
+Well, I actually would like somebody to do some UI design first, e.g. 
+screenshot mockups in Gimp, UI mockups in Glade or just text describing
+what information there should be and where in UI &amp; how one would control
+it from the UI.
+
+It's hard to add features without a clear picture about how exactly their
+users would like to use them.  I don't really use the debugger myself,
+developing it itself is more interesting; the conditional breakpoints thing
+was especially intriguing challenge (the remote API adds also its own
+&quot;challenges&quot; but it may be possible to fix/extend it...).
+
+Is there anybody on hatari-devel or hatari-users who would be interested to
+put effort into what their &quot;dream&quot; Hatari debugger UI (for the current / new
+internal Hatari debugger features) should look like? :-)
+
+
+	- Eero
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000038.html">[hatari-users] Hatari version 1.3.0 has been released
+</A></li>
+	<LI>Next message: <A HREF="000040.html">[hatari-users] Hatari Macport
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#39">[ date ]</a>
+              <a href="thread.html#39">[ thread ]</a>
+              <a href="subject.html#39">[ subject ]</a>
+              <a href="author.html#39">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

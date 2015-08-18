@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Note on hard disk images and GEMDOS drives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C20091113215054.GA9837%40quattro.seimet.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000053.html">
+   <LINK REL="Next"  HREF="000055.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Note on hard disk images and GEMDOS drives</H1>
+    <B>Uwe Seimet</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C20091113215054.GA9837%40quattro.seimet.de%3E"
+       TITLE="[hatari-users] Note on hard disk images and GEMDOS drives">Uwe.Seimet at seimet.de
+       </A><BR>
+    <I>Fri Nov 13 22:50:54 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000053.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+        <LI>Next message: <A HREF="000055.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#54">[ date ]</a>
+              <a href="thread.html#54">[ thread ]</a>
+              <a href="subject.html#54">[ subject ]</a>
+              <a href="author.html#54">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Good to hear, but it seems to work only for people who have purchased
+</I>&gt;<i> the commercial version of HDDriver.  The demo version README says that
+</I>&gt;<i> it supports only drive C:.
+</I>
+Yes, I was aware that my comment does not help those just using the demo
+version, but it's probably useful for those using the full version.
+By the way, the demo also supports other drives than C: but other drives
+are read-only.
+
+&gt;<i> If you write instructions on using HDDriver with Hatari and send me an URL
+</I>&gt;<i> to the page, I'd be happy to add pointer to that www-page into Hatari
+</I>&gt;<i> manual.
+</I>
+I am thinking of it, but first I want to try out some other things.
+
+Maybe you are interested in why HDDRIVER can access emulated IDE drives
+under hatari, but does not work with emulated ACSI drives.
+As far as I can tell the problem is caused by the Timer C data register
+not counting down accurately. HDDRIVER relies on the value of this 
+register for the ACSI bus timing. If the timing is too fast HDDRIVER
+writes the command block bytes too fast and hatari will not retrieve the
+proper byte sequence from the emulated bus. At least this is what I think
+happens after looking at the hatari ACSI debug output. On each run of
+HDDRUTIL's ID check different command byte values are reported even
+though the same commands are sent.
+AHDI does not use a proper timing (that's one of the reasons why AHDI does
+not work with some real drives), but not relying on a timer the way
+HDDRIVER does is most likely an advantage for AHDI when running with
+hatari.
+
+Have you already thought of not only supporting an IDE master drive but
+a slave drive as well? My impression was that the IDE emulation is
+basically capable of also supporting an IDE slave. Maybe all that's
+missing is a way to configure the additional drive image with hatari?
+
+Best regards
+
+Uwe
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000053.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+	<LI>Next message: <A HREF="000055.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#54">[ date ]</a>
+              <a href="thread.html#54">[ thread ]</a>
+              <a href="subject.html#54">[ subject ]</a>
+              <a href="author.html#54">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

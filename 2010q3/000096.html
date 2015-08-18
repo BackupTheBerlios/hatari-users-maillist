@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] keyboard mapping
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2010q3/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20keyboard%20mapping&In-Reply-To=%3C201007111308.57445.eerot%40users.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000095.html">
+   <LINK REL="Next"  HREF="000097.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] keyboard mapping</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20keyboard%20mapping&In-Reply-To=%3C201007111308.57445.eerot%40users.berlios.de%3E"
+       TITLE="[hatari-users] keyboard mapping">eerot at users.berlios.de
+       </A><BR>
+    <I>Sun Jul 11 12:08:56 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000095.html">[hatari-users] keyboard mapping
+</A></li>
+        <LI>Next message: <A HREF="000097.html">[hatari-users] Hatari mouse
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#96">[ date ]</a>
+              <a href="thread.html#96">[ thread ]</a>
+              <a href="subject.html#96">[ subject ]</a>
+              <a href="author.html#96">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Tuesday 06 July 2010, Andreas wrote:
+&gt;<i> What I am missing: the key for the Backslash ('\') on my german
+</I>&gt;<i> keyboard.
+</I>&gt;<i>
+</I>&gt;<i> I found some documentation here:
+</I>&gt;<i>
+</I>&gt;<i> 	&lt;<A HREF="http://hg.berlios.de/repos/hatari/raw-file/tip/doc/manual.html">http://hg.berlios.de/repos/hatari/raw-file/tip/doc/manual.html</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> But I do not have the mentioned SDL_keysym.h on my system
+</I>
+Here's one for SDL v1.3:
+	<A HREF="http://www.libsdl.org/tmp/SDL-1.3-docs/SDL__keysym_8h-source.html">http://www.libsdl.org/tmp/SDL-1.3-docs/SDL__keysym_8h-source.html</A>
+
+But it seems that the numerical values have moved in v1.3 to SDL_scancode.h:
+	<A HREF="http://www.libsdl.org/tmp/SDL-1.3-docs/SDL__scancode_8h-source.html">http://www.libsdl.org/tmp/SDL-1.3-docs/SDL__scancode_8h-source.html</A>
+
+They're included with the SDL development files.
+
+(I'll update the manual on this + add the links.)
+
+
+&gt;<i> and the 
+</I>&gt;<i> explanation of using shortcuts to control the emulator itself (like
+</I>&gt;<i> ALTGR+x to toggle normal speed/fast forward) and &quot;normal&quot; key mapping
+</I>&gt;<i> (like Scroll Lock will emulate the ST's UNDO key) is somehow mixed up.
+</I>
+Sorry, I didn't understand this, could you explain more?
+
+
+&gt;<i> in my .hatari/hatari.cfg I found in the [Keyboard] section:
+</I>&gt;<i>
+</I>&gt;<i> nKeymapType = 0
+</I>&gt;<i> szMappingFileName =
+</I>&gt;<i>
+</I>&gt;<i> But no explanation how such a MappingFile might look like
+</I>
+Here's the example coming with the Hatari sources:
+<A HREF="http://hg.berlios.de/repos/hatari/raw-file/dabb65b541c9/doc/keymap-sample.txt">http://hg.berlios.de/repos/hatari/raw-file/dabb65b541c9/doc/keymap-sample.txt</A>
+
+Attached is another one.  Lines starting with '#' are comments.
+
+
+I think SDL sources include simple test programs that give pressed SDL key
+values (on host) and I could dig up a program that gives Atari keycodes
+(inside the emulation or on real Atari).  Using something like those can
+help.
+
+
+&gt;<i> and no info what a KeymapType is.
+</I>
+That's easiest to change from the UI.
+
+
+&gt;<i> I also noticed, that I can switch between &quot;Symbolic&quot; &quot;Scancode&quot; and
+</I>&gt;<i> &quot;From file&quot; mapping in the emulators GUI.
+</I>&gt;<i> But switching beween Symbolic and Scancode seems to have no effect
+</I>
+It's explained in the manual keyboard dialog section:
+<A HREF="http://hg.berlios.de/repos/hatari/raw-file/tip/doc/manual.html#The%20Keyboard%20Dialog">http://hg.berlios.de/repos/hatari/raw-file/tip/doc/manual.html#The%20Keyboard%20Dialog</A>
+
+
+	- Eero
+-------------- next part --------------
+# Key remapping file for Hatari
+#
+# format is &quot;%d,%d&quot; where:
+# - first number is SDL keycode (see /usr/include/SDL/SDL_keysym.h)
+# - second number is ST keycode (0-255, see Hatari src/keymap.c)
+#
+# Mappings below are needed for different games on Nokia 770 device
+#
+# map Escape to 1 (to select single player)
+27,2
+# map Escape to F1 (to select single player)
+#27,59
+# map Return to Space (needed on games which use cursor keys and space)
+13,57
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000095.html">[hatari-users] keyboard mapping
+</A></li>
+	<LI>Next message: <A HREF="000097.html">[hatari-users] Hatari mouse
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#96">[ date ]</a>
+              <a href="thread.html#96">[ thread ]</a>
+              <a href="subject.html#96">[ subject ]</a>
+              <a href="author.html#96">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

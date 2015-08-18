@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Note on hard disk images and GEMDOS drives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C20091109064021.GA5837%40quattro.seimet.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000052.html">
+   <LINK REL="Next"  HREF="000053.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Note on hard disk images and GEMDOS drives</H1>
+    <B>Uwe Seimet</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C20091109064021.GA5837%40quattro.seimet.de%3E"
+       TITLE="[hatari-users] Note on hard disk images and GEMDOS drives">Uwe.Seimet at seimet.de
+       </A><BR>
+    <I>Mon Nov  9 07:40:21 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000052.html">[hatari-users] Doubleclick not recognized with TOS 3.06
+</A></li>
+        <LI>Next message: <A HREF="000053.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+there is probably an easier way to create a a bootable hard disk image than
+mentioned in the hatari manual, namely without using a floppy disk image.
+
+At least with HDDRIVER I had no problems using several GEMDOS drives and
+*additionally* an IDE hard disk image. I simply booted in TT mode,
+specified an IDE hard disk image (file created with DD), and put
+HDDRIVER.PRG in the AUTO folder. If HDDRIVER is configured to preserve
+existing drive IDs the GEMDOS disk drives will be accessible in addition
+to the drives of the hard disk image. In my case C-I are GEMDOS drives,
+J-P are the drives on the IDE disk image.
+
+One should now be able to prepare a bootable IDE disk image by simply
+partitioning the IDE drive and installing the hard disk driver on a
+partition on this drive, using hard disk software located on the
+GEMDOS drives instead of using hard disk software located on a floppy
+disk image.
+This way one can also easily transfer files between a GEMDOS drive and
+drives located in hard disk images, without having to use mtools or a
+loopback device.
+
+Best regards
+
+Uwe
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000052.html">[hatari-users] Doubleclick not recognized with TOS 3.06
+</A></li>
+	<LI>Next message: <A HREF="000053.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

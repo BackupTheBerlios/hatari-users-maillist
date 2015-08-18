@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Hatari version 1.2.0
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q1/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Hatari%20version%201.2.0&In-Reply-To=%3C497B3AA4.5020802%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000009.html">
+   <LINK REL="Next"  HREF="000011.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Hatari version 1.2.0</H1>
+    <B>Christer Solskogen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Hatari%20version%201.2.0&In-Reply-To=%3C497B3AA4.5020802%40gmail.com%3E"
+       TITLE="[hatari-users] Hatari version 1.2.0">christer.solskogen at gmail.com
+       </A><BR>
+    <I>Sat Jan 24 16:58:28 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000009.html">[hatari-users] Hatari version 1.2.0
+</A></li>
+        <LI>Next message: <A HREF="000011.html">[hatari-users] Hatari version 1.2.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#10">[ date ]</a>
+              <a href="thread.html#10">[ thread ]</a>
+              <a href="subject.html#10">[ subject ]</a>
+              <a href="author.html#10">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 1/24/09 4:47 PM, Thomas Huth wrote:
+&gt;<i>   Hello everybody!
+</I>&gt;<i>
+</I>&gt;<i> I just released Hatari version 1.2.0. Unfortunately the file server of
+</I>&gt;<i> berlios.de seems currently to be down, so I decided to put the release
+</I>&gt;<i> on Sourceforge.net for the last time:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://sourceforge.net/project/showfiles.php?group_id=28326&amp;package_id=20179&amp;release_id=655966">http://sourceforge.net/project/showfiles.php?group_id=28326&amp;package_id=20179&amp;release_id=655966</A>
+</I>&gt;<i>
+</I>
+using the latest sources from mercurial compiling on Mac OS X gave me 
+this error:
+
+make -C src/
+gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare 
+-Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall -Wwrite-strings 
+-O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1 -I/usr/X11/include 
+-DHAVE_X11=1  -I.. -I./includes -Iuae-cpu -I./falcon -DCONFDIR=\&quot;/etc\&quot; 
+-I/opt/local/include/SDL -D_GNU_SOURCE=1 -D_THREAD_SAFE 
+-DENABLE_DSP_EMU=1  -c -o control.o control.c
+control.c: In function 'Control_SetSocket':
+control.c:433: warning: passing argument 2 of 'connect' from 
+incompatible pointer type
+control.c: In function 'Control_ReparentWindow':
+control.c:476: error: 'Display' undeclared (first use in this function)
+control.c:476: error: (Each undeclared identifier is reported only once
+control.c:476: error: for each function it appears in.)
+control.c:476: error: 'display' undeclared (first use in this function)
+control.c:477: error: 'Window' undeclared (first use in this function)
+control.c:477: error: syntax error before 'parent_win'
+control.c:485: error: 'parent_win' undeclared (first use in this function)
+control.c:496: error: 'SDL_SysWMinfo' has no member named 'info'
+control.c:497: error: 'sdl_win' undeclared (first use in this function)
+control.c:497: error: 'SDL_SysWMinfo' has no member named 'info'
+control.c:498: error: 'wm_win' undeclared (first use in this function)
+control.c:498: error: 'SDL_SysWMinfo' has no member named 'info'
+control.c:499: error: 'SDL_SysWMinfo' has no member named 'info'
+control.c:502: warning: implicit declaration of function 'XMapWindow'
+control.c:507: warning: implicit declaration of function 'XUnmapWindow'
+control.c:509: warning: implicit declaration of function 'XReparentWindow'
+control.c:519: error: 'SDL_SysWMinfo' has no member named 'info'
+control.c: In function 'Control_GetUISocket':
+control.c:533: warning: implicit declaration of function 'ConnectionNumber'
+control.c:533: error: 'SDL_SysWMinfo' has no member named 'info'
+make[1]: *** [control.o] Error 1
+make: *** [all] Error 2
+
+gcc version 4.0.1
+libsdl 1.2.13
+
+
+-- 
+chs
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000009.html">[hatari-users] Hatari version 1.2.0
+</A></li>
+	<LI>Next message: <A HREF="000011.html">[hatari-users] Hatari version 1.2.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#10">[ date ]</a>
+              <a href="thread.html#10">[ thread ]</a>
+              <a href="subject.html#10">[ subject ]</a>
+              <a href="author.html#10">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

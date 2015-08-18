@@ -1,0 +1,299 @@
+From cchonig at chello.nl  Mon May  4 15:58:18 2009
+From: cchonig at chello.nl (cchonig)
+Date: Mon, 4 May 2009 15:58:18 +0200
+Subject: [hatari-users] cannot load tos.img
+Message-ID: <C82929DB-AF38-44E1-A40D-E50E9C7CDF97@chello.nl>
+
+When starting hatari (mac) I always get the message 'cannot load  
+tos.img' and hve to go thru the GUI to load it.
+It is stated that I should put the tos.img in the 'data directory'  
+which I can not find anywhere or I should 'adapt the Makefile.cnf'  
+which I can not find either.
+It may seem stupid, but can anybody help me?
+
+thanks, claes
+
+
+From cchonig at chello.nl  Mon May  4 17:14:44 2009
+From: cchonig at chello.nl (cchonig)
+Date: Mon, 4 May 2009 17:14:44 +0200
+Subject: [hatari-users] help
+Message-ID: <BF1F7620-D715-4FF7-A539-9E4A6AAEBEA0@chello.nl>
+
+When starting hatari (mac) I always get the message 'cannot load  
+tos.img' and have to go thru the GUI to load it.
+It is stated that I should put the tos.img in the 'data directory'  
+which I can not find anywhere or I should 'adapt the Makefile.cnf'  
+which I can not find either.
+It may seem stupid, but can anybody help me?
+
+thanks, claes
+
+
+From eerot at users.berlios.de  Mon May  4 20:45:37 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Mon, 4 May 2009 21:45:37 +0300
+Subject: [hatari-users] cannot load tos.img
+In-Reply-To: <C82929DB-AF38-44E1-A40D-E50E9C7CDF97@chello.nl>
+References: <C82929DB-AF38-44E1-A40D-E50E9C7CDF97@chello.nl>
+Message-ID: <200905042145.37693.eerot@users.berlios.de>
+
+Hi,
+
+On Monday 04 May 2009, cchonig wrote:
+> When starting hatari (mac) I always get the message 'cannot load
+> tos.img' and hve to go thru the GUI to load it.
+
+Just save your Hatari settings from the GUI after loading the TOS image.
+
+
+> It is stated that I should put the tos.img in the 'data directory'
+> which I can not find anywhere or I should 'adapt the Makefile.cnf'
+> which I can not find either.
+
+This is used if you build Hatari from sources.
+
+(you can then specify where Hatari searches the TOS image by default)
+
+
+	- Eero
+
+
+From ae at dhs.nu  Mon May  4 21:20:15 2009
+From: ae at dhs.nu (Anders Eriksson)
+Date: Mon, 4 May 2009 21:20:15 +0200 (CEST)
+Subject: [hatari-users] help
+In-Reply-To: <BF1F7620-D715-4FF7-A539-9E4A6AAEBEA0@chello.nl>
+References: <BF1F7620-D715-4FF7-A539-9E4A6AAEBEA0@chello.nl>
+Message-ID: <Pine.LNX.4.64.0905042119060.2123@gem.atari.org>
+
+On Mon, 4 May 2009, cchonig wrote:
+
+> When starting hatari (mac) I always get the message 'cannot load
+> tos.img' and have to go thru the GUI to load it.
+> It is stated that I should put the tos.img in the 'data directory'
+> which I can not find anywhere or I should 'adapt the Makefile.cnf'
+> which I can not find either.
+> It may seem stupid, but can anybody help me?
+
+Select the TOS image from the GUI and save settings.
+
+--
+Anders Eriksson
+ae at dhs.nu     http://www.dhs.nu/
+ae at atari.org  http://www.atari.org/
+
+
+From cchonig at chello.nl  Tue May  5 10:55:01 2009
+From: cchonig at chello.nl (cchonig)
+Date: Tue, 5 May 2009 10:55:01 +0200
+Subject: [hatari-users] help
+In-Reply-To: <Pine.LNX.4.64.0905042119060.2123@gem.atari.org>
+References: <BF1F7620-D715-4FF7-A539-9E4A6AAEBEA0@chello.nl>
+	<Pine.LNX.4.64.0905042119060.2123@gem.atari.org>
+Message-ID: <BF7A9F7C-C58E-4787-A483-BB81C42CE6DC@chello.nl>
+
+Well that is a simple and sound advice !
+Thanks, I'll try it right away.
+
+greetz claes
+
+
+Op 4 mei 2009, om 21:20 heeft Anders Eriksson het volgende geschreven:
+
+> On Mon, 4 May 2009, cchonig wrote:
+>
+>> When starting hatari (mac) I always get the message 'cannot load
+>> tos.img' and have to go thru the GUI to load it.
+>> It is stated that I should put the tos.img in the 'data directory'
+>> which I can not find anywhere or I should 'adapt the Makefile.cnf'
+>> which I can not find either.
+>> It may seem stupid, but can anybody help me?
+>
+> Select the TOS image from the GUI and save settings.
+>
+> --
+> Anders Eriksson
+> ae at dhs.nu     http://www.dhs.nu/
+> ae at atari.org  http://www.atari.org/
+> _______________________________________________
+> hatari-users mailing list
+> hatari-users at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/hatari-users
+
+
+
+From cchonig at chello.nl  Tue May  5 11:04:12 2009
+From: cchonig at chello.nl (cchonig)
+Date: Tue, 5 May 2009 11:04:12 +0200
+Subject: [hatari-users] help
+In-Reply-To: <Pine.LNX.4.64.0905042119060.2123@gem.atari.org>
+References: <BF1F7620-D715-4FF7-A539-9E4A6AAEBEA0@chello.nl>
+	<Pine.LNX.4.64.0905042119060.2123@gem.atari.org>
+Message-ID: <5EF6D5FE-7ED2-429C-8348-62CD8E84280F@chello.nl>
+
+This worked fine !
+Thanks again.
+
+greetz claes
+
+Op 4 mei 2009, om 21:20 heeft Anders Eriksson het volgende geschreven:
+
+> On Mon, 4 May 2009, cchonig wrote:
+>
+>> When starting hatari (mac) I always get the message 'cannot load
+>> tos.img' and have to go thru the GUI to load it.
+>> It is stated that I should put the tos.img in the 'data directory'
+>> which I can not find anywhere or I should 'adapt the Makefile.cnf'
+>> which I can not find either.
+>> It may seem stupid, but can anybody help me?
+>
+> Select the TOS image from the GUI and save settings.
+>
+> --
+> Anders Eriksson
+> ae at dhs.nu     http://www.dhs.nu/
+> ae at atari.org  http://www.atari.org/
+> _______________________________________________
+> hatari-users mailing list
+> hatari-users at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/hatari-users
+
+
+
+From ae at dhs.nu  Sun May 17 17:15:08 2009
+From: ae at dhs.nu (Anders Eriksson)
+Date: Sun, 17 May 2009 17:15:08 +0200 (CEST)
+Subject: [hatari-users] Bug report: Mixing levels of YM/DMA sound
+Message-ID: <Pine.LNX.4.64.0905171703110.2063@gem.atari.org>
+
+
+Hi,
+
+just a short mention that the mixing volume of the YM and STe DMA is not 
+correct in Hatari.
+
+
+From th.huth at gmx.de  Sun May 31 14:24:36 2009
+From: th.huth at gmx.de (Thomas H.)
+Date: Sun, 31 May 2009 14:24:36 +0200
+Subject: [hatari-users] Bug report: Mixing levels of YM/DMA sound
+Message-ID: <20090531122436.98980@gmx.net>
+
+Anders Eriksson <ae at dhs.nu> wrote:
+>
+> just a short mention that the mixing volume of the YM and STe DMA is not 
+> correct in Hatari.
+>
+> >From Hatari 1.2.0:
+> http://files.dhs.nu/mpeg/queen_hatari.mp3
+>
+> >From STe:
+>http://files.dhs.nu/mpeg/queen_ste.mp3
+>
+> The DMA sound begin about 40s into the tune. Apart from the obvious 
+> YM-emulation errors, the DMA is mixed much too high.
+>
+> The song recorded is "On Behalf of th Queen" by 505. The song can be 
+> downloaded here:
+> http://sndh.atari.org/sndh/sndh_lf/505/DMA/On_Behalf_Of_the_Queen.sndh
+
+Thanks for the bug report, Anders, I've changed the code now a little bit so that DMA sound samples are now quiet down a little bit during mixing. As far as I can tell with my poor speakers, the "Queen" song now sounds a little bit better.
+
+ Thomas
+
+-- 
+Nur bis 31.05.: GMX FreeDSL Komplettanschluss mit DSL 6.000 Flatrate und
+Telefonanschluss nur 17,95 Euro/mtl.!* http://portal.gmx.net/de/go/dsl02
+
+
+From npomarede at corp.free.fr  Sat Jun 20 12:06:04 2009
+From: npomarede at corp.free.fr (npomarede at corp.free.fr)
+Date: Sat, 20 Jun 2009 12:06:04 +0200 (CEST)
+Subject: [hatari-users] update screenshots gallery
+Message-ID: <alpine.LMD.2.00.0906201148040.19559@pulsar.staff.proxad.net>
+
+
+hello,
+
+I wondered if we could not update the screenshot gallery 
+(http://hatari.berlios.de/scrshots.html) with some more 
+recent screenshots took with hatari devel/1.2 version ?
+
+For example :
+  - Mind Rewind shows some shifted line in the bottom text scroller
+  - not all images have the same size, we should at least have same size
+    for images from STF/STE
+  - remove window decorations from the screenshot : the images are not
+    consistant.
+
+What about those settings for STF/STE screenshots ?
+  - use borders
+  - don't use "zoom st low res"
+  - don't use "show statusbar"
+  - take a screenshot with algr + g
+
+This way, we should get a common format for all images and a better layout 
+on the html.
+
+Anyone feeling like doing this ? For those that don't code, this is your 
+chance to contribute to Hatari and add some colors to the screenshots 
+gallery :)
+
+
+Nicolas
+
+
+From th.huth at gmx.de  Sun Jun 21 12:26:00 2009
+From: th.huth at gmx.de (Thomas H.)
+Date: Sun, 21 Jun 2009 12:26:00 +0200
+Subject: [hatari-users] update screenshots gallery
+In-Reply-To: <alpine.LMD.2.00.0906201148040.19559@pulsar.staff.proxad.net>
+References: <alpine.LMD.2.00.0906201148040.19559@pulsar.staff.proxad.net>
+Message-ID: <20090621102600.186050@gmx.net>
+
+> Datum: Sat, 20 Jun 2009 12:06:04 +0200 (CEST)
+> Von: npomarede at corp.free.fr
+> 
+> I wondered if we could not update the screenshot gallery 
+> (http://hatari.berlios.de/scrshots.html) with some more 
+> recent screenshots took with hatari devel/1.2 version ?
+
+Since most of the screenshots are still "valid", I don't care to much, but if you want to gather new screenshots, feel free to do so.
+
+> For example :
+>   - Mind Rewind shows some shifted line in the bottom text scroller
+
+Ok, right, that screenshot should really be replaced.
+
+>   - not all images have the same size, we should at least have same size
+>     for images from STF/STE
+
+As long as you put the screenshots into a <div> container which all have the same size, it should not matter very much if one image is some pixels bigger or smaller...?
+
+>   - remove window decorations from the screenshot : the images are not
+>     consistant.
+
+I somehow like the window decorations... it somehow "proves" that the screenshot really comes from Hatari, and you can see which version it comes from. But that's just my personal taste. Well, you're definitely right with the fact that it looks somewhat inconsistant...
+
+> What about those settings for STF/STE screenshots ?
+>   - use borders
+>   - don't use "zoom st low res"
+
+Ok, agreed, the low-res zooming should maybe be removed from the current STE screenshots.
+
+>   - don't use "show statusbar"
+>   - take a screenshot with algr + g
+> 
+> This way, we should get a common format for all images and a better layout
+> on the html.
+
+When you take screenshots with AltGr + g, you should at least post-process the images to use indexed colors and interlacing, so that the file size is reduced and the load better on slow internet connections.
+
+ Thomas
+
+-- 
+GRATIS f?r alle GMX-Mitglieder: Die maxdome Movie-FLAT!
+Jetzt freischalten unter http://portal.gmx.net/de/go/maxdome01
+
+

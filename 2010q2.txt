@@ -1,0 +1,122 @@
+From npomarede at corp.free.fr  Sat Jun 12 14:02:43 2010
+From: npomarede at corp.free.fr (npomarede at corp.free.fr)
+Date: Sat, 12 Jun 2010 14:02:43 +0200 (CEST)
+Subject: [hatari-users] Hatari 1.4.0 released
+Message-ID: <alpine.LMD.2.00.1006121358180.26570@pulsar.staff.proxad.net>
+
+
+
+Hello,
+
+Hatari release 1.4.0 has just been pushed to berlios.de, you can get it 
+from http://hatari.berlios.de or directly in 
+https://developer.berlios.de/project/shownotes.php?release_id=17627
+
+Sources and windows binaries are available (an OS X binary should be 
+available soon too)
+
+Small changelog :
+
+- Sound emulation improvements for Falcon (crossbar, dma sound recording)
+   as well as for STE (LCM1992 emulation with volume/bass/trebble
+   adjustements)
+
+- Better video emulation for some STE overscan modes used in recent demos
+
+- Better DSP emulation in Falcon mode
+
+- IDE / Gemdos HDD emulation's improvements
+
+- AVI recording at full frame rate
+
+- Huge improvements in the built in debugger (conditionnal breakpoints for
+   CPU / DSP and many more)
+
+- Use cmake as a common build system for Linux/Windows/OS X
+
+- Many more small fixes
+
+See release-notes.txt for the full changelog.
+
+
+Thanks to all the people who worked on this version by submitting code, 
+ideas and bug reports !
+
+
+Nicolas
+
+
+From laurent.sallafranque at free.fr  Sat Jun 12 22:18:44 2010
+From: laurent.sallafranque at free.fr (Laurent Sallafranque)
+Date: Sat, 12 Jun 2010 22:18:44 +0200
+Subject: [hatari-users] [hatari-devel] Hatari 1.4.0 released
+In-Reply-To: <alpine.LMD.2.00.1006121358180.26570@pulsar.staff.proxad.net>
+References: <alpine.LMD.2.00.1006121358180.26570@pulsar.staff.proxad.net>
+Message-ID: <4C13EBA4.5070407@free.fr>
+
+Hello,
+
+Good job Nicolas !
+
+And thaks to everybody for this nice release.
+Let's hope that hatari 1.5 will be more and more compatible to original 
+computer.
+
+Best regards
+
+Laurent
+
+
+
+
+Le 12/06/2010 14:02, npomarede at corp.free.fr a ?crit :
+>
+>
+> Hello,
+>
+> Hatari release 1.4.0 has just been pushed to berlios.de, you can get 
+> it from http://hatari.berlios.de or directly in 
+> https://developer.berlios.de/project/shownotes.php?release_id=17627
+>
+> Sources and windows binaries are available (an OS X binary should be 
+> available soon too)
+>
+> Small changelog :
+>
+> - Sound emulation improvements for Falcon (crossbar, dma sound recording)
+>   as well as for STE (LCM1992 emulation with volume/bass/trebble
+>   adjustements)
+>
+> - Better video emulation for some STE overscan modes used in recent demos
+>
+> - Better DSP emulation in Falcon mode
+>
+> - IDE / Gemdos HDD emulation's improvements
+>
+> - AVI recording at full frame rate
+>
+> - Huge improvements in the built in debugger (conditionnal breakpoints 
+> for
+>   CPU / DSP and many more)
+>
+> - Use cmake as a common build system for Linux/Windows/OS X
+>
+> - Many more small fixes
+>
+> See release-notes.txt for the full changelog.
+>
+>
+> Thanks to all the people who worked on this version by submitting 
+> code, ideas and bug reports !
+>
+>
+> Nicolas
+> _______________________________________________
+> hatari-devel mailing list
+> hatari-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/hatari-devel
+>
+>
+
+
+

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Long point about DSP and Falcon Emulator
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q1/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Long%20point%20about%20DSP%20and%20Falcon%20Emulator&In-Reply-To=%3C200901310108.43433.oak%40helsinkinet.fi%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000014.html">
+   <LINK REL="Next"  HREF="000016.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Long point about DSP and Falcon Emulator</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Long%20point%20about%20DSP%20and%20Falcon%20Emulator&In-Reply-To=%3C200901310108.43433.oak%40helsinkinet.fi%3E"
+       TITLE="[hatari-users] Long point about DSP and Falcon Emulator">oak at helsinkinet.fi
+       </A><BR>
+    <I>Sat Jan 31 00:08:43 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000014.html">[hatari-users] Long point about DSP and Falcon Emulator
+</A></li>
+        <LI>Next message: <A HREF="000016.html">[hatari-users] Aranym video emulation (was Re: Long point about DSP and Falcon Emulator)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#15">[ date ]</a>
+              <a href="thread.html#15">[ thread ]</a>
+              <a href="subject.html#15">[ subject ]</a>
+              <a href="author.html#15">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I didn't see Thomas answering on these yet (just commiting your DSP TODO
+list to Hatari repo), so I'll try to give my (possibly inaccurate) answers.
+
+On Friday 30 January 2009, LAURENT SALLAFRANQUE wrote:
+&gt;<i> 3rd point :
+</I>&gt;<i> ----------
+</I>&gt;<i> I've read on Atari.org that you want to improve the falcon emulation
+</I>&gt;<i> part. I ask me a few questions about this :
+</I>&gt;<i>
+</I>&gt;<i> - Are the Falcon blitter and the Ste blitter the same ?
+</I>&gt;<i> - In general, are the componant all the same (Yamaha, ...)
+</I>
+In general, yes.  See the Wikipedia article:
+	<A HREF="http://en.wikipedia.org/wiki/Atari_ST">http://en.wikipedia.org/wiki/Atari_ST</A>
+
+
+&gt;<i> - Do all the pairing instructions coded for the St emulation still run
+</I>&gt;<i> for the Falcon ?
+</I>
+Could differ...
+
+
+&gt;<i> - In the Hatari menu, the Cpus are 68000, 68010, 68020, 68020+copro and
+</I>&gt;<i> 68040), but no 68030. But the Falcon CPU is a 68030, no ?
+</I>
+Here's more info on the these:
+<A HREF="http://www.freescale.com/files/archives/doc/ref_manual/M68000PRM.pdf">http://www.freescale.com/files/archives/doc/ref_manual/M68000PRM.pdf</A>
+
+From Wikipedia:
+&quot;Motorola mainly used even numbers for major revisions to the CPU core such 
+as 68000, 68020, 68040 and 68060. The 68010 was a revised version of the 
+68000 with minor modifications to the core, and likewise the 68030 was a 
+revised 68020 with some more powerful features, none of them significant 
+enough to classify as a major upgrade to the core.&quot;
+
+AFAIK the main (only?) real difference between 020 and 030 is that 030 has
+MMU.  Unless you try to run something like normal Linux (not uCLinux) or
+MiNT with memory protection / virtual memory support, this shouldn't be an
+issue.
+
+Does anybody know a normal Falcon program/demo that would require an MMU?
+
+
+&gt;<i> - Can we use hatari code to emulate an accurate falcon or will we have
+</I>&gt;<i> to make a branch for the development (Atari and Falcon were not
+</I>&gt;<i> completly compatible together).
+</I>
+Hatari already emulates Falcon and can switch between ST/STE/TT/Falcon
+emulation at run-time (will of course reset the emulated system).
+
+This is achieved by the hardware IO handlers tables in ioMemTab*.c files
+(ioMemTabFalcon.c is naturally for Falcon) and other code checking the
+nMachineType configuration option in following files:
+dmaSnd.c
+ioMem.c
+options.c
+psg.c
+reset.c
+screen.c
+statusbar.c
+stMemory.c
+tos.c
+video.c
+
+The TT &amp; Falcon screen handling uses code from Aranym (which always does
+fullscreen updates and supports also higher bitdepths than 4-bits), ST and
+STE screen handling is based on greatly refactored code originally from
+WinSTon (which usually updates only changed part of screen and has well
+optimized support for the ST/E 1-4 bits planar modes).
+
+Nicolas has had some thoughts of separating the video.c (which handles
+the register stuff, overscan, fine scrolling etc) code for different
+machines into completely different functions that are selected when machine
+type is selected (instead of having machine type ifs in generic functions).
+
+Falcon has of course also the DSP emulation. :-)
+
+
+	- Eero
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000014.html">[hatari-users] Long point about DSP and Falcon Emulator
+</A></li>
+	<LI>Next message: <A HREF="000016.html">[hatari-users] Aranym video emulation (was Re: Long point about DSP and Falcon Emulator)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#15">[ date ]</a>
+              <a href="thread.html#15">[ thread ]</a>
+              <a href="subject.html#15">[ subject ]</a>
+              <a href="author.html#15">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Error compiling hatari on Mac OS X
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q1/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Error%20compiling%20hatari%20on%20Mac%20OS%20X&In-Reply-To=%3C200901092128.53832.oak%40helsinkinet.fi%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000000.html">
+   <LINK REL="Next"  HREF="000002.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Error compiling hatari on Mac OS X</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Error%20compiling%20hatari%20on%20Mac%20OS%20X&In-Reply-To=%3C200901092128.53832.oak%40helsinkinet.fi%3E"
+       TITLE="[hatari-users] Error compiling hatari on Mac OS X">oak at helsinkinet.fi
+       </A><BR>
+    <I>Fri Jan  9 20:28:53 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000000.html">[hatari-users] Error compiling hatari on Mac OS X
+</A></li>
+        <LI>Next message: <A HREF="000002.html">[hatari-users] Error compiling hatari on Mac OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1">[ date ]</a>
+              <a href="thread.html#1">[ thread ]</a>
+              <a href="subject.html#1">[ subject ]</a>
+              <a href="author.html#1">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Friday 09 January 2009, Christer Solskogen wrote:
+&gt;<i> I've switched to the mercurial repository and downloaded a working
+</I>&gt;<i> copy. However, hatari does not compile anymore.
+</I>&gt;<i> This is the error:
+</I>&gt;<i>
+</I>&gt;<i> gcc -g -Wmissing-prototypes -Wstrict-prototypes -Wsign-compare
+</I>&gt;<i> -Wbad-function-cast -Wcast-qual  -Wpointer-arith -Wall -Wwrite-strings
+</I>&gt;<i>  -O2 -I/usr/X11/include/libpng12   -DHAVE_LIBPNG=1 -I/usr/X11/include
+</I>&gt;<i>  -DHAVE_X11=1  -I.. -I./includes -Iuae-cpu -I./falcon
+</I>&gt;<i> -DCONFDIR=\&quot;/etc\&quot; -I/opt/local/include/SDL -D_GNU_SOURCE=1
+</I>&gt;<i> -D_THREAD_SAFE -DENABLE_DSP_EMU=1  -c -o ide.o ide.c
+</I>&gt;<i> ide.c: In function 'qemu_memalign':
+</I>&gt;<i> ide.c:387: warning: implicit declaration of function 'memalign'
+</I>
+This should be declared in the C-library malloc.h or stdlib.h header.
+
+
+&gt;<i> ide.c:387: warning: return makes pointer from integer without a cast
+</I>&gt;<i> ide.c: In function 'bdrv_read':
+</I>&gt;<i> ide.c:489: error: 'ENOMEDIUM' undeclared (first use in this function)
+</I>
+And this should be in errno.h.
+
+Check where they're declared on your system (at least errno.h is
+directly included by ide.c).
+
+
+&gt;<i> ide.c:489: error: (Each undeclared identifier is reported only once
+</I>&gt;<i> ide.c:489: error: for each function it appears in.)
+</I>&gt;<i> ide.c: In function 'bdrv_write':
+</I>&gt;<i> ide.c:520: error: 'ENOMEDIUM' undeclared (first use in this function)
+</I>&gt;<i> ide.c: In function 'ide_atapi_io_error':
+</I>&gt;<i> ide.c:1341: error: 'ENOMEDIUM' undeclared (first use in this function)
+</I>&gt;<i> make[1]: *** [ide.o] Error 1
+</I>&gt;<i> make: *** [all] Error 2
+</I>&gt;<i>
+</I>&gt;<i> tenderheart:hatari chs$ gcc -v
+</I>&gt;<i> Using built-in specs.
+</I>&gt;<i> Target: i686-apple-darwin9
+</I>&gt;<i> Configured with: /var/tmp/gcc/gcc-5490~1/src/configure
+</I>&gt;<i> --disable-checking -enable-werror --prefix=/usr --mandir=/share/man
+</I>&gt;<i> --enable-languages=c,objc,c++,obj-c++
+</I>&gt;<i> --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/
+</I>&gt;<i> --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib
+</I>&gt;<i> --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic
+</I>&gt;<i> --host=i686-apple-darwin9 --target=i686-apple-darwin9
+</I>&gt;<i> Thread model: posix
+</I>&gt;<i> gcc version 4.0.1 (Apple Inc. build 5490)
+</I>&gt;<i> (Latest Xcode)
+</I>&gt;<i>
+</I>&gt;<i> SDL is installed by MacPorts.
+</I>
+
+	- Eero
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000000.html">[hatari-users] Error compiling hatari on Mac OS X
+</A></li>
+	<LI>Next message: <A HREF="000002.html">[hatari-users] Error compiling hatari on Mac OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1">[ date ]</a>
+              <a href="thread.html#1">[ thread ]</a>
+              <a href="subject.html#1">[ subject ]</a>
+              <a href="author.html#1">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

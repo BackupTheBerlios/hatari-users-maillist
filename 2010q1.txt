@@ -1,0 +1,774 @@
+From huth at users.berlios.de  Sat Jan  9 13:36:59 2010
+From: huth at users.berlios.de (Thomas Huth)
+Date: Sat, 9 Jan 2010 13:36:59 +0100
+Subject: [hatari-users] New Hatari administrator
+Message-ID: <20100109133659.1155f749@phineus>
+
+
+ Hi all!
+
+I recently started to reflect the past months a little bit, and I have
+to admit that I often do not have very much time for Hatari anymore ...
+and alarmingly I often also lack the motivation to hack on Hatari when
+I've got spare time. Beside my job becoming quite stressful from time
+to time, I think I am also somewhat tired after all these years to only
+work on Hatari - I just want to also hack on some projects, try other
+programming languages ... or just do something that is not related to
+computers at all.
+
+However, I don't want that the Hatari project suffers from my poor
+motivation, so I asked Nicolas whether he would like to become a Hatari
+admin, too, and he kindly agreed!
+As far as I can tell, Nicolas is a very skilled coder who knows both,
+the ST internals and the Hatari source code very well, so I think he is
+the best person for this job :-) So please welcome him as new admin and
+support him as good as you supported me!
+
+Concerning myself, I will certainly continue to read the mailing lists
+and reply to the one or other mail and commit the one or other patch
+(I still plan to finish that CMake build system...). But it might even
+become more difficult to get a reply from me than it was already in the
+past months. Sorry, but I just need a break, I hope you understand.
+
+Anyway, have a lot of fun with Hatari,
+ best regards,
+  Thomas
+
+
+From laurent.sallafranque at arkea.com  Sat Jan  9 23:59:41 2010
+From: laurent.sallafranque at arkea.com (LAURENT SALLAFRANQUE)
+Date: Sat, 9 Jan 2010 23:59:41 +0100 (CET)
+Subject: [hatari-users] New Hatari administrator
+In-Reply-To: <20100109133659.1155f749@phineus>
+Message-ID: <154281472.15838601263077981056.JavaMail.root@mail-zstore-1-a.gicm.net>
+
+Hello Thomas and Nicolas,
+
+I just want to say I'm happy to read that Nicolas will continue to administrate Hatari's project. I love this project, it's really interesting.
+
+Thomas, I just want to thank you a lot for all you've done. 
+I've personally learned a lot about DSP and emulation coding in general with all of you.
+Take fun in your new activities, and don't forget to help us from time to time. ;)
+
+Atari one day, Atari Forever, (Hatari is a part of this)
+
+Best regards, 
+
+Laurent
+
+PS: I wish we could meet all one day, this would be fun.
+
+
+
+----- "Thomas Huth" <huth at users.berlios.de> a ?crit :
+
+> Hi all!
+> 
+> I recently started to reflect the past months a little bit, and I
+> have
+> to admit that I often do not have very much time for Hatari anymore
+> ...
+> and alarmingly I often also lack the motivation to hack on Hatari
+> when
+> I've got spare time. Beside my job becoming quite stressful from time
+> to time, I think I am also somewhat tired after all these years to
+> only
+> work on Hatari - I just want to also hack on some projects, try other
+> programming languages ... or just do something that is not related to
+> computers at all.
+> 
+> However, I don't want that the Hatari project suffers from my poor
+> motivation, so I asked Nicolas whether he would like to become a
+> Hatari
+> admin, too, and he kindly agreed!
+> As far as I can tell, Nicolas is a very skilled coder who knows both,
+> the ST internals and the Hatari source code very well, so I think he
+> is
+> the best person for this job :-) So please welcome him as new admin
+> and
+> support him as good as you supported me!
+> 
+> Concerning myself, I will certainly continue to read the mailing
+> lists
+> and reply to the one or other mail and commit the one or other patch
+> (I still plan to finish that CMake build system...). But it might
+> even
+> become more difficult to get a reply from me than it was already in
+> the
+> past months. Sorry, but I just need a break, I hope you understand.
+> 
+> Anyway, have a lot of fun with Hatari,
+>  best regards,
+>   Thomas
+> _______________________________________________
+> hatari-users mailing list
+> hatari-users at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/hatari-users
+
+-- 
+Laurent Sallafranque
+CICM / groupe Arkea
+Domaine Ged/Archivage
+1 rue Louis Lichou
+29480 Le Relecq Kerhuon
+T?l : 02 98 00 20 76
+
+--
+Ce message et  toutes les pieces jointes (ci-apres  le "message") sont
+confidentiels et etablis a l'intention exclusive de ses destinataires.
+Toute  utilisation ou  diffusion  non autorisee  est interdite.   Tout
+message  etant  susceptible  d'alteration,  l'emetteur  decline  toute
+responsabilite au titre de  ce message  s'il a  ete altere, deforme ou
+falsifie.
+                -----------------------------------
+This message and any  attachments (the "message") are confidential and
+intended  solely   for  the   addressees.  Any  unauthorised   use  or
+dissemination is prohibited. As e-mails are susceptible to alteration,
+the issuer shall  not be  liable for  the  message if altered, changed
+or falsified.
+
+
+From sebstaszak at free.fr  Sun Jan 10 10:31:18 2010
+From: sebstaszak at free.fr (seb)
+Date: Sun, 10 Jan 2010 10:31:18 +0100
+Subject: [hatari-users] New Hatari administrator
+In-Reply-To: <154281472.15838601263077981056.JavaMail.root@mail-zstore-1-a.gicm.net>
+References: <154281472.15838601263077981056.JavaMail.root@mail-zstore-1-a.gicm.net>
+Message-ID: <4B499E66.60204@free.fr>
+
+LAURENT SALLAFRANQUE a ?crit :
+> Hello Thomas and Nicolas,
+> 
+> I just want to say I'm happy to read that Nicolas will continue to administrate Hatari's project. I love this project, it's really interesting.
+> 
+> Thomas, I just want to thank you a lot for all you've done. 
+> I've personally learned a lot about DSP and emulation coding in general with all of you.
+> Take fun in your new activities, and don't forget to help us from time to time. ;)
+> 
+> Atari one day, Atari Forever, (Hatari is a part of this)
+> 
+> Best regards, 
+> 
+> Laurent
+> 
+> PS: I wish we could meet all one day, this would be fun.
+> 
+> 
+> 
+> ----- "Thomas Huth" <huth at users.berlios.de> a ?crit :
+> 
+>> Hi all!
+>>
+>> I recently started to reflect the past months a little bit, and I
+>> have
+>> to admit that I often do not have very much time for Hatari anymore
+>> ...
+>> and alarmingly I often also lack the motivation to hack on Hatari
+>> when
+>> I've got spare time. Beside my job becoming quite stressful from time
+>> to time, I think I am also somewhat tired after all these years to
+>> only
+>> work on Hatari - I just want to also hack on some projects, try other
+>> programming languages ... or just do something that is not related to
+>> computers at all.
+>>
+>> However, I don't want that the Hatari project suffers from my poor
+>> motivation, so I asked Nicolas whether he would like to become a
+>> Hatari
+>> admin, too, and he kindly agreed!
+>> As far as I can tell, Nicolas is a very skilled coder who knows both,
+>> the ST internals and the Hatari source code very well, so I think he
+>> is
+>> the best person for this job :-) So please welcome him as new admin
+>> and
+>> support him as good as you supported me!
+>>
+>> Concerning myself, I will certainly continue to read the mailing
+>> lists
+>> and reply to the one or other mail and commit the one or other patch
+>> (I still plan to finish that CMake build system...). But it might
+>> even
+>> become more difficult to get a reply from me than it was already in
+>> the
+>> past months. Sorry, but I just need a break, I hope you understand.
+>>
+>> Anyway, have a lot of fun with Hatari,
+>>  best regards,
+>>   Thomas
+>> _______________________________________________
+>> hatari-users mailing list
+>> hatari-users at lists.berlios.de
+>> https://lists.berlios.de/mailman/listinfo/hatari-users
+> 
+
+
+
+Hello everybody
+
+I am the wife of S?bastien ( Seb). I wanted to say to you that you do 
+not have his news anymore because he regrettably died on November 23rd 
+of this year from the consequences of a long disease. He fought bravely 
+during 12 years it was a passionate person of the life, the computing, 
+of atari . I am happy that he was able to share his passion with you.
+
+Good continuation in all...
+
+Pascaline ( his wife)
+
+-- 
+Seb
+
+
+From sebstaszak at free.fr  Sun Jan 10 10:32:29 2010
+From: sebstaszak at free.fr (seb)
+Date: Sun, 10 Jan 2010 10:32:29 +0100
+Subject: [hatari-users] New Hatari administrator
+In-Reply-To: <20100109133659.1155f749@phineus>
+References: <20100109133659.1155f749@phineus>
+Message-ID: <4B499EAD.6020703@free.fr>
+
+Thomas Huth a ?crit :
+>  Hi all!
+> 
+> I recently started to reflect the past months a little bit, and I have
+> to admit that I often do not have very much time for Hatari anymore ...
+> and alarmingly I often also lack the motivation to hack on Hatari when
+> I've got spare time. Beside my job becoming quite stressful from time
+> to time, I think I am also somewhat tired after all these years to only
+> work on Hatari - I just want to also hack on some projects, try other
+> programming languages ... or just do something that is not related to
+> computers at all.
+> 
+> However, I don't want that the Hatari project suffers from my poor
+> motivation, so I asked Nicolas whether he would like to become a Hatari
+> admin, too, and he kindly agreed!
+> As far as I can tell, Nicolas is a very skilled coder who knows both,
+> the ST internals and the Hatari source code very well, so I think he is
+> the best person for this job :-) So please welcome him as new admin and
+> support him as good as you supported me!
+> 
+> Concerning myself, I will certainly continue to read the mailing lists
+> and reply to the one or other mail and commit the one or other patch
+> (I still plan to finish that CMake build system...). But it might even
+> become more difficult to get a reply from me than it was already in the
+> past months. Sorry, but I just need a break, I hope you understand.
+> 
+> Anyway, have a lot of fun with Hatari,
+>  best regards,
+>   Thomas
+> _______________________________________________
+> hatari-users mailing list
+> hatari-users at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/hatari-users
+> 
+> 
+Hello everybody
+
+I am the wife of S?bastien ( Seb). I wanted to say to you that you do 
+not have his news anymore because he regrettably died on November 23rd 
+of this year from the consequences of a long disease. He fought bravely 
+during 12 years it was a passionate person of the life, the computing, 
+of atari . I am happy that he was able to share his passion with you.
+
+Good continuation in all...
+
+Pascaline ( his wife)
+
+
+
+-- 
+Seb
+
+
+From huth at users.berlios.de  Sun Jan 10 11:18:13 2010
+From: huth at users.berlios.de (Thomas Huth)
+Date: Sun, 10 Jan 2010 11:18:13 +0100
+Subject: [hatari-users] =?utf-8?q?S=C3=A9bastien?=
+In-Reply-To: <4B499EAD.6020703@free.fr>
+References: <20100109133659.1155f749@phineus>
+	<4B499EAD.6020703@free.fr>
+Message-ID: <20100110111813.013fe201@phineus>
+
+On Sun, 10 Jan 2010 10:32:29 +0100
+seb <sebstaszak at free.fr> wrote:
+
+> Hello everybody
+> 
+> I am the wife of S?bastien ( Seb). I wanted to say to you that you do 
+> not have his news anymore because he regrettably died on November
+> 23rd of this year from the consequences of a long disease. He fought
+> bravely during 12 years it was a passionate person of the life, the
+> computing, of atari . I am happy that he was able to share his
+> passion with you.
+> 
+> Good continuation in all...
+> 
+> Pascaline ( his wife)
+
+ Hello Pascaline
+
+I am very sad to hear that. Sincere condolences. I have to admit that I
+hardly knew him, but I know how hard it is to lose a person in the
+family, so I wish you a lot of strength in this time of grief.
+
+ Thomas
+
+
+From eerot at users.berlios.de  Sun Jan 10 16:55:43 2010
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Sun, 10 Jan 2010 17:55:43 +0200
+Subject: [hatari-users] GEMDOS emu new file name lower casing?
+Message-ID: <201001101755.43278.eerot@users.berlios.de>
+
+Hi,
+
+Currently all new files on GEMDOS HDD emulated directories are created with
+upper case names as that's how GEMDOS specifies them.
+
+I though that I could change the created host system file names to be in
+lower case.  Would anybody be against this?
+
+
+	- Eero
+
+
+From laurent.sallafranque at arkea.com  Mon Jan 11 10:23:39 2010
+From: laurent.sallafranque at arkea.com (LAURENT SALLAFRANQUE)
+Date: Mon, 11 Jan 2010 10:23:39 +0100 (CET)
+Subject: [hatari-users] =?iso-8859-15?q?S=E9bastien?=
+In-Reply-To: <20100110111813.013fe201@phineus>
+Message-ID: <32716051.16017961263201819806.JavaMail.root@mail-zstore-1-a.gicm.net>
+
+Hello Pascaline,
+
+I associate myself to all members of Hatari to give you my apologize.
+
+Sincerly,
+
+Laurent Sallafranque
+
+
+----- "Thomas Huth" <huth at users.berlios.de> a ?crit :
+
+> On Sun, 10 Jan 2010 10:32:29 +0100
+> seb <sebstaszak at free.fr> wrote:
+> 
+> > Hello everybody
+> >
+> > I am the wife of S?bastien ( Seb). I wanted to say to you that you
+> do
+> > not have his news anymore because he regrettably died on November
+> > 23rd of this year from the consequences of a long disease. He fought
+> > bravely during 12 years it was a passionate person of the life, the
+> > computing, of atari . I am happy that he was able to share his
+> > passion with you.
+> >
+> > Good continuation in all...
+> >
+> > Pascaline ( his wife)
+> 
+>  Hello Pascaline
+> 
+> I am very sad to hear that. Sincere condolences. I have to admit that
+> I
+> hardly knew him, but I know how hard it is to lose a person in the
+> family, so I wish you a lot of strength in this time of grief.
+> 
+>  Thomas
+> _______________________________________________
+> hatari-users mailing list
+> hatari-users at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/hatari-users
+
+
+--
+Ce message et  toutes les pieces jointes (ci-apres  le "message") sont
+confidentiels et etablis a l'intention exclusive de ses destinataires.
+Toute  utilisation ou  diffusion  non autorisee  est interdite.   Tout
+message  etant  susceptible  d'alteration,  l'emetteur  decline  toute
+responsabilite au titre de  ce message  s'il a  ete altere, deforme ou
+falsifie.
+                -----------------------------------
+This message and any  attachments (the "message") are confidential and
+intended  solely   for  the   addressees.  Any  unauthorised   use  or
+dissemination is prohibited. As e-mails are susceptible to alteration,
+the issuer shall  not be  liable for  the  message if altered, changed
+or falsified.
+
+
+From eerot at users.berlios.de  Tue Jan 26 14:14:33 2010
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Tue, 26 Jan 2010 15:14:33 +0200
+Subject: [hatari-users] Improved GEMDOS emu long host filenames support
+	commited
+Message-ID: <201001261514.33140.eerot@users.berlios.de>
+
+Hi,
+
+Now it's too late to complain about the patch not working on some
+platform, I commited it, changes in it were overlapping with some other
+things I was looking into...
+
+The improvements are:
+
+* convert host filename chars that are invalid in TOS to valid ones ('@')
+  (main thing is that extra dots etc don't break TOS fileselector etc).
+ 
+* cut file basename and extension separately to 8+3 size
+  (gives more readable TOS filenames).
+
+* support long host directory names in addition to filenames
+  (earlier they might be visible in TOS, but files in them weren't).
+
+* first try matching exact (non-casesensitive) name first,
+  only if that fails, use a pattern for long names
+  (fixes renaming name.prg to name.pr).
+
+* get rid of glob() and use opendir()/readdir()/closedir() directly and
+  TOS pattern matching instead (unlike TOS, glob() interprets
+  [] as ranges).
+
+
+	- Eero
+
+
+From eerot at users.berlios.de  Wed Feb  3 22:50:21 2010
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Wed, 3 Feb 2010 23:50:21 +0200
+Subject: [hatari-users] Fwd: Re: [hatari-devel] User selectable threshold
+	for window zooming
+Message-ID: <201002032350.21406.eerot@users.berlios.de>
+
+Hi,
+
+Any comments on this?
+
+If there are no "nay"s in about week, I'll apply this change
+which removes the zoom low res option and replaces it with
+user definable resolution doubling limit.
+
+
+	- Eero
+-------------- next part --------------
+An embedded message was scrubbed...
+From: Eero Tamminen <eerot at users.berlios.de>
+Subject: Re: [hatari-devel] User selectable threshold for window zooming
+Date: Sun, 31 Jan 2010 00:11:54 +0200
+Size: 23163
+URL: <https://lists.berlios.de/pipermail/hatari-users/attachments/20100203/f7b6806c/attachment.mht>
+
+From cyprian.konador at hp.com  Wed Feb  3 23:32:53 2010
+From: cyprian.konador at hp.com (Konador, Cyprian)
+Date: Wed, 3 Feb 2010 22:32:53 +0000
+Subject: [hatari-users] Fwd: Re: [hatari-devel] User selectable
+ threshold	for window zooming
+In-Reply-To: <201002032350.21406.eerot@users.berlios.de>
+References: <201002032350.21406.eerot@users.berlios.de>
+Message-ID: <89BA532D8C956043994C773C71153C92A892EE8F51@GVW1088EXB.americas.hpqcorp.net>
+
+> -----Original Message-----
+> From: hatari-users-bounces at lists.berlios.de 
+> [mailto:hatari-users-bounces at lists.berlios.de] On Behalf Of 
+> Eero Tamminen
+> Any comments on this?
+> 
+> If there are no "nay"s in about week, I'll apply this change
+> which removes the zoom low res option and replaces it with
+> user definable resolution doubling limit.
+
+I'd like to check your patch, but I have no idea how to apply it  :)))) 
+
+On my laptop most of Falcon's Demos (Desktop too) are anticlockwise rotated.
+I assume that it happen because of to small native resolution 1200x800.
+And it seems that your path can solve that issue
+
+I really appreciate it If you can advise me how to do 'undiff'
+
+Regards
+Cyprian
+
+From huth at users.berlios.de  Thu Feb  4 20:13:08 2010
+From: huth at users.berlios.de (Thomas Huth)
+Date: Thu, 4 Feb 2010 20:13:08 +0100
+Subject: [hatari-users] User selectable threshold for window zooming
+In-Reply-To: <201002032350.21406.eerot@users.berlios.de>
+References: <201002032350.21406.eerot@users.berlios.de>
+Message-ID: <20100204201308.38163512@phineus>
+
+
+ Hi Eero!
+
+On Wed, 3 Feb 2010 23:50:21 +0200
+Eero Tamminen <eerot at users.berlios.de> wrote:
+
+> Any comments on this?
+> 
+> If there are no "nay"s in about week, I'll apply this change
+> which removes the zoom low res option and replaces it with
+> user definable resolution doubling limit.
+
+Why did you change the word "zoom" into "doubling"?
+"to double" means scaling by factor two, so this seems inapproriate for
+a variable zooming function to me.
+
+ Thomas
+
+
+From eerot at users.berlios.de  Thu Feb  4 20:16:14 2010
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Thu, 4 Feb 2010 21:16:14 +0200
+Subject: [hatari-users]
+	=?iso-8859-1?q?Fwd=3A_Re=3A_=5Bhatari-devel=5D_Use?=
+	=?iso-8859-1?q?r_selectable_threshold=09for_window_zooming?=
+In-Reply-To: <89BA532D8C956043994C773C71153C92A892EE8F51@GVW1088EXB.americas.hpqcorp.net>
+References: <201002032350.21406.eerot@users.berlios.de>
+	<89BA532D8C956043994C773C71153C92A892EE8F51@GVW1088EXB.americas.hpqcorp.net>
+Message-ID: <201002042116.14324.eerot@users.berlios.de>
+
+Hi,
+
+On Thursday 04 February 2010, Konador, Cyprian wrote:
+> > -----Original Message-----
+> > From: hatari-users-bounces at lists.berlios.de
+> > [mailto:hatari-users-bounces at lists.berlios.de] On Behalf Of
+> > Eero Tamminen
+> > Any comments on this?
+> >
+> > If there are no "nay"s in about week, I'll apply this change
+> > which removes the zoom low res option and replaces it with
+> > user definable resolution doubling limit.
+>
+> I'd like to check your patch, but I have no idea how to apply it  :))))
+
+You need "patch" program.
+
+First, gunzip winsize2.diff.gz (Windows extractors can also uncompress *.gz
+files, gunzip isn't necessary).
+
+Then in the hatari directory, do:
+	patch -p1 < winsize2.diff
+to apply the changes.
+
+
+> On my laptop most of Falcon's Demos (Desktop too) are anticlockwise
+> rotated. I assume that it happen because of to small native resolution
+> 1200x800. And it seems that your path can solve that issue
+>
+> I really appreciate it If you can advise me how to do 'undiff'
+
+After testing, you can do:
+	patch -p1 -R < winsize2.diff
+
+to undo the changes.
+
+
+	- Eero
+
+
+From eerot at users.berlios.de  Thu Feb  4 20:30:02 2010
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Thu, 4 Feb 2010 21:30:02 +0200
+Subject: [hatari-users] User selectable threshold for window zooming
+In-Reply-To: <20100204201308.38163512@phineus>
+References: <201002032350.21406.eerot@users.berlios.de>
+	<20100204201308.38163512@phineus>
+Message-ID: <201002042130.02418.eerot@users.berlios.de>
+
+Hi,
+
+On Thursday 04 February 2010, Thomas Huth wrote:
+> > If there are no "nay"s in about week, I'll apply this change
+> > which removes the zoom low res option and replaces it with
+> > user definable resolution doubling limit.
+>
+> Why did you change the word "zoom" into "doubling"?
+> "to double" means scaling by factor two, so this seems inapproriate for
+> a variable zooming function to me.
+
+While the Falcon code supports arbitrary integer scaling factors, as far as
+I can see, it's never asked to use any other scaling factors than 1 & 2:
+-               /* Ugly: 400x300 threshold is currently hard-coded. */
+-               /* Should rather be selectable by the user! */
+-               if (width && width <= 400)
+-               {
+-                       nScreenZoomX = (800/width);
+-                       width *= nScreenZoomX;
+-               }
+-               if (height && height <= 300)
+-               {
+-                       nScreenZoomY = (550/height);
+-                       height *= nScreenZoomY;
+-               }
+
+For screen to get more than doubled, the original width would need to
+be < 267 pixels and height < 184 pixels which at least I've never seen...
+And ST/STE resolutions are never zoomed more than double.
+
+My current code explicitly doubles the size when needed.
+
+I think it also makes the result of that option clearer, as it implies
+an integer zooming factor (user doesn't wonder why the window wasn't
+zoomed to the specified size).
+
+
+	- Eero
+
+
+From huth at users.berlios.de  Thu Feb  4 20:51:30 2010
+From: huth at users.berlios.de (Thomas Huth)
+Date: Thu, 4 Feb 2010 20:51:30 +0100
+Subject: [hatari-users] User selectable threshold for window zooming
+In-Reply-To: <201002042130.02418.eerot@users.berlios.de>
+References: <201002032350.21406.eerot@users.berlios.de>
+	<20100204201308.38163512@phineus>
+	<201002042130.02418.eerot@users.berlios.de>
+Message-ID: <20100204205130.4a0f492c@phineus>
+
+On Thu, 4 Feb 2010 21:30:02 +0200
+Eero Tamminen <eerot at users.berlios.de> wrote:
+
+> On Thursday 04 February 2010, Thomas Huth wrote:
+> > > If there are no "nay"s in about week, I'll apply this change
+> > > which removes the zoom low res option and replaces it with
+> > > user definable resolution doubling limit.
+> >
+> > Why did you change the word "zoom" into "doubling"?
+> > "to double" means scaling by factor two, so this seems inapproriate
+> > for a variable zooming function to me.
+> 
+> While the Falcon code supports arbitrary integer scaling factors, as
+> far as I can see, it's never asked to use any other scaling factors
+> than 1 & 2:
+> -               /* Ugly: 400x300 threshold is currently hard-coded. */
+> -               /* Should rather be selectable by the user! */
+> -               if (width && width <= 400)
+> -               {
+> -                       nScreenZoomX = (800/width);
+> -                       width *= nScreenZoomX;
+> -               }
+> -               if (height && height <= 300)
+> -               {
+> -                       nScreenZoomY = (550/height);
+> -                       height *= nScreenZoomY;
+> -               }
+> 
+> For screen to get more than doubled, the original width would need to
+> be < 267 pixels and height < 184 pixels which at least I've never
+> seen... And ST/STE resolutions are never zoomed more than double.
+
+You haven't seen a lot of Falcon demos yet, have you? ;-)
+Try "Terrorize your soul" for example, it switches to 320x100 or so a
+couple of times... that means nScreenZoomY has been set to 5 with the
+old code, that's a lot more than simply doubling the resolution...
+
+ Thomas
+
+
+From eerot at users.berlios.de  Thu Feb  4 20:58:09 2010
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Thu, 4 Feb 2010 21:58:09 +0200
+Subject: [hatari-users] User selectable threshold for window zooming
+In-Reply-To: <20100204205130.4a0f492c@phineus>
+References: <201002032350.21406.eerot@users.berlios.de>
+	<201002042130.02418.eerot@users.berlios.de>
+	<20100204205130.4a0f492c@phineus>
+Message-ID: <201002042158.09543.eerot@users.berlios.de>
+
+Hi,
+
+On Thursday 04 February 2010, Thomas Huth wrote:
+> > For screen to get more than doubled, the original width would need to
+> > be < 267 pixels and height < 184 pixels which at least I've never
+> > seen... And ST/STE resolutions are never zoomed more than double.
+>
+> You haven't seen a lot of Falcon demos yet, have you? ;-)
+> Try "Terrorize your soul" for example, it switches to 320x100 or so a
+> couple of times...
+
+I see.  I guess I have been running it with zooming enabled. :-)
+
+
+> that means nScreenZoomY has been set to 5 with the 
+> old code, that's a lot more than simply doubling the resolution...
+
+But is this the correct thing to do?  The screen aspect ratio is then
+completely bogus.
+
+(See my questions about ST-medres style stuff on Falcon in earlier mails.)
+
+
+	- Eero
+
+
+From npomarede at corp.free.fr  Sun Feb 28 13:26:10 2010
+From: npomarede at corp.free.fr (npomarede at corp.free.fr)
+Date: Sun, 28 Feb 2010 13:26:10 +0100 (CET)
+Subject: [hatari-users] Hatari windows binary (test needed)
+Message-ID: <alpine.LMD.2.00.1002281308140.9325@pulsar.staff.proxad.net>
+
+
+Hello,
+
+I configured the necessary tools (mingw, ...) under my linux box to be 
+able to build the windows binary without having to boot under windows.
+
+I tested this .exe under wine, and for me it seems to run like the 
+previous 1.3.1 build made by thomas.
+
+Could some people running windows try this directly and report problems 
+here ? (try the keyboard shortcuts, using a local windows directory as a 
+hardrive, ...)
+
+This was built with SDL 1.2.14, but will run with previous dll.
+
+This build is based on the current devel version, so if you want to see 
+what Hatari 1.4 will run, it could be a good way to test it.
+
+
+Thomas, for the built you made :
+  - did you enable --trace option ?
+  - pressing alt+pause doesn't enter the debug mode but just pause hatari.
+    do we need a console or something else to enable it ?
+  - the release dir hatari-1.3.1_windows contained sdl.dll, but shouldn't
+    we include zlib1.dll ? (it prevents running from wine for example and
+    I don't know if it's always available under windows too)
+
+
+Nicolas
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: hatari_devel.zip
+Type: application/zip
+Size: 425427 bytes
+Desc: 
+URL: <https://lists.berlios.de/pipermail/hatari-users/attachments/20100228/09855ac8/attachment.zip>
+
+From eerot at users.berlios.de  Fri Mar 12 19:16:10 2010
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Fri, 12 Mar 2010 20:16:10 +0200
+Subject: [hatari-users] New Monitor/Window options dialog feedback?
+Message-ID: <201003122016.10524.eerot@users.berlios.de>
+
+Hi,
+
+Before I update the Hatari manual screenshots and description in the Screen
+dialog section for the new Monitor/Window options dialogs, I'd like you to
+use them a bit and tell whether they work as you'd expect.
+
+I'm mainly interested on comments on removal of the Zoom checkbox and
+replacing it with the "Max doubled" option that gives you more control on
+what size TT & Falcon resolutions come up.
+
+
+For ST/e low-res it does only doubling, for Falcon and TT resolutions it
+could zoom more if you give large enough resolution.  The zoom factor
+is an integer and I though "doubling" in this case tells better the effect
+of it.  If you disagree, feel free to propose something else as its
+name. :-)
+
+(Or give any other comments on the new dialogs...)
+
+
+	- Eero
+
+

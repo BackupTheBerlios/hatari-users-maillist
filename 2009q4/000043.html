@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)	users?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20%5Bhatari-devel%5D%20Hatari%20BeOS/Sun%20%28and%20Windows%29%0A%09users%3F&In-Reply-To=%3C200910241904.35618.eerot%40users.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000042.html">
+   <LINK REL="Next"  HREF="000044.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)	users?</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20%5Bhatari-devel%5D%20Hatari%20BeOS/Sun%20%28and%20Windows%29%0A%09users%3F&In-Reply-To=%3C200910241904.35618.eerot%40users.berlios.de%3E"
+       TITLE="[hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)	users?">eerot at users.berlios.de
+       </A><BR>
+    <I>Sat Oct 24 18:04:35 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000042.html">[hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)	users?
+</A></li>
+        <LI>Next message: <A HREF="000044.html">[hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)	users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#43">[ date ]</a>
+              <a href="thread.html#43">[ thread ]</a>
+              <a href="subject.html#43">[ subject ]</a>
+              <a href="author.html#43">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Saturday 24 October 2009, ggn (HOL) wrote:
+&gt;<i> iirc  scandir  is  used in the file selector too, right? Just did a
+</I>&gt;<i> distclean-ed build of hatari on my mingw32 enviroment and noticed no side
+</I>&gt;<i> effects.
+</I>
+I touched only the BeOS / Sun scandir() emulation, not the Windows one.
+
+(the Windows scandir() will work wrong only in 2 cases when malloc/calloc
+fail and it fails to free allocs in one case.  BeOS/Sun scandir() emulation
+had proper error hadling, but leaked when error happened.)
+
+	- Eero
+
+&gt;<i> Saturday, October 24, 2009, 1:34:32 PM, you wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I noticed that the Hatari scandir() function emulation for BeOS and Sun
+</I>&gt;<i> &gt; operating systems leaks memory and directories on errors.  I fixed that
+</I>&gt;<i> &gt; to the version control, but cannot test it myself.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; If somebody's still using Hatari on those operating systems, please
+</I>&gt;<i> &gt; check that I didn't break anything (at least it seemed to compile
+</I>&gt;<i> &gt; fine).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I also took a look at the Windows scandir() function emulation and
+</I>&gt;<i> &gt; besides potentially leaking, it seemed to be lacking some error
+</I>&gt;<i> &gt; handling (checking return values etc).  If somebody's using Hatari on
+</I>&gt;<i> &gt; Windows, you could take a look at the code and provide a patch.  (I
+</I>&gt;<i> &gt; would expect allocs to succeed on normal Windows machine, but on
+</I>&gt;<i> &gt; embedded versions they might not.)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;         - Eero
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; hatari-devel mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/hatari-users">hatari-devel at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/hatari-devel">https://lists.berlios.de/mailman/listinfo/hatari-devel</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000042.html">[hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)	users?
+</A></li>
+	<LI>Next message: <A HREF="000044.html">[hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)	users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#43">[ date ]</a>
+              <a href="thread.html#43">[ thread ]</a>
+              <a href="subject.html#43">[ subject ]</a>
+              <a href="author.html#43">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] hatari on Asus EEE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q1/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20hatari%20on%20Asus%20EEE&In-Reply-To=%3C200902272136.38438.eerot%40users.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000021.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] hatari on Asus EEE</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20hatari%20on%20Asus%20EEE&In-Reply-To=%3C200902272136.38438.eerot%40users.berlios.de%3E"
+       TITLE="[hatari-users] hatari on Asus EEE">eerot at users.berlios.de
+       </A><BR>
+    <I>Fri Feb 27 20:36:38 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000021.html">[hatari-users] hatari on Asus EEE
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#22">[ date ]</a>
+              <a href="thread.html#22">[ thread ]</a>
+              <a href="subject.html#22">[ subject ]</a>
+              <a href="author.html#22">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Friday 27 February 2009, Tony Smolar wrote:
+&gt;<i> &gt;&gt;&gt;&gt; Version 0.80 works ok, but the sound seems slow and sometimes out
+</I>&gt;<i> &gt;&gt;&gt;&gt; of sync.  I was hoping it might be improved in a newer version.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Well, I guess after version 0.95 Hatari only got slower since it
+</I>&gt;<i> &gt; emulates much more details than before. So if you got speed problems,
+</I>&gt;<i> &gt; version 0.95 might be worth a try.
+</I>&gt;<i>
+</I>&gt;<i> I got it working by using gcc 3.46, rather than the default gcc 4.1.2 on
+</I>&gt;<i> my system.
+</I>&gt;<i>
+</I>&gt;<i> You might be amazed to know that hatari 1.20 works close to perfect on
+</I>&gt;<i> the Asus EEE.   No speed issues in anything I tried so far, and the
+</I>&gt;<i> sound sounds right.
+</I>
+Well, I've used old Hatari versions (for ST emulation with frameskip) fairly
+satisfactorily on P133, P166 (both with good 2D acceleration) and P333
+laptop, but those were around version 0.50.
+
+I've also used Hatari v0.80-1.0 on 400Mhz N810 with TI Omap2 and there it's
+actually noticeably slower than on P333.  I assume this is because N810 has
+no graphics acceleration, slowish memory bus and Omap2 has small CPU caches.
+On 500Mhz TI Omap3 Hatari v1.1 performs pretty OK for ST/E emulation and
+even for some Falcon emulation without DSP.
+
+(OK = needs auto-frameskip, spec512 &amp; borders are disabled and using lower
+sound frequency. For N8x0 one needs also to disable &quot;Compatible CPU&quot;
+setting for Hatari to bearable.)
+
+Currently I'm using 1.4Ghz Athlon XP and it has never any problems with full
+settings for everything as long as DSP emulation is disabled.
+
+
+&gt;<i> Hatari 0.80 had slow, choppy sound, though  the emulator itself ran
+</I>&gt;<i> fast.   0.95 was an improvement in that the choppiness was gone, but the
+</I>&gt;<i> sound was still a bit slow.
+</I>
+Nicolas rewrote the YM sound handling for Hatari v1.1 and it was changed
+from 8-bit mono into 16-bit stereo sound.  When profiling Hatari, I've
+noticed ALSA etc. may take even third of Hatari CPU usage, maybe
+because they're resampling/antialiasing the Hatari sound output to some
+other frequency that the HW supports.
+
+From Wikipedia:
+&quot;The earliest Eee PC models used a 900 MHz Intel Celeron M processor 
+underclocked to 630 MHz. Later models shipped with this processor at normal 
+speed. Newer models use a 1.6GHz Intel Atom processor. The Atom is a simple, 
+scalar, in-order execution microprocessor that is significantly slower 
+per-clock than the Celeron M due to its microarchitecture. Still, 1.6 GHz 
+Atom-equipped Eee PCs tend to perform similarly to their Celeron-equipped 
+counterparts, due to the higher clock speeds and Hyperthreading.&quot;
+
+Which EEE PC model you have? SDL_mixer/ALSA handles the sound in another
+thread so hyperthreading might have helped here.  Have you updated your EEE
+kernel or system libraries in the meanwhile?  (they migh have improved
+issues related to sound / threading)
+
+
+Another explanation could be that Hatari v1.1 has automatic frameskip and
+it's enabled by default (you can see your current frameskip setting from
+the statusbar).
+
+
+	- Eero
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000021.html">[hatari-users] hatari on Asus EEE
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#22">[ date ]</a>
+              <a href="thread.html#22">[ thread ]</a>
+              <a href="subject.html#22">[ subject ]</a>
+              <a href="author.html#22">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

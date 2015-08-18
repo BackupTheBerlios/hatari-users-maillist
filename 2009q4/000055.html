@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Note on hard disk images and GEMDOS drives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C200911140007.20460.eerot%40users.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000054.html">
+   <LINK REL="Next"  HREF="000056.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Note on hard disk images and GEMDOS drives</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C200911140007.20460.eerot%40users.berlios.de%3E"
+       TITLE="[hatari-users] Note on hard disk images and GEMDOS drives">eerot at users.berlios.de
+       </A><BR>
+    <I>Fri Nov 13 23:07:20 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000054.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+        <LI>Next message: <A HREF="000056.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#55">[ date ]</a>
+              <a href="thread.html#55">[ thread ]</a>
+              <a href="subject.html#55">[ subject ]</a>
+              <a href="author.html#55">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Friday 13 November 2009, Uwe Seimet wrote:
+&gt;<i> &gt; Good to hear, but it seems to work only for people who have purchased
+</I>&gt;<i> &gt; the commercial version of HDDriver.  The demo version README says that
+</I>&gt;<i> &gt; it supports only drive C:.
+</I>&gt;<i>
+</I>&gt;<i> Yes, I was aware that my comment does not help those just using the demo
+</I>&gt;<i> version, but it's probably useful for those using the full version.
+</I>&gt;<i> By the way, the demo also supports other drives than C: but other drives
+</I>&gt;<i> are read-only.
+</I>
+Hm.  So in practice one should be able to copy data from an IDE HD image
+to an GEMDOS partition/directory?
+
+Could you give a bit more detailed instructions on how to do that?
+That may be something I could add to the manual.
+
+
+&gt;<i> &gt; If you write instructions on using HDDriver with Hatari and send me an
+</I>&gt;<i> &gt; URL to the page, I'd be happy to add pointer to that www-page into
+</I>&gt;<i> &gt; Hatari manual.
+</I>&gt;<i>
+</I>&gt;<i> I am thinking of it, but first I want to try out some other things.
+</I>&gt;<i>
+</I>&gt;<i> Maybe you are interested in why HDDRIVER can access emulated IDE drives
+</I>&gt;<i> under hatari, but does not work with emulated ACSI drives.
+</I>
+Sure.
+
+
+&gt;<i> As far as I can tell the problem is caused by the Timer C data register
+</I>&gt;<i> not counting down accurately. HDDRIVER relies on the value of this
+</I>&gt;<i> register for the ACSI bus timing. If the timing is too fast HDDRIVER
+</I>&gt;<i> writes the command block bytes too fast and hatari will not retrieve the
+</I>&gt;<i> proper byte sequence from the emulated bus. At least this is what I think
+</I>&gt;<i> happens after looking at the hatari ACSI debug output. On each run of
+</I>&gt;<i> HDDRUTIL's ID check different command byte values are reported even
+</I>&gt;<i> though the same commands are sent.
+</I>
+Nicolas, any comments on the timings?
+
+
+&gt;<i> AHDI does not use a proper timing (that's one of the reasons why AHDI
+</I>&gt;<i> does not work with some real drives), but not relying on a timer the way
+</I>&gt;<i> HDDRIVER does is most likely an advantage for AHDI when running with
+</I>&gt;<i> hatari.
+</I>&gt;<i>
+</I>&gt;<i> Have you already thought of not only supporting an IDE master drive but
+</I>&gt;<i> a slave drive as well? My impression was that the IDE emulation is
+</I>&gt;<i> basically capable of also supporting an IDE slave. Maybe all that's
+</I>&gt;<i> missing is a way to configure the additional drive image with hatari?
+</I>
+Thomas has added the HDD support but he's been lately busy with other
+things than Hatari.  Maybe he'll have time to look at this at some point...
+
+Or at least give enough pointers in case you're yourself interested in
+looking into this and providing a patch. :-)
+
+
+	- Eero
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000054.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+	<LI>Next message: <A HREF="000056.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#55">[ date ]</a>
+              <a href="thread.html#55">[ thread ]</a>
+              <a href="subject.html#55">[ subject ]</a>
+              <a href="author.html#55">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,259 @@
+From eerot at users.berlios.de  Thu Jul  2 00:03:07 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Thu, 2 Jul 2009 01:03:07 +0300
+Subject: [hatari-users] update screenshots gallery
+In-Reply-To: <20090621102600.186050@gmx.net>
+References: <alpine.LMD.2.00.0906201148040.19559@pulsar.staff.proxad.net>
+	<20090621102600.186050@gmx.net>
+Message-ID: <200907020103.07962.eerot@users.berlios.de>
+
+Hi,
+
+(I'm back on list)
+
+On Sunday 21 June 2009, Thomas H. wrote:
+> > For example :
+> >   - Mind Rewind shows some shifted line in the bottom text scroller
+>
+> Ok, right, that screenshot should really be replaced.
+>
+> >   - not all images have the same size, we should at least have same
+> > size for images from STF/STE
+>
+> As long as you put the screenshots into a <div> container which all have
+> the same size, it should not matter very much if one image is some pixels
+> bigger or smaller...?
+>
+> >   - remove window decorations from the screenshot : the images are not
+> >     consistant.
+>
+> I somehow like the window decorations... it somehow "proves" that the
+> screenshot really comes from Hatari, and you can see which version it
+> comes from. But that's just my personal taste. Well, you're definitely
+> right with the fact that it looks somewhat inconsistant...
+
+I like the window decorations too, but getting them is too much trouble
+as Hatari screenshot functionality works now so nicely. :-)
+
+
+> > What about those settings for STF/STE screenshots ?
+> >   - use borders
+> >   - don't use "zoom st low res"
+
+If the program doesn't have anything on borders, I think the black borders
+around the screenshot look bad.
+
+
+> Ok, agreed, the low-res zooming should maybe be removed from the current
+> STE screenshots.
+
+Laurent's Falcon screenshots seem to be zoomed too.
+
+
+> >   - don't use "show statusbar"
+
+I kind of like that too, it "proves" that the screenshot is from Hatari
+similarly to window title/borders.  I just wonder whether I should somehow
+try to fit Hatari version into the statusbar. :-)
+
+
+> >   - take a screenshot with algr + g
+> >
+> > This way, we should get a common format for all images and a better
+> > layout on the html.
+>
+> When you take screenshots with AltGr + g, you should at least
+> post-process the images to use indexed colors
+
+For some reason imagemagick (with something like "-colors 255") doesn't make
+the image file smaller.  Gimp works fine though as long as one sets
+dithering to "none" when changing image to indexed mode.
+
+
+> and interlacing, so that the file size is reduced and the load better on
+> slow internet connections.
+
+Interlacing increases the image size slightly and the images are pretty
+small anyway, so I don't think this is necessary.
+
+(Falcon TC pictures could be jpegs which already should make them smaller.)
+
+
+	- Eero
+
+
+From LAURENT.SALLAFRANQUE at ARKEA.COM  Tue Aug 11 13:26:01 2009
+From: LAURENT.SALLAFRANQUE at ARKEA.COM (LAURENT SALLAFRANQUE)
+Date: Tue, 11 Aug 2009 13:26:01 +0200
+Subject: [hatari-users] BadMood 3.07a, PMdoom0.81
+Message-ID: <4A815549.3010804@arkea.com>
+
+Hello,
+
+I've noticed a big speed improvement with badmood (3.07a) with the 
+latest DSP / 68030 accuracy and DSP cycles count.
+Do you feel this speed improvement too ?
+For me, the comment in the compatibility list is no more good.
+I'm waiting for your return here.
+
+Also for BadMood, is the latest version (3.07a) runs the heretic level 
+on a real Falcon or does it displays garbage as we have on the hatari 
+version ?
+(doom.wad file works correctly, but heretic.wad file doesn't work with 
+the latest badMood version).
+
+For PMDoom (the doom written by Patrice Mandin), I've never managed to 
+let it run on hatari.
+Did someone here managed to let it work ?
+
+Regards,
+
+Laurent
+ 
+
+--
+Ce message et  toutes les pieces jointes (ci-apres  le "message") sont
+confidentiels et etablis a l'intention exclusive de ses destinataires.
+Toute  utilisation ou  diffusion  non autorisee  est interdite.   Tout
+message  etant  susceptible  d'alteration,  l'emetteur  decline  toute
+responsabilite au titre de  ce message  s'il a  ete altere, deforme ou
+falsifie.
+                -----------------------------------
+This message and any  attachments (the "message") are confidential and
+intended  solely   for  the   addressees.  Any  unauthorised   use  or
+dissemination is prohibited. As e-mails are susceptible to alteration,
+the issuer shall  not be  liable for  the  message if altered, changed
+or falsified.
+
+
+From eerot at users.berlios.de  Tue Aug 11 21:43:27 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Tue, 11 Aug 2009 22:43:27 +0300
+Subject: [hatari-users] BadMood 3.07a, PMdoom0.81
+In-Reply-To: <4A815549.3010804@arkea.com>
+References: <4A815549.3010804@arkea.com>
+Message-ID: <200908112243.27166.eerot@users.berlios.de>
+
+Hi,
+
+On Tuesday 11 August 2009, LAURENT SALLAFRANQUE wrote:
+> I've noticed a big speed improvement with badmood (3.07a) with the
+> latest DSP / 68030 accuracy and DSP cycles count.
+> Do you feel this speed improvement too ?
+
+Yes.
+
+> For me, the comment in the compatibility list is no more good.
+> I'm waiting for your return here.
+
+Fixed.
+
+
+> Also for BadMood, is the latest version (3.07a) runs the heretic level
+> on a real Falcon or does it displays garbage as we have on the hatari
+> version ?
+> (doom.wad file works correctly, but heretic.wad file doesn't work with
+> the latest badMood version).
+>
+> For PMDoom (the doom written by Patrice Mandin), I've never managed to
+> let it run on hatari. Did someone here managed to let it work ?
+
+The latest one from here:
+http://pagesperso-orange.fr/patrice.mandin/en/port-jeux.html
+
+Is very slow but it works fine (with doom1 shareware wad).  It doesn't need
+DSP, so it's usable (speedwise) for me when run with fast-forward.  Did you
+try with 14Mb of RAM?
+
+Same with Patrice's Heretic v0.24 from year 2000.  I guess latest one would
+too.
+
+
+	- Eero
+
+
+From huth at users.berlios.de  Sun Aug 16 22:54:21 2009
+From: huth at users.berlios.de (Thomas Huth)
+Date: Sun, 16 Aug 2009 22:54:21 +0200
+Subject: [hatari-users] Hatari version 1.3.0 has been released
+Message-ID: <20090816225421.74b4dc74@phineus>
+
+
+Hatari version 1.3.0 has been released - you can get it from here:
+
+http://developer.berlios.de/project/showfiles.php?group_id=10436
+
+ Cheers,
+  Thomas
+
+
+From eerot at users.berlios.de  Mon Aug 17 22:13:37 2009
+From: eerot at users.berlios.de (Eero Tamminen)
+Date: Mon, 17 Aug 2009 23:13:37 +0300
+Subject: [hatari-users] python-ui debugger
+In-Reply-To: <20090816231057.7bf9374c@phineus>
+References: <20090816195856.0c362405@phineus>
+	<200908162241.34632.eerot@users.berlios.de>
+	<20090816231057.7bf9374c@phineus>
+Message-ID: <200908172313.38205.eerot@users.berlios.de>
+
+Hi,
+
+On Monday 17 August 2009, Thomas Huth wrote:
+> By the way, I just played around with the python-ui a little bit
+> (really nice work, I should use it more often...),
+
+Now that I added menu entries to all the interesting doc files etc, I think
+it's especially newbie friendly.  :-)
+
+
+> and discovered that the debugger dialog is currently broken (memdump
+> and disasm does not work anymore) ...
+
+Argh, I forgot to update that after adding the number base support
+for Hatari.  It's fixed now.   Too late for release though, but as it's
+Python, it doesn't need to be compiled, one can just get it from here:
+  http://hg.berlios.de/repos/hatari/raw-file/tip/python-ui/debugui.py
+
+While testing that, I noticed that the Python UI trace settings dialog was
+also broken, that was trivial fix too:
+	http://hg.berlios.de/repos/hatari/rev/e8ba0d2c79c9
+:-/
+
+
+> well, I guess you will have to extend it for the new 
+> debugger features anyway ;-)
+
+Well, I actually would like somebody to do some UI design first, e.g. 
+screenshot mockups in Gimp, UI mockups in Glade or just text describing
+what information there should be and where in UI & how one would control
+it from the UI.
+
+It's hard to add features without a clear picture about how exactly their
+users would like to use them.  I don't really use the debugger myself,
+developing it itself is more interesting; the conditional breakpoints thing
+was especially intriguing challenge (the remote API adds also its own
+"challenges" but it may be possible to fix/extend it...).
+
+Is there anybody on hatari-devel or hatari-users who would be interested to
+put effort into what their "dream" Hatari debugger UI (for the current / new
+internal Hatari debugger features) should look like? :-)
+
+
+	- Eero
+
+
+From christer.solskogen at gmail.com  Wed Sep 30 20:02:17 2009
+From: christer.solskogen at gmail.com (Christer Solskogen)
+Date: Wed, 30 Sep 2009 20:02:17 +0200
+Subject: [hatari-users] Hatari Macport
+Message-ID: <c1a0d1560909301102y6a7fa64bub36338d59314be35@mail.gmail.com>
+
+I've made an port for hatari in Macports.
+http://svn.macports.org/repository/macports/trunk/dports/emulators/hatari/Portfile
+As you probably notice, the CFLAGS is same as the one used in hatari.spec.
+
+-- 
+chs,
+
+

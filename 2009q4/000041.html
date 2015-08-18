@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Hatari BeOS/Sun (and Windows) users?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Hatari%20BeOS/Sun%20%28and%20Windows%29%20users%3F&In-Reply-To=%3C200910241334.32901.eerot%40users.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000042.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Hatari BeOS/Sun (and Windows) users?</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Hatari%20BeOS/Sun%20%28and%20Windows%29%20users%3F&In-Reply-To=%3C200910241334.32901.eerot%40users.berlios.de%3E"
+       TITLE="[hatari-users] Hatari BeOS/Sun (and Windows) users?">eerot at users.berlios.de
+       </A><BR>
+    <I>Sat Oct 24 12:34:32 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000042.html">[hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)	users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#41">[ date ]</a>
+              <a href="thread.html#41">[ thread ]</a>
+              <a href="subject.html#41">[ subject ]</a>
+              <a href="author.html#41">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I noticed that the Hatari scandir() function emulation for BeOS and Sun
+operating systems leaks memory and directories on errors.  I fixed that to
+the version control, but cannot test it myself.
+
+If somebody's still using Hatari on those operating systems, please check
+that I didn't break anything (at least it seemed to compile fine).
+
+
+I also took a look at the Windows scandir() function emulation and besides
+potentially leaking, it seemed to be lacking some error handling (checking
+return values etc).  If somebody's using Hatari on Windows, you could take
+a look at the code and provide a patch.  (I would expect allocs to succeed
+on normal Windows machine, but on embedded versions they might not.)
+
+
+	- Eero
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000042.html">[hatari-users] [hatari-devel] Hatari BeOS/Sun (and Windows)	users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#41">[ date ]</a>
+              <a href="thread.html#41">[ thread ]</a>
+              <a href="subject.html#41">[ subject ]</a>
+              <a href="author.html#41">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

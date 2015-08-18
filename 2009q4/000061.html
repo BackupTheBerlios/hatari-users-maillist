@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Note on hard disk images and GEMDOS drives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C20091114151502.GA7975%40quattro.seimet.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000060.html">
+   <LINK REL="Next"  HREF="000062.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Note on hard disk images and GEMDOS drives</H1>
+    <B>Uwe Seimet</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Note%20on%20hard%20disk%20images%20and%20GEMDOS%20drives&In-Reply-To=%3C20091114151502.GA7975%40quattro.seimet.de%3E"
+       TITLE="[hatari-users] Note on hard disk images and GEMDOS drives">Uwe.Seimet at seimet.de
+       </A><BR>
+    <I>Sat Nov 14 16:15:02 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000060.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+        <LI>Next message: <A HREF="000062.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#61">[ date ]</a>
+              <a href="thread.html#61">[ thread ]</a>
+              <a href="subject.html#61">[ subject ]</a>
+              <a href="author.html#61">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> Doesn't work with the HDDriver demo.  It doesn't recognize the IDE in
+</I>&gt;<i> addition to the GEMDOS drive C: it found.
+</I>
+I checked it with the demo and it works fine for me. And it should, since
+except for not being able to write to all partitions and being slower
+than the full version when reading data the demo is identical to the full
+version.
+Did you run TOS 3.0 in TT compatible mode, did you put the HDDRIVER.PRG
+into the AUTO folder of C: and did you configure the HDDRIVER.PRG you put
+into the AUTO folder with the &quot;Preserve existing partitions&quot; option?
+(You might have configured a different HDDRIVER.PRG.)
+
+&gt;<i> [1] Would it be OK for you if we provide such an image in Hatari www-site
+</I>&gt;<i> with instructions on how people can copy data between first partition on HD
+</I>&gt;<i> image and GEMDOS directory mounts?  (Instructions could have a link to your
+</I>&gt;<i> HDDriver page in case people want to get rid of the demo limitations)
+</I>
+This is OK for me. But you should try to get it running with the demo as
+I mentioned above, because this is really easy to use.
+
+&gt;<i> Btw. HDDriver seems to panic EmuTOS.  Any idea why?
+</I>
+No, I can only confirm that EmuTOS panics with HDDRIVER and hatari.
+Looks as if EmuTOS is missing something that is required from HDDRIVER's
+perspective in order to behave like a real Atari, but I have no clue
+what it might be. In general HDDRIVER is quite generic and as far as
+possible tries not to rely on particular features of the underlying operating
+system. This is, for instance, why the IDE port works with TOS 3.06, even
+though a real TT does not have this port. In general HDDRIVER checks for
+the existence/non-existence of several hardware addresses in order to
+find out which bus is available. Non-existing hardware causes a bus
+error, which is caught by HDDRIVER without crashing the system, but for
+some reason this might not work with EmuTOS.
+
+Best regards
+
+Uwe
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000060.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+	<LI>Next message: <A HREF="000062.html">[hatari-users] Note on hard disk images and GEMDOS drives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#61">[ date ]</a>
+              <a href="thread.html#61">[ thread ]</a>
+              <a href="subject.html#61">[ subject ]</a>
+              <a href="author.html#61">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

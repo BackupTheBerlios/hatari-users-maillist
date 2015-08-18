@@ -1,0 +1,549 @@
+From ae at dhs.nu  Sat Oct  8 14:35:01 2011
+From: ae at dhs.nu (Anders Eriksson)
+Date: Sat, 8 Oct 2011 14:35:01 +0200 (CEST)
+Subject: [hatari-users] Video padding
+Message-ID: <alpine.DEB.2.00.1110081429500.4340@gem.atari.org>
+
+
+Hi,
+
+while trying to make some Falcon video recordings from Hatari, I've come 
+across a problem. When the Falcon changes video mode, the Hatari window 
+resizes, and so does the frame size of the recorded video. This makes it 
+pretty hopeless to work with the recorded file afterwards.
+
+Would it be possible to add a "padding" area of selected size? Eg, select 
+that the video size should be 800x600, and the resulting screen render is 
+centered to this buffer. It would make the recording useful also in Falcon 
+mode.
+
+Also I think this would be pretty good for non-recording sessions, as 
+seeing the Hatari window change in size when running a game or demo is 
+pretty ugly :)
+
+--
+Anders Eriksson
+ae at dhs.nu     http://www.dhs.nu/
+ae at atari.org  http://www.atari.org/
+
+
+From npomarede at corp.free.fr  Sun Oct  9 13:35:04 2011
+From: npomarede at corp.free.fr (=?ISO-8859-1?Q?Nicolas_Pomar=E8de?=)
+Date: Sun, 09 Oct 2011 13:35:04 +0200
+Subject: [hatari-users] Video padding
+In-Reply-To: <alpine.DEB.2.00.1110081429500.4340@gem.atari.org>
+References: <alpine.DEB.2.00.1110081429500.4340@gem.atari.org>
+Message-ID: <4E9186E8.4060802@corp.free.fr>
+
+Le 08/10/2011 14:35, Anders Eriksson a ?crit :
+>
+> Hi,
+>
+> while trying to make some Falcon video recordings from Hatari, I've come
+> across a problem. When the Falcon changes video mode, the Hatari window
+> resizes, and so does the frame size of the recorded video. This makes it
+> pretty hopeless to work with the recorded file afterwards.
+>
+> Would it be possible to add a "padding" area of selected size? Eg,
+> select that the video size should be 800x600, and the resulting screen
+> render is centered to this buffer. It would make the recording useful
+> also in Falcon mode.
+>
+> Also I think this would be pretty good for non-recording sessions, as
+> seeing the Hatari window change in size when running a game or demo is
+> pretty ugly :)
+>
+
+Hello
+
+I see what you mean and I agree it can produces bad results when 
+recording video.
+At the AVI level, it's not possible to have different x/y resolution in 
+the same file, so the solution would be to have a larger screen where 
+the atari's screen is centered.
+
+It looks similar to the fullscreen mode when video/freq is not changed 
+and we keep the same desktop resolution. Perhaps Eero could add this 
+functionnality by extending the '--desktop' option ?
+
+
+Nicolas
+
+
+From oak at helsinkinet.fi  Sun Oct  9 17:38:01 2011
+From: oak at helsinkinet.fi (Eero Tamminen)
+Date: Sun, 9 Oct 2011 18:38:01 +0300
+Subject: [hatari-users] Video padding
+In-Reply-To: <4E9186E8.4060802@corp.free.fr>
+References: <alpine.DEB.2.00.1110081429500.4340@gem.atari.org>
+	<4E9186E8.4060802@corp.free.fr>
+Message-ID: <201110091838.01277.oak@helsinkinet.fi>
+
+Hi,
+
+On sunnuntai 09 lokakuu 2011, Nicolas Pomar?de wrote:
+> Le 08/10/2011 14:35, Anders Eriksson a ?crit :
+> > while trying to make some Falcon video recordings from Hatari, I've
+> > come across a problem. When the Falcon changes video mode, the Hatari
+> > window resizes, and so does the frame size of the recorded video. This
+> > makes it pretty hopeless to work with the recorded file afterwards.
+> > 
+> > Would it be possible to add a "padding" area of selected size? Eg,
+> > select that the video size should be 800x600, and the resulting screen
+> > render is centered to this buffer. It would make the recording useful
+> > also in Falcon mode.
+> > 
+> > Also I think this would be pretty good for non-recording sessions, as
+> > seeing the Hatari window change in size when running a game or demo is
+> > pretty ugly :)
+> 
+> I see what you mean and I agree it can produces bad results when
+> recording video.
+> At the AVI level, it's not possible to have different x/y resolution in
+> the same file, so the solution would be to have a larger screen where
+> the atari's screen is centered.
+> 
+> It looks similar to the fullscreen mode when video/freq is not changed
+> and we keep the same desktop resolution. Perhaps Eero could add this
+> functionnality by extending the '--desktop' option ?
+
+If one currently uses --desktop option and does recording in fullscreen,
+does it already produce the desired result?
+
+I.e. this is a request to have something similar also in windowed mode:
+	--fixed-rez 800x480
+?
+
+
+	- Eero
+
+
+From npomarede at corp.free.fr  Sun Oct  9 19:34:57 2011
+From: npomarede at corp.free.fr (=?ISO-8859-1?Q?Nicolas_Pomar=E8de?=)
+Date: Sun, 09 Oct 2011 19:34:57 +0200
+Subject: [hatari-users] disk image filename not displayed after restoring a
+	snapshot
+Message-ID: <4E91DB41.9060302@corp.free.fr>
+
+Hello
+
+I noticed that if you press F12 and go into the floppy dialog after 
+restoring a snapshot that contains an inserted disk, the filenames are 
+not displayed in A: and B:
+
+The filename is correctly saved/restored in floppy.c :
+
+MemorySnapShot_Store(EmulationDrives[i].sFileName, 
+sizeof(EmulationDrives[i].sFileName));
+
+But it's not copied into ConfigureParams.DiskImage.szDiskFileName[Drive] 
+and ConfigureParams.DiskImage.szDiskZipPath[Drive]
+
+I don't think that calling Floppy_SetDiskFileName after restoring the 
+snapshot, because it could auto insert disk B (which we don't want, 
+because the user might have changed it before saving the snapshot).
+
+Is it enough to update those 2 DiskImage's variable, or are there side 
+effect to take into account ?
+Anyone willing to provide a patch for this ?
+
+Nicolas
+
+
+From oak at helsinkinet.fi  Sun Oct  9 20:33:49 2011
+From: oak at helsinkinet.fi (Eero Tamminen)
+Date: Sun, 9 Oct 2011 21:33:49 +0300
+Subject: [hatari-users] disk image filename not displayed after
+	restoring a snapshot
+In-Reply-To: <4E91DB41.9060302@corp.free.fr>
+References: <4E91DB41.9060302@corp.free.fr>
+Message-ID: <201110092133.50018.oak@helsinkinet.fi>
+
+Hi,
+
+On sunnuntai 09 lokakuu 2011, Nicolas Pomar?de wrote:
+> Hello
+> 
+> I noticed that if you press F12 and go into the floppy dialog after
+> restoring a snapshot that contains an inserted disk, the filenames are
+> not displayed in A: and B:
+> 
+> The filename is correctly saved/restored in floppy.c :
+> 
+> MemorySnapShot_Store(EmulationDrives[i].sFileName,
+> sizeof(EmulationDrives[i].sFileName));
+> 
+> But it's not copied into ConfigureParams.DiskImage.szDiskFileName[Drive]
+> and ConfigureParams.DiskImage.szDiskZipPath[Drive]
+> 
+> I don't think that calling Floppy_SetDiskFileName after restoring the
+> snapshot, because it could auto insert disk B (which we don't want,
+> because the user might have changed it before saving the snapshot).
+> 
+> Is it enough to update those 2 DiskImage's variable, or are there side
+> effect to take into account ?
+
+No side-effects, but the floppy image might be inside a zip file
+in which case you need to set also zip path.  Zip path comes
+only from file selector.  It's used by:
+	Floppy_InsertDiskIntoDrive() -> ZIP_ReadDisk()
+
+When image filename is determined to be a ZIP archive.
+Zip path tells the image file name within the ZIP archive.
+
+
+	- Eero
+
+
+From ae at dhs.nu  Sat Oct 15 10:49:27 2011
+From: ae at dhs.nu (Anders Eriksson)
+Date: Sat, 15 Oct 2011 10:49:27 +0200 (CEST)
+Subject: [hatari-users] Video padding
+In-Reply-To: <201110091838.01277.oak@helsinkinet.fi>
+References: <alpine.DEB.2.00.1110081429500.4340@gem.atari.org>
+	<4E9186E8.4060802@corp.free.fr>
+	<201110091838.01277.oak@helsinkinet.fi>
+Message-ID: <alpine.DEB.2.00.1110151041030.4340@gem.atari.org>
+
+On Sun, 9 Oct 2011, Eero Tamminen wrote:
+
+>> It looks similar to the fullscreen mode when video/freq is not changed
+>> and we keep the same desktop resolution. Perhaps Eero could add this
+>> functionnality by extending the '--desktop' option ?
+>
+> If one currently uses --desktop option and does recording in fullscreen,
+> does it already produce the desired result?
+>
+> I.e. this is a request to have something similar also in windowed mode:
+> 	--fixed-rez 800x480
+> ?
+
+Hi,
+
+sorry about the delay, it's been one of those weeks at work.
+
+Good idea about using the --desktop option, I hadn't thought of that.
+It works and the resolution changes doesn't give different sized frames.
+
+The slight problem is that I get a 1680x1050 resolution video dump (or 
+bigger if I use an external screen) :-)
+
+--fixed-rez 800x600 parameter sounds awesome, especially for windowed mode 
+:)
+
+
+--
+Anders Eriksson
+ae at dhs.nu     http://www.dhs.nu/
+ae at atari.org  http://www.atari.org/
+
+
+From oak at helsinkinet.fi  Sat Oct 15 11:58:36 2011
+From: oak at helsinkinet.fi (Eero Tamminen)
+Date: Sat, 15 Oct 2011 12:58:36 +0300
+Subject: [hatari-users] Video padding
+In-Reply-To: <alpine.DEB.2.00.1110151041030.4340@gem.atari.org>
+References: <alpine.DEB.2.00.1110081429500.4340@gem.atari.org>
+	<201110091838.01277.oak@helsinkinet.fi>
+	<alpine.DEB.2.00.1110151041030.4340@gem.atari.org>
+Message-ID: <201110151258.36111.oak@helsinkinet.fi>
+
+Hi,
+
+On lauantai 15 lokakuu 2011, Anders Eriksson wrote:
+> On Sun, 9 Oct 2011, Eero Tamminen wrote:
+> >> It looks similar to the fullscreen mode when video/freq is not changed
+> >> and we keep the same desktop resolution. Perhaps Eero could add this
+> >> functionnality by extending the '--desktop' option ?
+> > 
+> > If one currently uses --desktop option and does recording in
+> > fullscreen, does it already produce the desired result?
+> > 
+> > I.e. this is a request to have something similar also in windowed mode:
+> > 	--fixed-rez 800x480
+> > ?
+> 
+> sorry about the delay, it's been one of those weeks at work.
+> 
+> Good idea about using the --desktop option, I hadn't thought of that.
+> It works and the resolution changes doesn't give different sized frames.
+
+Good.
+
+
+> The slight problem is that I get a 1680x1050 resolution video dump (or
+> bigger if I use an external screen) :-)
+
+I guess this is a problem because it slows down the Hatari saving and
+files are larger + cropping / re-compressing the result in video editor
+takes longer & more memory...
+
+
+> --fixed-rez 800x600 parameter sounds awesome, especially for windowed
+> mode
+
+It will probably affect both fullscreen & video mode.  I.e.
+which ever of the --fixed-rez or --desktop option is given
+later, wins.
+
+I'll take a look at that later (hopefully before year end, for
+now I'm busy with AHCC & EmuTOS).  If you don't hear anything
+from be by early next month, please remind. :-)
+
+
+	- Eero
+
+
+
+From npomarede at corp.free.fr  Sun Oct 30 14:40:15 2011
+From: npomarede at corp.free.fr (=?ISO-8859-1?Q?Nicolas_Pomar=E8de?=)
+Date: Sun, 30 Oct 2011 14:40:15 +0100
+Subject: [hatari-users] disk image filename not displayed after
+ restoring a snapshot
+In-Reply-To: <201110092133.50018.oak@helsinkinet.fi>
+References: <4E91DB41.9060302@corp.free.fr>
+	<201110092133.50018.oak@helsinkinet.fi>
+Message-ID: <4EAD53BF.3080402@corp.free.fr>
+
+Le 09/10/2011 20:33, Eero Tamminen a ?crit :
+> Hi,
+>
+> On sunnuntai 09 lokakuu 2011, Nicolas Pomar?de wrote:
+
+>> Is it enough to update those 2 DiskImage's variable, or are there side
+>> effect to take into account ?
+>
+> No side-effects, but the floppy image might be inside a zip file
+> in which case you need to set also zip path.  Zip path comes
+> only from file selector.  It's used by:
+> 	Floppy_InsertDiskIntoDrive() ->  ZIP_ReadDisk()
+>
+> When image filename is determined to be a ZIP archive.
+> Zip path tells the image file name within the ZIP archive.
+>
+
+Hi
+
+I added the disk image and zip path for drive A: and B: to the memory 
+snapshot, no error seen while testing this.
+
+Nicolas
+
+
+From oak at helsinkinet.fi  Thu Nov 10 22:13:36 2011
+From: oak at helsinkinet.fi (Eero Tamminen)
+Date: Thu, 10 Nov 2011 23:13:36 +0200
+Subject: [hatari-users] Video padding
+In-Reply-To: <201110151258.36111.oak@helsinkinet.fi>
+References: <alpine.DEB.2.00.1110081429500.4340@gem.atari.org>
+	<alpine.DEB.2.00.1110151041030.4340@gem.atari.org>
+	<201110151258.36111.oak@helsinkinet.fi>
+Message-ID: <201111102313.36531.oak@helsinkinet.fi>
+
+Hi,
+
+On lauantai 15 lokakuu 2011, Eero Tamminen wrote:
+> > --fixed-rez 800x600 parameter sounds awesome, especially for windowed
+> > mode
+
+I added an option to force the resolution to be fixed to
+the given max resolution.  You can use it like this:
+	--max-width 800 --max-height 600 --force-max yes
+
+
+> It will probably affect both fullscreen & video mode.  I.e.
+> which ever of the --fixed-rez or --desktop option is given
+> later, wins.
+
+It affects both, unless --desktop option is enabled (like it's
+by default), then desktop resolution will be used for fullscreen.
+
+
+> I'll take a look at that later (hopefully before year end, for
+> now I'm busy with AHCC & EmuTOS).  If you don't hear anything
+> from be by early next month, please remind. :-)
+
+If it works fine for you and others don't have any objections
+for the option & config names, I'll add docs for it.
+
+Althought it's kind of nice also for other things than video
+recording, I'm not planning on adding support for that to
+the SDL UI.  (maybe to the Python/Gtk UI)
+
+
+	- Eero
+
+
+From th.huth at gmx.de  Thu Dec  1 17:46:58 2011
+From: th.huth at gmx.de (Thomas Huth)
+Date: Thu, 1 Dec 2011 17:46:58 +0100
+Subject: [hatari-users] The Hatari project is moving to tuxfamily.org
+Message-ID: <20111201174658.258b2427@think43>
+
+
+ Dear Hatari community,
+
+as you all know, there has been an announcement end of September that
+BerliOS is going to be shut down at the end of December 2011. While we
+were evaluating alternatives, there was another announcement one month
+later that BerliOS might continue, led by a non-profit association that
+should be founded in November. So we decided to wait and see whether the
+Hatari project could continue at BerliOS or not.
+
+Well, November is now over, and there hasn't been another announcement
+yet that the association has successfully been founded. Considering
+that we might now have only one month left to move the project to
+another host, and that we might need some weeks for a smooth
+transition, we decided to move the Hatari project now.
+
+Starting with today, Hatari will now be hosted on tuxfamily.org. Our
+new homepage is http://hatari.tuxfamily.org/ - so please update your
+bookmarks!
+Information about downloading Hatari releases and about how to clone
+the new Mercurial repository can be found here:
+
+ http://hatari.tuxfamily.org/download.html
+
+Of course we will also need a new mailing list since this list here at
+BerliOS might not survive in 2012. Please visit the following page for
+information about how to join the new mailing lists:
+
+ http://hatari.tuxfamily.org/contact.html
+
+Note that we most likely won't have a new bug tracking service at
+tuxfamily.org, since this host does not provide this service by
+default. The prefered way to report bugs is now to write a mail to one
+of the new mailing lists. Considering that most of the bugs have already
+been reported via mail (or atari-forum.com) in the past, this
+restriction should not hurt too much.
+
+Please have a look at the new website, test the new mercurial
+repository, join the new mailing list(s) and if you hit a problem, get
+in touch on this mailing list here or on the new ones if possible.
+
+ Enjoy,
+  Thomas
+
+
+From npomarede at corp.free.fr  Thu Dec  1 17:55:56 2011
+From: npomarede at corp.free.fr (=?ISO-8859-1?Q?Nicolas_Pomar=E8de?=)
+Date: Thu, 01 Dec 2011 17:55:56 +0100
+Subject: [hatari-users] [hatari-devel] The Hatari project is moving to
+	tuxfamily.org
+In-Reply-To: <20111201174658.258b2427@think43>
+References: <20111201174658.258b2427@think43>
+Message-ID: <4ED7B19C.4070004@corp.free.fr>
+
+Le 01/12/2011 17:46, Thomas Huth a ?crit :
+>
+> Of course we will also need a new mailing list since this list here at
+> BerliOS might not survive in 2012. Please visit the following page for
+> information about how to join the new mailing lists:
+>
+>   http://hatari.tuxfamily.org/contact.html
+>
+
+Hello
+
+thanks for having worked on this.
+
+Regarding the mailing list, as it's rather fast to switch to a new one 
+(compared to setting a new homepage and source repository), maybe we can 
+wait a little more before considering the lists on berlios should not be 
+used anymore ?
+
+There're some ongoing discussions on berlios ML with pending issues, so 
+the longer we can keep them there, the better it will be IMHO.
+
+Nicolas
+
+
+From th.huth at gmx.de  Thu Dec  1 18:13:14 2011
+From: th.huth at gmx.de (Thomas Huth)
+Date: Thu, 1 Dec 2011 18:13:14 +0100
+Subject: [hatari-users] The Hatari project is moving to tuxfamily.org
+In-Reply-To: <4ED7B19C.4070004@corp.free.fr>
+References: <20111201174658.258b2427@think43> <4ED7B19C.4070004@corp.free.fr>
+Message-ID: <20111201181314.7aed9f4f@think43>
+
+Am Thu, 01 Dec 2011 17:55:56 +0100
+schrieb Nicolas Pomar?de <npomarede at corp.free.fr>:
+
+> Le 01/12/2011 17:46, Thomas Huth a ?crit :
+> >
+> > Of course we will also need a new mailing list since this list here
+> > at BerliOS might not survive in 2012. Please visit the following
+> > page for information about how to join the new mailing lists:
+> >
+> >   http://hatari.tuxfamily.org/contact.html
+> >
+> 
+> Hello
+> 
+> thanks for having worked on this.
+> 
+> Regarding the mailing list, as it's rather fast to switch to a new
+> one (compared to setting a new homepage and source repository), maybe
+> we can wait a little more before considering the lists on berlios
+> should not be used anymore ?
+> 
+> There're some ongoing discussions on berlios ML with pending issues,
+> so the longer we can keep them there, the better it will be IMHO.
+
+Sure, we can keep this lists here at Berlios enabled as long as Berlios
+survives, so that will be at least 'til end of december. But even if
+Berlios then continues, I think it would be good to have everything at
+the new host at one point in time, so I suggest to open new topics on
+the new mailing lists instead, so we can easily completely move to that
+host in 2012.
+
+ Thomas
+
+
+From oak at helsinkinet.fi  Fri Dec  2 23:00:10 2011
+From: oak at helsinkinet.fi (Eero Tamminen)
+Date: Sat, 3 Dec 2011 00:00:10 +0200
+Subject: [hatari-users] The Hatari project is moving to tuxfamily.org
+In-Reply-To: <20111201174658.258b2427@think43>
+References: <20111201174658.258b2427@think43>
+Message-ID: <201112030000.10259.oak@helsinkinet.fi>
+
+Hi,
+
+On torstai 01 joulukuu 2011, Thomas Huth wrote:
+> Starting with today, Hatari will now be hosted on tuxfamily.org. Our
+> new homepage is http://hatari.tuxfamily.org/ - so please update your
+> bookmarks!
+> Information about downloading Hatari releases and about how to clone
+> the new Mercurial repository can be found here:
+> 
+>  http://hatari.tuxfamily.org/download.html
+> 
+> Of course we will also need a new mailing list since this list here at
+> BerliOS might not survive in 2012. Please visit the following page for
+> information about how to join the new mailing lists:
+> 
+>  http://hatari.tuxfamily.org/contact.html
+> 
+> Note that we most likely won't have a new bug tracking service at
+> tuxfamily.org, since this host does not provide this service by
+> default. The prefered way to report bugs is now to write a mail to one
+> of the new mailing lists. Considering that most of the bugs have already
+> been reported via mail (or atari-forum.com) in the past, this
+> restriction should not hurt too much.
+
+hatari-users on BerliOS has been *very* low volume, I wonder do
+we need a separate users list on tuxfamily?
+
+Maybe there should be separate mailing list(s) for bugs and hatari
+releases instead?
+
+
+> Please have a look at the new website, test the new mercurial
+> repository, join the new mailing list(s) and if you hit a problem, get
+> in touch on this mailing list here or on the new ones if possible.
+
+
+	- Eero
+
+

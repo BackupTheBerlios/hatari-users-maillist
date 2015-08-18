@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Video padding
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2011q4/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Video%20padding&In-Reply-To=%3C201111102313.36531.oak%40helsinkinet.fi%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000110.html">
+   <LINK REL="Next"  HREF="000107.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Video padding</H1>
+    <B>Eero Tamminen</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Video%20padding&In-Reply-To=%3C201111102313.36531.oak%40helsinkinet.fi%3E"
+       TITLE="[hatari-users] Video padding">oak at helsinkinet.fi
+       </A><BR>
+    <I>Thu Nov 10 22:13:36 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000110.html">[hatari-users] Video padding
+</A></li>
+        <LI>Next message: <A HREF="000107.html">[hatari-users] disk image filename not displayed after restoring a	snapshot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#112">[ date ]</a>
+              <a href="thread.html#112">[ thread ]</a>
+              <a href="subject.html#112">[ subject ]</a>
+              <a href="author.html#112">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On lauantai 15 lokakuu 2011, Eero Tamminen wrote:
+&gt;<i> &gt; --fixed-rez 800x600 parameter sounds awesome, especially for windowed
+</I>&gt;<i> &gt; mode
+</I>
+I added an option to force the resolution to be fixed to
+the given max resolution.  You can use it like this:
+	--max-width 800 --max-height 600 --force-max yes
+
+
+&gt;<i> It will probably affect both fullscreen &amp; video mode.  I.e.
+</I>&gt;<i> which ever of the --fixed-rez or --desktop option is given
+</I>&gt;<i> later, wins.
+</I>
+It affects both, unless --desktop option is enabled (like it's
+by default), then desktop resolution will be used for fullscreen.
+
+
+&gt;<i> I'll take a look at that later (hopefully before year end, for
+</I>&gt;<i> now I'm busy with AHCC &amp; EmuTOS).  If you don't hear anything
+</I>&gt;<i> from be by early next month, please remind. :-)
+</I>
+If it works fine for you and others don't have any objections
+for the option &amp; config names, I'll add docs for it.
+
+Althought it's kind of nice also for other things than video
+recording, I'm not planning on adding support for that to
+the SDL UI.  (maybe to the Python/Gtk UI)
+
+
+	- Eero
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000110.html">[hatari-users] Video padding
+</A></li>
+	<LI>Next message: <A HREF="000107.html">[hatari-users] disk image filename not displayed after restoring a	snapshot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#112">[ date ]</a>
+              <a href="thread.html#112">[ thread ]</a>
+              <a href="subject.html#112">[ subject ]</a>
+              <a href="author.html#112">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

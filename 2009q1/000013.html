@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Long point about DSP and Falcon Emulator
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q1/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Long%20point%20about%20DSP%20and%20Falcon%20Emulator&In-Reply-To=%3C4982C986.1080509%40arkea.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000012.html">
+   <LINK REL="Next"  HREF="000014.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Long point about DSP and Falcon Emulator</H1>
+    <B>LAURENT SALLAFRANQUE</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Long%20point%20about%20DSP%20and%20Falcon%20Emulator&In-Reply-To=%3C4982C986.1080509%40arkea.com%3E"
+       TITLE="[hatari-users] Long point about DSP and Falcon Emulator">LAURENT.SALLAFRANQUE at ARKEA.COM
+       </A><BR>
+    <I>Fri Jan 30 10:33:58 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000012.html">[hatari-users] Hatari version 1.2.0
+</A></li>
+        <LI>Next message: <A HREF="000014.html">[hatari-users] Long point about DSP and Falcon Emulator
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#13">[ date ]</a>
+              <a href="thread.html#13">[ thread ]</a>
+              <a href="subject.html#13">[ subject ]</a>
+              <a href="author.html#13">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Thomas,
+
+Another long mail, sorry :)
+And sorry for the way I write the sentences, it looks like a catalog 
+book sometimes, but I always ask me plenties of questions :)
+
+1st point :
+----------
+I've tested numactl, it worked fine. But I don't know this tool. Are 
+there parameters to use to &quot;simulate&quot; one CPU and 1 Go Ram computer ?
+
+2nd point:
+----------
+I continue to search why there are still problems in the Host Interface 
+(HI) module.
+I'm pretty sure that most of our actual bugs are there. (Transferts and 
+synchro problems).
+
+I've catched the DSP code of &quot;Papa was a blade runner&quot;. It  contains few 
+instructions , only  standard instructions (I haven't found &quot;strange&quot; 
+instructions there. So I think again that the graphical problems comes 
+from the HI).
+I think it depends if there are few or many exchanges in a short time or 
+alternance of read2DSP and write2DSP, ...
+
+I'm pretty sure that the way I've recoded it is much better than before.
+But it seems not suffisant for now.
+The problem is that I try to synchronize the DSP and the CPU artificialy.
+(I've included 4 while loops before DSP_Send, DSP_Receive,  Host_Send 
+and Host_Receive).
+ It seems that the test I use to go out of the while is not correct or 
+not suffisant.
+
+If we want to emulate a &quot;Real standard Falcon030&quot;, I think we'll have to 
+run the DSP at exactly 32 Mhz, calculate the 
+DSP_cycle_lenght_instruction and code also a &quot;real 8MHZ Host interface&quot;.
+
+I can code the DSP_cycle_lenght_instruction for each instructions if you 
+want. (I planed to do it, but I was not sure if it would be useful or not).
+
+3rd point :
+----------
+I've read on Atari.org that you want to improve the falcon emulation 
+part. I ask me a few questions about this :
+
+- Are the Falcon blitter and the Ste blitter the same ?
+- In general, are the componant all the same (Yamaha, ...)
+- Do all the pairing instructions coded for the St emulation still run 
+for the Falcon ?
+- In the Hatari menu, the Cpus are 68000, 68010, 68020, 68020+copro and 
+68040), but no 68030. But the Falcon CPU is a 68030, no ?
+- Can we use hatari code to emulate an accurate falcon or will we have 
+to make a branch for the development (Atari and Falcon were not 
+completly compatible together).
+
+4th point:
+---------
+I propose you a DSP TODO list (from my point of view) if we want an 
+accurate Falcon emulator.
+It can be completed by a Falcon TODO list.
+
+In no order :
+
+- Run the DSP at exactly 32 Mhz
+- Calculate the real cpu time used by each instruction
+- Code a real Host interface module (DMA mode, Interrupt mode, ...)
+- Add all the interruptions into the DSP
+- Add the Port C (SSI) functions
+- Add a direct sound entrance (to be able to use programs like &quot;Audio 
+Fun Machine&quot;)
+- Add the sound matrix and connect the DSP to it
+- Add direct 2 disk
+-
+
+5th and last point (for now :):
+-----------------------------
+The DSP known bugs:
+- Problems into the Host interface (PortB) transferts
+- A rendering bug into the mapping on the cube of &quot;Papa was a Blade 
+Runner&quot; demo
+- No floor and ceiling rendering in BadMood 2.14A
+- No rendering at all into BadMood 3.07A
+- problem into Des lazers et des hommes : when we move, the view jumps 
+sometime to another angle of view
+- Problem with all the programs that transfers data from/To DSP without 
+checking first
+- A bad gestion into overflow and Carry for ADD and SUB instructions
+
+I can take some parts of this into development if needed.
+I'll continue to investigate into the known bugs for now.
+
+Regards,
+
+Laurent
+
+
+--
+Ce message et  toutes les pieces jointes (ci-apres  le &quot;message&quot;) sont
+confidentiels et etablis a l'intention exclusive de ses destinataires.
+Toute  utilisation ou  diffusion  non autorisee  est interdite.   Tout
+message  etant  susceptible  d'alteration,  l'emetteur  decline  toute
+responsabilite au titre de  ce message  s'il a  ete altere, deforme ou
+falsifie.
+                -----------------------------------
+This message and any  attachments (the &quot;message&quot;) are confidential and
+intended  solely   for  the   addressees.  Any  unauthorised   use  or
+dissemination is prohibited. As e-mails are susceptible to alteration,
+the issuer shall  not be  liable for  the  message if altered, changed
+or falsified.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000012.html">[hatari-users] Hatari version 1.2.0
+</A></li>
+	<LI>Next message: <A HREF="000014.html">[hatari-users] Long point about DSP and Falcon Emulator
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#13">[ date ]</a>
+              <a href="thread.html#13">[ thread ]</a>
+              <a href="subject.html#13">[ subject ]</a>
+              <a href="author.html#13">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>

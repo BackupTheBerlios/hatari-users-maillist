@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [hatari-users] Aranym video emulation (was Re: Long point about DSP and Falcon Emulator)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/hatari-users/2009q1/index.html" >
+   <LINK REL="made" HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Aranym%20video%20emulation%20%28was%20Re%3A%20Long%20point%20about%20DSP%0A%20and%20Falcon%20Emulator%29&In-Reply-To=%3C20090211213549.bbd60d2b.mandin.patrice%40orange.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000015.html">
+   <LINK REL="Next"  HREF="000017.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[hatari-users] Aranym video emulation (was Re: Long point about DSP and Falcon Emulator)</H1>
+    <B>Patrice Mandin</B> 
+    <A HREF="mailto:hatari-users%40lists.berlios.de?Subject=Re%3A%20%5Bhatari-users%5D%20Aranym%20video%20emulation%20%28was%20Re%3A%20Long%20point%20about%20DSP%0A%20and%20Falcon%20Emulator%29&In-Reply-To=%3C20090211213549.bbd60d2b.mandin.patrice%40orange.fr%3E"
+       TITLE="[hatari-users] Aranym video emulation (was Re: Long point about DSP and Falcon Emulator)">mandin.patrice at orange.fr
+       </A><BR>
+    <I>Wed Feb 11 21:35:49 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000015.html">[hatari-users] Long point about DSP and Falcon Emulator
+</A></li>
+        <LI>Next message: <A HREF="000017.html">[hatari-users] hatari on Asus EEE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#16">[ date ]</a>
+              <a href="thread.html#16">[ thread ]</a>
+              <a href="subject.html#16">[ subject ]</a>
+              <a href="author.html#16">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Le Sat, 31 Jan 2009 01:08:43 +0200
+Eero Tamminen &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/hatari-users">oak at helsinkinet.fi</A>&gt; a _crit:
+
+&gt;<i> The TT &amp; Falcon screen handling uses code from Aranym (which always does
+</I>&gt;<i> fullscreen updates and supports also higher bitdepths than 4-bits), ST and
+</I>&gt;<i> STE screen handling is based on greatly refactored code originally from
+</I>&gt;<i> WinSTon (which usually updates only changed part of screen and has well
+</I>&gt;<i> optimized support for the ST/E 1-4 bits planar modes).
+</I>
+The video code from Aranym has been heavily rewritten a while ago (by
+me), so we can have Videl, boot logo, Fvdi screen separately rendered,
+and choose one of these 'screens' at runtime. It is also easier when
+OpenGL is enabled, as each of these screens is then rendered from a
+texture, to be displayed, and we can blend from one to the other when
+switching.
+
+For the Videl emulation (that interests you inside Hatari), I use a
+simple checksum (adler32) to know which 16x16 blocks of Videl screen I
+need to update. The software renderer also has zoom code (whereas
+OpenGL do it for free you know :)).
+
+It leads to must faster screen updates; as in Aranym we don't care much
+about video synchronisation, rasters and all that weird stuff :).
+
+-- 
+Patrice Mandin
+WWW: <A HREF="http://pmandin.atari.org/">http://pmandin.atari.org/</A>
+Programmeur Linux, Atari
+Sp&#233;cialit&#233;: D&#233;veloppement, jeux
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000015.html">[hatari-users] Long point about DSP and Falcon Emulator
+</A></li>
+	<LI>Next message: <A HREF="000017.html">[hatari-users] hatari on Asus EEE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#16">[ date ]</a>
+              <a href="thread.html#16">[ thread ]</a>
+              <a href="subject.html#16">[ subject ]</a>
+              <a href="author.html#16">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/hatari-users">More information about the hatari-users
+mailing list</a><br>
+</body></html>
